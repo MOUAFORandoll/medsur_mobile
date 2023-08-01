@@ -1,8 +1,6 @@
-
 import 'package:get/get.dart';
 
-class AlertPagetitle {
- static String patientinformation = 'patientinformation'.tr;
- static String emergency = 'emergency'.tr;
-  static String speciality = 'speciality'.tr;
+class EtablissementPagetitle {
+  static String first_step = 'information'.tr;
+  static String second_step = 'speciality'.tr;
 }

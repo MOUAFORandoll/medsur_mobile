@@ -8,6 +8,7 @@ import 'package:medsur_app/modules/alerte/components/app_alert_component.dart';
 import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
 import 'package:medsur_app/modules/auth/controller/auth_controller.dart';
 import 'package:medsur_app/modules/auth/models/oauth.dart';
+import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
 import 'package:medsur_app/modules/home/components/App_btn_text.dart';
 import 'package:medsur_app/modules/home/components/app_btn_home_add.dart';
 import 'package:medsur_app/modules/home/controller/home_controller.dart';
@@ -24,8 +25,8 @@ import '../../../constants/index_common.dart';
 class NewEtablissementView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AlerteController>(
-        builder: (_alerteController) => WillPopScope(
+    return GetBuilder<EtablissementController>(
+        builder: (_controller) => WillPopScope(
             child: Scaffold(
               backgroundColor: AppColors.grey3,
               appBar: AppBar(
@@ -37,12 +38,12 @@ class NewEtablissementView extends StatelessWidget {
                     tooltip:
                         MaterialLocalizations.of(context).backButtonTooltip,
                     onPressed: () {
-                      _alerteController.reset();
+                     
                       Get.back();
                     },
                   ),
                   title: Text(
-                    _alerteController.buildTitle(),
+                    _controller.buildTitle(),
                     style: TextStyle(
                       color: AppColors.primaryText,
                     ),
@@ -53,16 +54,16 @@ class NewEtablissementView extends StatelessWidget {
               body: Container(
                 margin: EdgeInsets.symmetric(horizontal: kMarginX).add(
                     EdgeInsets.only(
-                        top: _alerteController.currentIndex == 0
+                        top: _controller.currentIndex == 0
                             ? kMarginY * 5
                             : kMarginY)),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      _alerteController.buildContent(),
+                      _controller.buildContent(),
                       Container(
                           margin: EdgeInsets.only(top: kMarginY * 5),
-                          child: _alerteController.currentIndex == 0
+                          child: _controller.currentIndex == 0
                               ? Container(
                                   // margin: EdgeInsets.only(top: kMarginY * 3),
                                   child: AppButton(
@@ -70,12 +71,12 @@ class NewEtablissementView extends StatelessWidget {
                                   size: MainAxisSize.max,
                                   bgColor: AppColors.primaryGreen,
                                   onTap: () async {
-                                    _alerteController.changePageIndex(
+                                    _controller.changePageIndex(
                                       true,
                                     );
                                   },
                                 ))
-                              : /*  _alerteController.currentIndex == 2
+                              : /*  _controller.currentIndex == 2
                                 ? */
                               Row(
                                   mainAxisAlignment:
@@ -92,7 +93,7 @@ class NewEtablissementView extends StatelessWidget {
                                       ),
                                       bgColor: AppColors.whitecolor,
                                       onTap: () async {
-                                        _alerteController.changePageIndex(
+                                        _controller.changePageIndex(
                                           false,
                                         );
                                       },
@@ -103,7 +104,7 @@ class NewEtablissementView extends StatelessWidget {
                                       size: MainAxisSize.max,
                                       bgColor: AppColors.primaryGreen,
                                       onTap: () async {
-                                        await _alerteController.newAlerte();
+                                        await _controller.newEtablissement();
                                         // if (result) {
                                         //   Get.toNamed(
                                         //     AppLinks.LIST_ETABLISSEMENT,
@@ -128,7 +129,7 @@ class NewEtablissementView extends StatelessWidget {
                           //         ),
                           //         bgColor: AppColors.whitecolor,
                           //         onTap: () async {
-                          //           _alerteController.changePageIndex(
+                          //           _controller.changePageIndex(
                           //               false, context);
                           //         },
                           //       ),
@@ -138,7 +139,7 @@ class NewEtablissementView extends StatelessWidget {
                           //         size: MainAxisSize.max,
                           //         bgColor: AppColors.primaryGreen,
                           //         onTap: () async {
-                          //           _alerteController.changePageIndex(
+                          //           _controller.changePageIndex(
                           //               true, context);
                           //         },
                           //       ),
@@ -152,7 +153,7 @@ class NewEtablissementView extends StatelessWidget {
             ),
             onWillPop: () {
               Get.back();
-              return _alerteController.reset();
+              return _controller.check(0);
             }));
   }
 }

@@ -51,7 +51,7 @@ class AlerteController extends GetxController {
       }
     } else {
       _currentIndex = i ? check(_currentIndex + 1) : check(_currentIndex - 1);
-
+      
       update();
     }
   }
@@ -85,7 +85,7 @@ class AlerteController extends GetxController {
       update();
     }
   }
-
+  
   verfi() {
     // if (_levelEmergency.valeur == null) {
     //   toastShowError('errornvd'.tr, Get.context);
@@ -155,7 +155,7 @@ class AlerteController extends GetxController {
       update();
     }
   }
-
+  
   check(i) {
     return i < 0 ? 0 : (i > 2 ? 1 : i);
   }
@@ -173,7 +173,7 @@ class AlerteController extends GetxController {
         return '';
     }
   }
-
+  
   final _personnalformKey = GlobalKey<FormState>();
   get personnalformKey => _personnalformKey;
   final _emergencyformKey = GlobalKey<FormState>();

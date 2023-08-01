@@ -22,7 +22,10 @@ import 'package:medsur_app/modules/auth/controller/auth_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:medsur_app/modules/auth/models/oauth.dart';
+import 'package:medsur_app/modules/etablissement/constant/etablissement_page_title.dart';
 import 'package:medsur_app/modules/etablissement/repo/etablissement_repo.dart';
+import 'package:medsur_app/modules/etablissement/views/first_step.dart';
+import 'package:medsur_app/modules/etablissement/views/second_step.dart';
 import 'package:medsur_app/utils/routing.dart';
 import 'package:medsur_app/utils/showToast.dart';
 import 'package:medsur_app/utils/validators.dart';
@@ -36,6 +39,106 @@ import '../../../general_component/index_widgets.dart';
 class EtablissementController extends GetxController {
   final EtablissementRepo etablissementRepo;
   EtablissementController({required this.etablissementRepo});
+
+  int _currentIndex = 0;
+  int get currentIndex => _currentIndex;
+
+  String buildTitle() {
+    switch (_currentIndex) {
+      case 0:
+        return EtablissementPagetitle.first_step;
+      case 1:
+        //   return EtablissementPagetitle.emergency;
+
+        // case 2:
+        return EtablissementPagetitle.second_step;
+      default:
+        return '';
+    }
+  }
+
+  verfi() {
+    // if (_levelEmergency.valeur == null) {
+    //   toastShowError('errornvd'.tr, Get.context);
+
+    //   return false;
+    // }
+    // if (nameController.text.length == 0) {
+    //   toastShowError('errorname1'.tr, Get.context);
+
+    //   return false;
+    // }
+    // if (emailController.text.length == 0) {
+    //   toastShowError('invalidMail'.tr, Get.context);
+
+    //   return false;
+    // }
+    // if (birthDayController.text.length == 0) {
+    //   toastShowError('invalidDate'.tr, Get.context);
+
+    //   return false;
+    // }
+    // if (poidsController.text.length == 0 || poidsController.text == '0') {
+    //   toastShowError('errorweight'.tr, Get.context);
+
+    //   return false;
+    // }
+    // if (tailleController.text.length == 0 || tailleController.text == '0') {
+    //   toastShowError('errorheight1'.tr, Get.context);
+
+    //   return false;
+    // }
+    // vPoids();
+    // vTaille();
+    // if (personnalformKey.currentState!.validate()) {
+    //   if (_errorW.length == 0 && _errorH.length == 0) {
+    return true;
+    // }
+    // }
+  }
+
+  changePageIndex(bool i) {
+    if (i) {
+      var verif = verfi();
+      if (verif) {
+        _currentIndex = i ? check(_currentIndex + 1) : check(_currentIndex - 1);
+        update();
+        buildTitle();
+        buildContent();
+      }
+    } else {
+      _currentIndex = i ? check(_currentIndex + 1) : check(_currentIndex - 1);
+
+      update();
+    }
+  }
+
+  check(i) {
+    return i < 0 ? 0 : (i > 2 ? 1 : i);
+  }
+
+  final _firststepformKey = GlobalKey<FormState>();
+  get firststepformKey => _firststepformKey;
+  final _secondstepformKey = GlobalKey<FormState>();
+  get secondstepformKey => _secondstepformKey;
+  Widget buildContent() {
+    switch (_currentIndex) {
+      case 0:
+        return FirstStepView(
+          dController: this,
+        );
+      case 1:
+        //   return EmergencyView();
+        // case 2:
+        return SecondStepView(
+          dController: this,
+        );
+      default:
+        return FirstStepView(
+          dController: this,
+        );
+    }
+  }
 
   var loader = Load();
   var db = Get.find<DataBaseController>();
@@ -95,7 +198,6 @@ class EtablissementController extends GetxController {
     }
     return _listSpeciality;
   }
-   
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController get nameController => _nameController;
@@ -142,8 +244,6 @@ class EtablissementController extends GetxController {
 
             update();
             loader.close();
-
-       
           }
         }
       } else {
@@ -159,7 +259,7 @@ class EtablissementController extends GetxController {
     } catch (e) {
       // loader.close();
       toastShowError("errors".tr, Get.context);
-      
+
       update();
       //print(e);
       return false;

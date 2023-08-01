@@ -73,12 +73,11 @@ class Transalations extends Translations {
           'surname': 'Surname',
           'phone': 'Phone',
           'date': 'Date of birth',
-          'levelE': 'Level of emergency',  
+          'levelE': 'Level of emergency',
           'complain': 'Complain',
           'agenda': 'agenda',
           'spt': 'Your choice of specialty',
-          'sptl':
-              'Choose the specialties of your alert to have better results',
+          'sptl': 'Choose the specialties of your alert to have better results',
           'spst': 'results',
           'select': 'Selected',
           'ename': 'Estasblishment name',
@@ -90,6 +89,7 @@ class Transalations extends Translations {
           'address': 'Address',
           'specialty': 'Specialty',
           'etablissement': 'Estasblishments',
+       
           'enname': 'Name of estasblishments',
           'ambulance': 'Ambulance/Samu',
           'gender': "Gender",
@@ -119,7 +119,9 @@ class Transalations extends Translations {
           "existac": "You already have an account, please log in",
           "Ressayer": "Try again",
           "dville": "In the city of ",
-          "level": "Level "
+          "level": "Level ",
+          'etablissement0': 'Estasblishments',
+          'etablissementbtn': 'Add your establishment',
         },
 
         //FRENCH LANGUAGE
@@ -240,6 +242,8 @@ class Transalations extends Translations {
           "Ressayer": "Ressayer",
           "dville": "Dans la ville de ",
           "level": "Niveau ",
+          'etablissement0': 'Etablissements',
+          'etablissementbtn': 'Ajouter votre etablissement',
         },
       };
 }

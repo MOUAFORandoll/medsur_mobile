@@ -4,6 +4,8 @@ import 'package:medsur_app/modules/Home/repo/home_repo.dart';
 import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
 import 'package:medsur_app/modules/alerte/repo/alerte_repo.dart';
 import 'package:medsur_app/modules/dashboard/controller/dashboard_controller.dart';
+import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
+import 'package:medsur_app/modules/etablissement/repo/etablissement_repo.dart';
 import 'package:medsur_app/modules/home/controller/home_controller.dart';
 import 'package:medsur_app/utils/ApiClient.dart';
 import 'package:medsur_app/utils/ApiClientAlerte.dart';
@@ -35,6 +37,10 @@ Future<void> initServices() async {
       permanent: true);
 
   Get.put(AlerteController(alerteRepo: Get.find()), permanent: true);
+  Get.put(EtablissementRepo(apiClient: Get.find(), apiClientAlerte: Get.find()),
+      permanent: true);
+
+  Get.put(EtablissementController(etablissementRepo: Get.find()), permanent: true);
 
   Get.put(HomeRepo(apiClient: Get.find()), permanent: true);
 
