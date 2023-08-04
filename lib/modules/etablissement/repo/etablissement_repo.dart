@@ -30,8 +30,36 @@ class EtablissementRepo extends GetxService {
   Future<Response> getEtablissementForuser(user_id) async {
     Response response = await apiClientAlerte.getCollections(
         ApiRoutesEtablissement.end_etablissement +
-            '?user_id=' +
+            '/user/' +
             user_id.toString());
+
+    return response;
+  }
+
+  Future<Response> getAlertList(etablissement_id) async {
+    Response response = await apiClientAlerte.getCollections(
+        ApiRoutesEtablissement.end_etablissement +
+            '/${etablissement_id.toString()}/alerte');
+
+    return response;
+  }
+
+  Future<Response> removeSpecialiteEtablissement(
+      etablissement_id, specialite_id) async {
+    Response response = await apiClientAlerte.patchData(
+        ApiRoutesEtablissement.end_etablissement +
+            '/${etablissement_id.toString()}/speciality/remove',
+        {'specialite_id': specialite_id});
+
+    return response;
+  }
+
+  Future<Response> addSpecialiteEtablissement(
+      etablissement_id, specialite_id) async {
+    Response response = await apiClientAlerte.patchData(
+        ApiRoutesEtablissement.end_etablissement +
+            '/${etablissement_id.toString()}/speciality/add',
+        {'specialite_id': specialite_id});
 
     return response;
   }

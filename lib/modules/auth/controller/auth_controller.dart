@@ -277,10 +277,14 @@ class AuthController extends GetxController {
       } else {
         loader.close();
 
-        checkError(
-          true,
-          response.body,
-        );
+        if (response.statusCode != 500) {
+          checkError(
+            true,
+            response.body,
+          );
+        } else {
+          toastShowError('eulog'.tr, Get.context);
+        }
         _passwordController.text = '';
 
         _isConnected = 3;

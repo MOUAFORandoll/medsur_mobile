@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:medsur_app/constants/index_common.dart';
 import 'package:medsur_app/modules/alerte/components/app_alert_map.dart';
 import 'package:medsur_app/modules/alerte/constant/alert_level_color.dart';
-import 'package:medsur_app/modules/alerte/models/user_alert_model.dart';
+import 'package:medsur_app/modules/etablissement/models/alert_model.dart';
 import 'package:medsur_app/utils/datetime_format_utils.dart';
 import 'package:medsur_app/utils/viewFunctions.dart';
 
-class AppAlertComponent extends StatelessWidget {
-  UserAlertModel alerte;
-  AppAlertComponent({required this.alerte});
+class AppAlertEtablissementComponent extends StatelessWidget {
+  AlertModel alerte;
+  AppAlertEtablissementComponent({required this.alerte});
 
   @override
   Widget build(BuildContext context) {
@@ -50,47 +50,7 @@ class AppAlertComponent extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.symmetric(vertical: kMarginY),
-                      decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: AppColors.grayColor, width: 0.5)),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  _format.capitalizeFirstLetter(
-                                      alerte.etablissement!.name!),
-                                  style: TextStyle(
-                                      fontSize: kMediumText,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  /*    "dville".tr + */ _format
-                                      .capitalizeFirstLetter(alerte.ville!),
-                                  style: TextStyle(
-                                      fontSize: kSSmText,
-                                      color: AppColors.grey8,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+
                     Container(
                       alignment: Alignment.topLeft,
                       padding: EdgeInsets.symmetric(vertical: kMarginY),
@@ -356,51 +316,6 @@ class AppAlertComponent extends StatelessWidget {
                     //     ],
                     //   ),
                     // ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      margin: EdgeInsets.symmetric(vertical: kMarginY * 2),
-                      child: Row(
-                        children: [
-                          Container(
-                              child: Icon(Icons.location_on,
-                                  color: AppColors.primaryGreen)),
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.topLeft,
-                              margin:
-                                  EdgeInsets.symmetric(horizontal: kMarginX),
-                              child: Text(
-                                alerte.etablissement!.localisation == null
-                                    ? 'Aucune'
-                                    : alerte.etablissement!.localisation!
-                                            .ville! +
-                                        ' long ${alerte.etablissement!.localisation!.longitude!} lat ${alerte.etablissement!.localisation!.latitude} ',
-                                softWrap: true,
-                                style: TextStyle(
-                                  fontSize: kSmText,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                        margin: EdgeInsets.symmetric(vertical: kMarginY * 2),
-                        height: 200,
-                        // decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(10),
-                        //     color: AppColors.primaryGreen),
-                        child: AppAlertMap(
-                          latitude: double.parse(alerte
-                              .etablissement!.localisation!.latitude
-                              .toString()),
-                          longitude: double.parse(alerte
-                              .etablissement!.localisation!.longitude
-                              .toString()),
-
-                          // text:'Voir sur la carte'
-                        )),
                   ],
                 ),
               )),
@@ -435,8 +350,7 @@ class AppAlertComponent extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Text(
-                              _format.capitalizeFirstLetter(
-                                  alerte.etablissement!.name!),
+                              _format.capitalizeFirstLetter(alerte.nameUser!),
                               style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: kMediumText,
@@ -448,7 +362,7 @@ class AppAlertComponent extends StatelessWidget {
                         )),
                     Container(
                         child: Text(
-                      _format.capitalizeFirstLetter(alerte.nameUser!),
+                      FormatDateTime().dateToSimpleDate(alerte.createdAt!),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: AppColors.primaryBlue,

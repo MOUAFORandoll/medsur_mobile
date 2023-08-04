@@ -765,6 +765,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+  time_picker_sheet:
+    dependency: "direct main"
+    description:
+      name: time_picker_sheet
+      sha256: a70de6b3a7e3040f0217e12ea636cc62a02d51cc3e8c2fb6c9828582d862c422
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2+1"
+  time_picker_widget:
+    dependency: "direct main"
+    description:
+      name: time_picker_widget
+      sha256: "2cae415159ff9ac4cb58bf118864c3131ae0155272e30ccd884a6bda1bac5032"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+10"
   typed_data:
     dependency: transitive
     description:

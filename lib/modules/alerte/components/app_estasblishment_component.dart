@@ -28,7 +28,7 @@ class AppEstasblishmentComponent extends StatelessWidget {
                 color: AppColors.extraLightGrey,
               )),
           padding: EdgeInsets.symmetric(
-              horizontal: kMarginX / 2, vertical: kMarginY * 1.5),
+              horizontal: kMarginX / 2.5, vertical: kMarginY * 1.5),
           margin: EdgeInsets.symmetric(vertical: kMarginY / 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

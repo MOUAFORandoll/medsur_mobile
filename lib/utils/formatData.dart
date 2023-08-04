@@ -17,7 +17,7 @@ class FormatData {
             args.toString().split('')[0] == '2'));
   }
 
-  specialityToText(List<Specialites> data) {
+  specialityToText(List data) {
     var speciality = '';
     data.forEach((element) {
       speciality = speciality.length == 0

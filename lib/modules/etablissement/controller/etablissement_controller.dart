@@ -6,35 +6,21 @@ import 'package:medsur_app/general_controllers/action_controller.dart';
 
 import 'package:medsur_app/general_controllers/dataBase_controller.dart';
 import 'package:medsur_app/modules/DashBoard/repo/dashboard_repo.dart';
-import 'package:medsur_app/modules/alerte/constant/AlertPagetitle.dart';
-import 'package:medsur_app/modules/alerte/constant/alert_level_color.dart';
-import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
-import 'package:medsur_app/modules/alerte/models/emergency_model.dart';
-import 'package:medsur_app/modules/alerte/models/etablissement_model.dart';
 import 'package:medsur_app/modules/alerte/models/speciality_model.dart';
-import 'package:medsur_app/modules/alerte/models/user_alert_model.dart';
-import 'package:medsur_app/modules/alerte/repo/alerte_repo.dart';
-import 'package:medsur_app/modules/alerte/views/emergency_view.dart';
-import 'package:medsur_app/modules/alerte/views/personnal_information_view.dart';
-import 'package:medsur_app/modules/alerte/views/speciality_view.dart';
 import 'package:medsur_app/modules/auth/controller/auth_controller.dart';
 
-import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:medsur_app/modules/auth/models/oauth.dart';
 import 'package:medsur_app/modules/etablissement/constant/etablissement_page_title.dart';
+import 'package:medsur_app/modules/etablissement/models/alert_model.dart';
+import 'package:medsur_app/modules/etablissement/models/etablissement_model.dart';
 import 'package:medsur_app/modules/etablissement/repo/etablissement_repo.dart';
 import 'package:medsur_app/modules/etablissement/views/first_step.dart';
 import 'package:medsur_app/modules/etablissement/views/second_step.dart';
+import 'package:medsur_app/modules/etablissement/views/success_etablissement_view.dart';
+import 'package:medsur_app/modules/etablissement/views/tird_step.dart';
 import 'package:medsur_app/utils/routing.dart';
 import 'package:medsur_app/utils/showToast.dart';
-import 'package:medsur_app/utils/validators.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'dart:ui' as ui;
-import 'package:flutter_sound/flutter_sound.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 import '../../../general_component/index_widgets.dart';
+import '../../alerte/models/user_alert_model.dart';
 
 class EtablissementController extends GetxController {
   final EtablissementRepo etablissementRepo;
@@ -48,53 +34,78 @@ class EtablissementController extends GetxController {
       case 0:
         return EtablissementPagetitle.first_step;
       case 1:
-        //   return EtablissementPagetitle.emergency;
-
-        // case 2:
         return EtablissementPagetitle.second_step;
+      case 2:
+        return EtablissementPagetitle.tird_step;
       default:
         return '';
     }
   }
 
+  TextEditingController _searchSpeController = TextEditingController();
+  TextEditingController get searchSpeController => _searchSpeController;
+
+  List<SpecialityModel> _listSearchSpe = [];
+  List<SpecialityModel> get listSearchSpe => _listSearchSpe;
+  isIntoSpe(id) {
+    print(listSelectSpeciality
+        .contains(listSearchSpe.where((element) => element.id == id)));
+    return listSelectSpeciality
+        .contains(listSearchSpe.where((element) => element.id == id));
+  }
+
+  searchSpe() {
+    print(searchSpeController.text);
+
+    _listSearchSpe = _listSpeciality
+        .where((element) => (((element.libelle
+                    .toLowerCase()
+                    .contains(searchSpeController.text.toLowerCase())) ||
+                (element.libelle_en
+                    .toLowerCase()
+                    .contains(searchSpeController.text.toLowerCase()))) &&
+            containsSpecialite(element)))
+        .toList();
+
+    update();
+    print(listSearchSpe.length);
+    //print(_listSearchAlert.length);
+  }
+
+  containsSpecialite(element) {
+    var filteredSpecialites = _listSelectSpeciality
+        .where((specialite) => specialite.id == element.id)
+        .toList();
+
+    print(filteredSpecialites);
+    return filteredSpecialites.length == 0;
+  }
+
   verfi() {
-    // if (_levelEmergency.valeur == null) {
-    //   toastShowError('errornvd'.tr, Get.context);
+    if (currentIndex == 0) {
+      _firststepformKey.currentState!.validate();
+      if (nameController.text.isEmpty ||
+          phoneController.text.isEmpty ||
+          emailController.text.isEmpty ||
+          boitePostaleController.text.isEmpty ||
+          descriptionController.text.isEmpty) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    if (currentIndex == 1) {
+      if (listSelectSpeciality.isEmpty) {
+        toastShowError("spte".tr, Get.context);
 
-    //   return false;
-    // }
-    // if (nameController.text.length == 0) {
-    //   toastShowError('errorname1'.tr, Get.context);
-
-    //   return false;
-    // }
-    // if (emailController.text.length == 0) {
-    //   toastShowError('invalidMail'.tr, Get.context);
-
-    //   return false;
-    // }
-    // if (birthDayController.text.length == 0) {
-    //   toastShowError('invalidDate'.tr, Get.context);
-
-    //   return false;
-    // }
-    // if (poidsController.text.length == 0 || poidsController.text == '0') {
-    //   toastShowError('errorweight'.tr, Get.context);
-
-    //   return false;
-    // }
-    // if (tailleController.text.length == 0 || tailleController.text == '0') {
-    //   toastShowError('errorheight1'.tr, Get.context);
-
-    //   return false;
-    // }
-    // vPoids();
-    // vTaille();
-    // if (personnalformKey.currentState!.validate()) {
-    //   if (_errorW.length == 0 && _errorH.length == 0) {
-    return true;
-    // }
-    // }
+        return false;
+      } else {
+        return true;
+      }
+    }
+    if (currentIndex == 2) {
+      return true;
+    }
   }
 
   changePageIndex(bool i) {
@@ -119,8 +130,8 @@ class EtablissementController extends GetxController {
 
   final _firststepformKey = GlobalKey<FormState>();
   get firststepformKey => _firststepformKey;
-  final _secondstepformKey = GlobalKey<FormState>();
-  get secondstepformKey => _secondstepformKey;
+  final secondstepformKey = GlobalKey<FormState>();
+  final tirdstepformKey = GlobalKey<FormState>();
   Widget buildContent() {
     switch (_currentIndex) {
       case 0:
@@ -131,6 +142,12 @@ class EtablissementController extends GetxController {
         //   return EmergencyView();
         // case 2:
         return SecondStepView(
+          dController: this,
+        );
+      case 2:
+        //   return EmergencyView();
+        // case 2:
+        return TirdStepView(
           dController: this,
         );
       default:
@@ -155,7 +172,7 @@ class EtablissementController extends GetxController {
     } else {
       removeSpeciality(value);
     }
-
+    print(listSelectSpeciality.length);
     update();
   }
 
@@ -199,6 +216,40 @@ class EtablissementController extends GetxController {
     return _listSpeciality;
   }
 
+  List _agenda = Get.find<ActionController>().lang.toLowerCase() == 'en'
+      ? [
+          ['Monday', "08:00", '18:00', 1],
+          ['Tuesday', "08:00", '18:00', 2],
+          ['Wednesday', "08:00", '18:00', 3],
+          ['Thursday', "08:00", '18:00', 4],
+          ['Friday', "08:00", '18:00', 5],
+          ['Saturday', "08:00", '18:00', 6],
+          ['Sunday', "08:00", '18:00', 7]
+        ]
+      : [
+          ['Lundi', "08:00", '18:00', 1],
+          ['Mardi', "08:00", '18:00', 2],
+          ['Mercredi', "08:00", '18:00', 3],
+          ['Jeudi', "08:00", '18:00', 4],
+          ['Vendredi', "08:00", '18:00', 5],
+          ['Samedi', "08:00", '18:00', 6],
+          ['Dimanche', "08:00", '18:00', 7]
+        ];
+
+  get agenda => _agenda;
+  setDateDebut(day, value) {
+    var index = _agenda.indexWhere((element) => element[0] == day);
+    print(index);
+    _agenda[index][1] = value;
+    update();
+  }
+
+  setDateFin(day, value) {
+    var index = _agenda.indexWhere((element) => element[0] == day);
+    _agenda[index][2] = value;
+    update();
+  }
+
   TextEditingController _nameController = TextEditingController();
   TextEditingController get nameController => _nameController;
   TextEditingController _phoneController = TextEditingController();
@@ -227,6 +278,7 @@ class EtablissementController extends GetxController {
       "longitude": action.position.longitude,
       "latitude": action.position.latitude,
       "speciality": listSelectSpecialityF,
+      'agenda': agenda,
       "user_id": userDB['id'],
     };
     print(data);
@@ -244,6 +296,8 @@ class EtablissementController extends GetxController {
 
             update();
             loader.close();
+            Get.offNamedUntil(AppLinks.SUCCESSETABLISSEMENT, (route) => false);
+            await getEtablissementForUser();
           }
         }
       } else {
@@ -264,5 +318,164 @@ class EtablissementController extends GetxController {
       //print(e);
       return false;
     }
+  }
+
+  var _etablissement;
+  get etablissement => _etablissement;
+  int _loadeta = 0;
+  get loadetat => _loadeta;
+
+  List _listSpecialitySecond = [];
+  List get listSpecialitySecond => _listSpecialitySecond;
+  getEtablissementForUser() async {
+    var userDB = await db.getUserInfo();
+
+    if (userDB['id'] != 0) {
+      // loader.open();
+      try {
+        Response response =
+            await etablissementRepo.getEtablissementForuser(userDB['id']);
+        if (response.statusCode == 200) {
+          print(response.body);
+          _loadeta = 1;
+          _etablissement = EtablissementModel.fromJson(response.body['data']);
+          filterSpeciality();
+          update();
+          print(_etablissement.name);
+        } else {
+          _loadeta = 2;
+          update();
+        }
+      } catch (e) {
+        // loader.close();
+        print(e);
+        _loadeta = 2;
+        update();
+
+        update();
+      }
+    }
+  }
+
+  void filterSpeciality() {
+    _listSpecialitySecond = _listSpeciality.where((obj) {
+      // Retourner true si l'objet n'appartient pas à etablissement.specialites
+      return !etablissement.specialites.any((obj1) => obj.id == obj1.id);
+    }).toList();
+    update();
+    print(_listSpeciality.length);
+    print(_listSelectSpeciality.length);
+    print(_listSpecialitySecond.length);
+  }
+
+  removeSpecialite(specialite_id) async {
+    try {
+      loader.open();
+      Response response = await etablissementRepo.removeSpecialiteEtablissement(
+          _etablissement.id, specialite_id);
+
+      if (response.body['data'] != null) {
+        if (response.body != null) {
+          _etablissement = EtablissementModel.fromJson(response.body['data']);
+          filterSpeciality();
+
+          loader.close();
+          ;
+          update();
+        } else {
+          loader.close();
+          update();
+        }
+      } else {
+        loader.close();
+        update();
+      }
+    } catch (e) {
+      loader.close();
+      update();
+      //print(e);
+    }
+  }
+
+  addSpecialite(specialite_id) async {
+    try {
+      loader.open();
+      Response response = await etablissementRepo.addSpecialiteEtablissement(
+          _etablissement.id, specialite_id);
+
+      if (response.body['data'] != null) {
+        if (response.body != null) {
+          _etablissement = EtablissementModel.fromJson(response.body['data']);
+          filterSpeciality();
+
+          loader.close();
+          ;
+          update();
+        } else {
+          loader.close();
+          update();
+        }
+      } else {
+        loader.close();
+        update();
+      }
+    } catch (e) {
+      loader.close();
+      update();
+      //print(e);
+    }
+  }
+
+  bool _loadAlert = true;
+  bool get loadAlert => _loadAlert;
+
+  List<AlertModel> _listAlert = [];
+  List<AlertModel> get listAlert => _listAlert;
+
+  getEtablissementAlert() async {
+    var userDB = await db.getUserInfo();
+    if (userDB['id'] != 0) {
+      try {
+        Response response =
+            await etablissementRepo.getAlertList(_etablissement.id);
+
+        if (response.body['data'] != null) {
+          if (response.body != null) {
+            _listAlert.clear();
+            update();
+            _listAlert.addAll((response.body['data']['data'] as List)
+                .map((e) => AlertModel.fromJson(e))
+                .toList());
+
+            _loadAlert = false;
+            update();
+          } else {
+            _loadAlert = false;
+            update();
+          }
+        } else {
+          _loadAlert = false;
+          update();
+        }
+      } catch (e) {
+        _loadAlert = false;
+        update();
+        //print(e);
+      }
+    }
+  }
+
+  TextEditingController _searchController = TextEditingController();
+  TextEditingController get searchController => _searchController;
+  List<AlertModel> _listSearchAlert = [];
+  List<AlertModel> get listSearchAlert => _listSearchAlert;
+  searchAlertt() {
+    _listSearchAlert = listAlert
+        .where((element) => element.nameUser!
+            .toLowerCase()
+            .contains(searchController.text.toLowerCase()))
+        .toList();
+    update();
+    //print(_listSearchAlert.length);
   }
 }

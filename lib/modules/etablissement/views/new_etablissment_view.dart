@@ -38,7 +38,6 @@ class NewEtablissementView extends StatelessWidget {
                     tooltip:
                         MaterialLocalizations.of(context).backButtonTooltip,
                     onPressed: () {
-                     
                       Get.back();
                     },
                   ),
@@ -62,90 +61,92 @@ class NewEtablissementView extends StatelessWidget {
                     children: [
                       _controller.buildContent(),
                       Container(
-                          margin: EdgeInsets.only(top: kMarginY * 5),
-                          child: _controller.currentIndex == 0
-                              ? Container(
-                                  // margin: EdgeInsets.only(top: kMarginY * 3),
-                                  child: AppButton(
-                                  text: 'next'.tr,
-                                  size: MainAxisSize.max,
-                                  bgColor: AppColors.primaryGreen,
-                                  onTap: () async {
-                                    _controller.changePageIndex(
-                                      true,
-                                    );
-                                  },
-                                ))
-                              : /*  _controller.currentIndex == 2
-                                ? */
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    AppButton(
-                                      text: 'back'.tr,
-                                      size: MainAxisSize.max,
-                                      textColor: AppColors.primaryText,
-                                      shadow: false,
-                                      width: kWidth / 2.5,
-                                      border: Border.all(
-                                        color: AppColors.primaryText,
+                        margin: EdgeInsets.only(top: kMarginY * 5),
+                        child: _controller.currentIndex == 0
+                            ? Container(
+                                // margin: EdgeInsets.only(top: kMarginY * 3),
+                                child: AppButton(
+                                text: 'next'.tr,
+                                size: MainAxisSize.max,
+                                bgColor: AppColors.primaryGreen,
+                                onTap: () async {
+                                  _controller.changePageIndex(
+                                    true,
+                                  );
+                                },
+                              ))
+                            : _controller.currentIndex != 2
+                                ? Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AppButton(
+                                        text: 'back'.tr,
+                                        size: MainAxisSize.max,
+                                        textColor: AppColors.primaryText,
+                                        shadow: false,
+                                        width: kWidth / 2.5,
+                                        border: Border.all(
+                                          color: AppColors.primaryText,
+                                        ),
+                                        bgColor: AppColors.whitecolor,
+                                        onTap: () async {
+                                          _controller.changePageIndex(
+                                            false,
+                                          );
+                                        },
                                       ),
-                                      bgColor: AppColors.whitecolor,
-                                      onTap: () async {
-                                        _controller.changePageIndex(
-                                          false,
-                                        );
-                                      },
-                                    ),
-                                    AppButton(
-                                      text: 'sub'.tr,
-                                      width: kWidth / 2.5,
-                                      size: MainAxisSize.max,
-                                      bgColor: AppColors.primaryGreen,
-                                      onTap: () async {
-                                        await _controller.newEtablissement();
-                                        // if (result) {
-                                        //   Get.toNamed(
-                                        //     AppLinks.LIST_ETABLISSEMENT,
-                                        //   );
-                                        // }
-                                      },
-                                    ),
-                                  ],
-                                )
-                          // : Row(
-                          //     mainAxisAlignment:
-                          //         MainAxisAlignment.spaceBetween,
-                          //     children: [
-                          //       AppButton(
-                          //         text: 'back'.tr,
-                          //         size: MainAxisSize.max,
-                          //         textColor: AppColors.primaryText,
-                          //         shadow: false,
-                          //         width: kWidth / 2.5,
-                          //         border: Border.all(
-                          //           color: AppColors.primaryText,
-                          //         ),
-                          //         bgColor: AppColors.whitecolor,
-                          //         onTap: () async {
-                          //           _controller.changePageIndex(
-                          //               false, context);
-                          //         },
-                          //       ),
-                          //       AppButton(
-                          //         text: 'next'.tr,
-                          //         width: kWidth / 2.5,
-                          //         size: MainAxisSize.max,
-                          //         bgColor: AppColors.primaryGreen,
-                          //         onTap: () async {
-                          //           _controller.changePageIndex(
-                          //               true, context);
-                          //         },
-                          //       ),
-                          //     ],
-                          //   ),
-                          ),
+                                      AppButton(
+                                        text: 'sub'.tr,
+                                        width: kWidth / 2.5,
+                                        size: MainAxisSize.max,
+                                        bgColor: AppColors.primaryGreen,
+                                        onTap: () async {
+                                          _controller.changePageIndex(
+                                            true,
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  )
+                                : Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AppButton(
+                                        text: 'back'.tr,
+                                        size: MainAxisSize.max,
+                                        textColor: AppColors.primaryText,
+                                        shadow: false,
+                                        width: kWidth / 2.5,
+                                        border: Border.all(
+                                          color: AppColors.primaryText,
+                                        ),
+                                        bgColor: AppColors.whitecolor,
+                                        onTap: () async {
+                                          _controller.changePageIndex(
+                                            false,
+                                          );
+                                        },
+                                      ),
+                                      AppButton(
+                                        text: 'next'.tr,
+                                        width: kWidth / 2.5,
+                                        size: MainAxisSize.max,
+                                        bgColor: AppColors.primaryGreen,
+                                        onTap: () async {
+                                          Get.dialog(
+                                              ModalDialog()); // await _controller.newEtablissement();
+                                          // if (result) {
+                                          //   Get.toNamed(
+                                          //     AppLinks.LIST_ETABLISSEMENT,
+                                          //   );
+                                          // }
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                      ),
                     ],
                   ),
                 ),
@@ -155,5 +156,39 @@ class NewEtablissementView extends StatelessWidget {
               Get.back();
               return _controller.check(0);
             }));
+  }
+}
+
+class ModalDialog extends StatelessWidget {
+  var eController = Get.find<EtablissementController>();
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(
+        'correctinfoeta'.tr,
+        style: TextStyle(
+          fontSize: kSmText,
+          fontFamily: 'Montserrat',
+          color: AppColors.primaryText,
+        ),
+      ),
+      actions: [
+        TextButton(
+          child: Text('cancel'.tr),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        ElevatedButton(
+            child: Text("confirmcreate".tr,
+                style: TextStyle(color: AppColors.whitecolor)),
+            style: ElevatedButton.styleFrom(
+              primary: AppColors.primaryGreen,
+            ),
+            onPressed: () async {
+              await eController.newEtablissement();
+            }),
+      ],
+    );
   }
 }

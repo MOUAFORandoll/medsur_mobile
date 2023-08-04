@@ -77,6 +77,7 @@ class Transalations extends Translations {
           'complain': 'Complain',
           'agenda': 'agenda',
           'spt': 'Your choice of specialty',
+          'spte': 'Select specialties',
           'sptl': 'Choose the specialties of your alert to have better results',
           'spst': 'results',
           'select': 'Selected',
@@ -89,7 +90,6 @@ class Transalations extends Translations {
           'address': 'Address',
           'specialty': 'Specialty',
           'etablissement': 'Estasblishments',
-       
           'enname': 'Name of estasblishments',
           'ambulance': 'Ambulance/Samu',
           'gender': "Gender",
@@ -120,8 +120,25 @@ class Transalations extends Translations {
           "Ressayer": "Try again",
           "dville": "In the city of ",
           "level": "Level ",
+          'titleetablissement0':
+              "Add your establishment to our platform and make yourself known",
           'etablissement0': 'Estasblishments',
+          'boitepostal': 'Mailbox',
+          'makeagenda': 'Share your calendar',
+          'parlesnous': 'Tell us about your center',
+          'etablissementtitlee1': 'Tell us about your establishment',
           'etablissementbtn': 'Add your establishment',
+          'etaspe': "Choose the specialties of your establishment",
+          'successcreationbtn': 'Continue',
+          'confirmcreate': 'I create',
+          'successcreation': 'Successfully',
+          'day': 'Day',
+          'debut': 'Opening',
+          'fin': 'Closing',
+          'correctinfoeta':
+              "Make sure you have provided the correct information; otherwise, your establishment will not be activated.",
+          'successcreationd':
+              'Your center has been successfully added to our platform. You will be notified by email once it is activated.',
         },
 
         //FRENCH LANGUAGE
@@ -197,6 +214,7 @@ class Transalations extends Translations {
           'levelE': 'Niveau d\'urgence',
           'agenda': 'Agenda',
           'complain': 'Se plaindre',
+          'spte': 'Sélectionnez les spécialités',
           'spt': 'Votre choix de specialite',
           'sptl':
               'Choisissez les specialites de votre alerte pour avoir de meilleur resultats   ',
@@ -242,8 +260,25 @@ class Transalations extends Translations {
           "Ressayer": "Ressayer",
           "dville": "Dans la ville de ",
           "level": "Niveau ",
+          'etablissementtitlee1': 'Informations du centre',
+          'parlesnous': 'Parlez nous de votre centre',
           'etablissement0': 'Etablissements',
+          'titleetablissement0':
+              "Ajouter votre etablissement a notre plateforme et faites vous connaitre",
+          'boitepostal': 'Boîte postale',
+          'makeagenda': 'Partager votre agenda',
           'etablissementbtn': 'Ajouter votre etablissement',
+          'etaspe': "Choisissez les specialites de votre etablissement",
+          'successcreation': 'Succès',
+          'confirmcreate': 'Je cree',
+          'day': 'Jour',
+          'debut': 'Ouverture',
+          'fin': 'Fermeture',
+          'correctinfoeta':
+              "Assurez-vous d'avoir renseigné les informations correctes ; dans le cas contraire, votre établissement ne sera pas activé.",
+          'successcreationbtn': 'Continuer',
+          'successcreationd':
+              'Votre centre a été ajouté avec succès à notre plateforme. Vous serez informé(e) par e-mail dès que celle-ci sera activée.',
         },
       };
 }

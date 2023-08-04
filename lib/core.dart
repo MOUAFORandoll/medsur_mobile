@@ -75,6 +75,8 @@ Future<void> startApp() async {
   await Get.find<AlerteController>().getHistoryParamUserAlert();
   await Get.find<AlerteController>().getLevelEmergency();
   await Get.find<AlerteController>().getSpeciality();
+  await Get.find<EtablissementController>().getSpeciality();
+  await Get.find<EtablissementController>().getEtablissementForUser();
   await Get.find<AlerteController>().setUserInfo();
   //print("fin get bind************---------------------------");
 }
@@ -107,6 +109,9 @@ onGetAll() async {
   await Get.find<AlerteController>().getUserAlert();
 
   await Get.find<AlerteController>().getLevelEmergency();
+  await Get.find<EtablissementController>().getSpeciality();
+  await Get.find<EtablissementController>().getEtablissementForUser();
+
   await Get.find<AlerteController>().getSpeciality();
   await Get.find<AlerteController>().setUserInfo();
 }

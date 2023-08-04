@@ -11,6 +11,7 @@ import 'package:medsur_app/modules/auth/models/oauth.dart';
 import 'package:medsur_app/modules/dashboard/views/account_view.dart';
 import 'package:medsur_app/modules/dashboard/views/activity_view.dart';
 import 'package:medsur_app/modules/dashboard/views/search_view.dart';
+import 'package:medsur_app/modules/etablissement/views/etablissement_home_view.dart';
 
 import '../../auth/controller/auth_controller.dart';
 import '../../dashboard/views/dashboard_view.dart';
@@ -97,9 +98,10 @@ class HomeController extends GetxController {
 
   Widget buildContent() {
     return roleUser != null
-        ? roleUser.name == 'Patient-Alerte'
+        ? /* roleUser.name == 'Patient-Alerte'
             ? buildPatient()
-            : buildContentGeneral()
+            : buildContentGeneral() */
+        buildEtablissement()
         : buildContentGeneral();
   }
 
@@ -126,7 +128,18 @@ class HomeController extends GetxController {
       case 1:
         return AccountView();
       default:
-        return DashBoard();
+        return AlertView();
+    }
+  }
+
+  buildEtablissement() {
+    switch (_currentIndex) {
+      case 0:
+        return EtablissementHomeView();
+      case 1:
+        return AccountView();
+      default:
+        return EtablissementHomeView();
     }
   }
 

@@ -8,7 +8,10 @@ import 'package:medsur_app/modules/auth/views/new_password_view.dart';
 import 'package:medsur_app/modules/auth/views/select_account_view.dart';
 import 'package:medsur_app/modules/auth/views/success_password_view.dart';
 import 'package:medsur_app/modules/etablissement/views/etablissement_home_view.dart';
+import 'package:medsur_app/modules/etablissement/views/list_alerte_etablissement_view.dart';
+import 'package:medsur_app/modules/etablissement/views/list_specialite_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/new_etablissment_view.dart';
+import 'package:medsur_app/modules/etablissement/views/success_etablissement_view.dart';
 import 'package:medsur_app/modules/splashscreen/views/wrapper_view.dart';
 import '../modules/auth/views/login_view.dart';
 import 'package:medsur_app/modules/Home/views/home_view.dart';
@@ -90,6 +93,19 @@ class AppRoutes {
       name: AppLinks.ETABLISSEMENT_NEW,
       page: () => NewEtablissementView(), /* transition: transitionX */
     ),
+    GetPage(
+      name: AppLinks.SUCCESSETABLISSEMENT,
+      page: () => SuccessEtablissementView(), /* transition: transitionX */
+    ),
+    GetPage(
+      name: AppLinks.ETABLISSEMENT_ALERTE_LIST,
+      page: () => ListAlertEtablissementView(), /* transition: transitionX */
+    ),
+    GetPage(
+      name: AppLinks.ETABLISSEMENT_SPECIALITE_LIST,
+      page: () => ListSpecialiteEtablissementView(), /* transition: transitionX */
+    ),
+    
   ];
 }
 
@@ -110,5 +126,8 @@ class AppLinks {
   static const String LIST_ALERTE = "/alerte/list";
   static const String LIST_ETABLISSEMENT = "/etablissement/list";
   static const String ETABLISSEMENT = "/etablissement";
+  static const String SUCCESSETABLISSEMENT = "/etablissement/success";
   static const String ETABLISSEMENT_NEW = "/etablissement/new";
+  static const String ETABLISSEMENT_ALERTE_LIST= "/etablissement/alerte/list";
+  static const String ETABLISSEMENT_SPECIALITE_LIST = "/etablissement/specialite/list";
 }

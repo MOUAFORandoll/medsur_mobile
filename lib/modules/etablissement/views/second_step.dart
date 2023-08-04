@@ -5,7 +5,7 @@ import 'package:medsur_app/modules/alerte/components/app_input_min_add.dart';
 import 'package:medsur_app/modules/alerte/constant/alert_level_color.dart';
 import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
 import 'package:medsur_app/modules/alerte/models/emergency_model.dart';
-import 'package:medsur_app/modules/etablissement/components/app_list_speciality_component.dart';
+import 'package:medsur_app/modules/etablissement/components/app_list_speciality_etablissement_component.dart';
 import 'package:medsur_app/modules/etablissement/components/app_speciality_component.dart';
 import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
 import 'package:medsur_app/utils/validators.dart';
@@ -25,29 +25,12 @@ class SecondStepView extends StatelessWidget {
         key: dController.secondstepformKey,
         child: Column(
           children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(bottom: kMarginY / 2),
-                child: Text(
-                  'Parlez nous de votre centre'.tr,
-                  style: TextStyle(
-                      fontSize: kMediumText,
-                      fontFamily: 'Montserrat',
-                      color: AppColors.grey8,
-                      fontWeight: FontWeight.w500),
-                )),
-            Container(
-                height: 200,
-                // width: kMdWidth * 1.8,
-                child: AppTextForm(
-                  controller: dController.descriptionController,
-                )),
             Container(
                 margin: EdgeInsets.symmetric(vertical: kMarginY * 2),
                 child: Row(children: [
                   Expanded(
                       child: Text(
-                    'sptl'.tr,
+                    'etaspe'.tr,
                     style: TextStyle(
                       fontSize: kMdText,
                       fontFamily: 'Montserrat',
@@ -60,7 +43,7 @@ class SecondStepView extends StatelessWidget {
                 : InkWell(
                     onTap: () => {
                       Get.bottomSheet(
-                        AppListSpecialityComponent(),
+                        AppListSpecialityEtablissementComponent(),
                         isScrollControlled: true,
                         barrierColor: Colors.black26,
                         shape: RoundedRectangleBorder(
@@ -81,56 +64,7 @@ class SecondStepView extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                         vertical: kMarginY * 3,
                       ),
-                      child: /*  DropdownButton<SpecialityModel>(
-                                // value: dController.Emergency,
-                                hint: Container(
-                                    margin: EdgeInsets.only(left: kMarginX / 2),
-                                    child: Text(
-                                      'Select speciality',
-                                      style: TextStyle(
-                                          fontSize: kMediumText,
-                                          color: AppColors.grayColor),
-                                    )),
-                                icon: Container(
-                                  padding: EdgeInsets.only(right: kMarginX / 2),
-                                  child: Icon(
-                                    Icons.keyboard_arrow_down_outlined,
-                                    color: AppColors.grey6,
-                                  ),
-                                ),
-                                iconSize: 25,
-                                isExpanded: true,
-                                underline: SizedBox(),
-                                style: TextStyle(
-                                  color: AppColors.primaryGreen,
-                                ),
-                                onChanged: (SpecialityModel? newValue) {
-                                  dController.addSpeciality(newValue);
-                                },
-                                items: <SpecialityModel>[
-                                  ...dController.listSpeciality.map((e) => e)
-                                ].map<DropdownMenuItem<SpecialityModel>>(
-                                    (SpecialityModel value) {
-                                  return DropdownMenuItem<SpecialityModel>(
-                                    value: value,
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: kMarginX / 2),
-                                      child: Text(
-                                        Get.find<ActionController>()
-                                                    .lang
-                                                    .toLowerCase() ==
-                                                'en'
-                                            ? value.libelle_en
-                                            : value.libelle,
-                                        style: TextStyle(
-                                          color: AppColors
-                                              .primaryGreen, /*    fontSize: 15 */
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }).toList()) */
+                      child: 
                           Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -160,15 +94,7 @@ class SecondStepView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Container(
-                  //     child: Text(
-                  //   'spt'.tr,
-                  //   style: TextStyle(
-                  // fontSize: kSmText,
-                  //       fontFamily: 'Montserrat',
-                  //       color: AppColors.primaryText,
-                  //       fontWeight: FontWeight.bold),
-                  // )),
+                 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -49,7 +49,7 @@ class Validators {
 
     return null;
   }
-  
+
   static validateHeight0(String value) {
     print(value);
     if (value.isEmpty) {
@@ -125,7 +125,7 @@ class Validators {
     }
     return null;
   }
-  
+
   static String? isValidUsername(String username) {
     return username.length >= 4 ? null : "At least 04 characters";
   }
