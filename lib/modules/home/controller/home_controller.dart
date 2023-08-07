@@ -98,10 +98,10 @@ class HomeController extends GetxController {
 
   Widget buildContent() {
     return roleUser != null
-        ? /* roleUser.name == 'Patient-Alerte'
+        ? roleUser.name == 'Patient-Alerte'
             ? buildPatient()
-            : buildContentGeneral() */
-        buildEtablissement()
+            : buildEtablissement() /* 
+        buildEtablissement() */
         : buildContentGeneral();
   }
 
@@ -160,8 +160,8 @@ class HomeController extends GetxController {
         update();
       }
       var roleUserDB = await db.getUserRole();
-      //print(
-      // '---------roleee--------User  data base info********* ${roleUserDB}');
+      print(
+          '---------roleee--------User  data base info********* ${roleUserDB}');
 
       if (roleUserDB != null && roleUserDB['id'] != 0) {
         _roleUser = Role.fromJson(roleUserDB);

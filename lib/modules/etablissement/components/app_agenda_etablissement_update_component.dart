@@ -8,16 +8,16 @@ import 'package:time_picker_sheet/widget/sheet.dart';
 import 'package:time_picker_sheet/widget/time_picker.dart';
 import 'package:time_picker_widget/time_picker_widget.dart';
 
-class AppAgendaAddComponent extends StatefulWidget {
-  AppAgendaAddComponent(
+class AppAgendaEtablissementUpdateComponent extends StatefulWidget {
+  AppAgendaEtablissementUpdateComponent(
       {required this.jour, required this.start, required this.end});
   var jour, start, end;
 
   @override
-  State<AppAgendaAddComponent> createState() => _AppAgendaAddComponentState();
+  State<AppAgendaEtablissementUpdateComponent> createState() => _AppAgendaEtablissementUpdateComponentState();
 }
 
-class _AppAgendaAddComponentState extends State<AppAgendaAddComponent> {
+class _AppAgendaEtablissementUpdateComponentState extends State<AppAgendaEtablissementUpdateComponent> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EtablissementController>(

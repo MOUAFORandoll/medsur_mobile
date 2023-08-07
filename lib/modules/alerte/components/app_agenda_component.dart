@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
 import 'package:medsur_app/constants/index_common.dart';
 import 'package:medsur_app/general_controllers/action_controller.dart';
-import 'package:medsur_app/modules/alerte/models/etablissement_model.dart'; 
+import 'package:medsur_app/modules/alerte/models/etablissement_model.dart';
+
 class AppAgendaComponent extends StatelessWidget {
   AppAgendaComponent({required this.listAgenda, this.onTap});
   List<Agendas>? listAgenda;
@@ -18,13 +19,12 @@ class AppAgendaComponent extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(child: Text(
-                    
-                       Get.find<ActionController>().lang.toLowerCase() == 'en'
-                      ? listAgenda![index].libelle_en.toString()
-                      :  listAgenda![index].libelle_en.toString(),
-                    
-                   )),
+                  Container(
+                      child: Text(
+                    Get.find<ActionController>().lang.toLowerCase() == 'en'
+                        ? listAgenda![index].libelle_en.toString()
+                        : listAgenda![index].libelle.toString(),
+                  )),
                   Container(
                       child: Text(
                     listAgenda![index].pivot!.debut.toString() +
@@ -33,8 +33,7 @@ class AppAgendaComponent extends StatelessWidget {
                     style: TextStyle(
                       fontSize: kSmText,
                       fontFamily: 'Montserrat',
-                      color: AppColors
-                          .primaryText,  
+                      color: AppColors.primaryText,
                     ),
                   )),
                 ],

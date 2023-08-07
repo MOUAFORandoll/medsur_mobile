@@ -4,8 +4,7 @@ import 'package:medsur_app/general_component/app_loader_element.dart';
 import 'package:medsur_app/modules/alerte/components/app_input_min_add.dart';
 import 'package:medsur_app/modules/alerte/constant/alert_level_color.dart';
 import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
-import 'package:medsur_app/modules/alerte/models/emergency_model.dart';
-import 'package:medsur_app/modules/etablissement/components/app_agenda_add_component.dart';
+import 'package:medsur_app/modules/alerte/models/emergency_model.dart'; 
 import 'package:medsur_app/modules/etablissement/components/app_etablissement_home_option.dart';
 import 'package:medsur_app/modules/etablissement/components/app_home_speciality_etablissement_component%20.dart';
 import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
@@ -130,40 +129,40 @@ class EtablissementGView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 AppEtablissementHomeOption(
-                                  title: 'Alerte',
-                                  arg: dController.etablissement.nmbre_alerte
-                                      .toString(),
-                                  onTap: () {
-                                    dController.getEtablissementAlert();
-                                    Get.toNamed(
-                                        AppLinks.ETABLISSEMENT_ALERTE_LIST);
-                                  },
-                                ),
+                                    title: 'Alerte',
+                                    arg: dController.etablissement.nmbre_alerte
+                                        .toString(),
+                                    onTap: () {
+                                      dController.getEtablissementAlert();
+                                      Get.toNamed(
+                                          AppLinks.ETABLISSEMENT_ALERTE_LIST);
+                                    },
+                                    icon: Icons.crisis_alert),
                                 AppEtablissementHomeOption(
-                                  title: 'Specialite',
-                                  arg: dController
-                                          .etablissement.specialites.length
-                                          .toString() +
-                                      (dController.etablissement.specialites
-                                                  .length <
-                                              2
-                                          ? ' specialite'
-                                          : ' specialites'),
-                                  onTap: () {
-                                    // Get.bottomSheet(
-                                    //   AppHomeSpecialityEtablissementComponent(),
-                                    //   isScrollControlled: true,
-                                    //   barrierColor: Colors.black26,
-                                    //   shape: RoundedRectangleBorder(
-                                    //     borderRadius: BorderRadius.vertical(
-                                    //         top: Radius.circular(16)),
-                                    //   ),
-                                    //   backgroundColor: Colors.transparent,
-                                    // )
-                                    Get.toNamed(
-                                        AppLinks.ETABLISSEMENT_SPECIALITE_LIST);
-                                  },
-                                ),
+                                    title: 'Specialite',
+                                    arg: dController
+                                            .etablissement.specialites.length
+                                            .toString() +
+                                        (dController.etablissement.specialites
+                                                    .length <
+                                                2
+                                            ? ' specialite'
+                                            : ' specialites'),
+                                    onTap: () {
+                                      // Get.bottomSheet(
+                                      //   AppHomeSpecialityEtablissementComponent(),
+                                      //   isScrollControlled: true,
+                                      //   barrierColor: Colors.black26,
+                                      //   shape: RoundedRectangleBorder(
+                                      //     borderRadius: BorderRadius.vertical(
+                                      //         top: Radius.circular(16)),
+                                      //   ),
+                                      //   backgroundColor: Colors.transparent,
+                                      // )
+                                      Get.toNamed(AppLinks
+                                          .ETABLISSEMENT_SPECIALITE_LIST);
+                                    },
+                                    icon: Icons.type_specimen),
                               ]),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -177,17 +176,42 @@ class EtablissementGView extends StatelessWidget {
                                                     .length <
                                                 2
                                             ? ' note'
-                                            : ' notes')),
+                                            : ' notes'),
+                                    icon: Icons.star),
                                 AppEtablissementHomeOption(
-                                    title: 'Agenda',
-                                    arg: dController
-                                            .etablissement.notation.length
-                                            .toString() +
-                                        (dController.etablissement.notation
-                                                    .length <
-                                                2
-                                            ? ' agenda'
-                                            : ' agendas'))
+                                  title: 'Agenda',
+                                  arg: dController.etablissement.notation.length
+                                          .toString() +
+                                      (dController.etablissement.notation
+                                                  .length <
+                                              2
+                                          ? ' agenda'
+                                          : ' agendas'),
+                                  icon: Icons.view_agenda,
+                                  onTap: () {
+                                    Get.toNamed(
+                                        AppLinks.ETABLISSEMENT_AGENDA_LIST);
+                                  },
+                                ),
+                              ]),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppEtablissementHomeOption(
+                                    title: 'Informations',
+                                    arg: '',
+                                    icon: Icons.info),
+                                // AppEtablissementHomeOption(
+                                //     title: 'Agenda',
+                                //     arg: dController
+                                //             .etablissement.notation.length
+                                //             .toString() +
+                                //         (dController.etablissement.notation
+                                //                     .length <
+                                //                 2
+                                //             ? ' agenda'
+                                //             : ' agendas'),
+                                //     icon: Icons.view_agenda),
                               ])
                         ]))
                   ],

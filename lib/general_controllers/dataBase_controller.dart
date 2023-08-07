@@ -126,7 +126,6 @@ class DataBaseController extends GetxController {
     final db = await this.database;
     if (db != null) {
       var data = await db.rawQuery('SELECT * FROM KEYUSER');
-      
 
       if (data.isNotEmpty) {
         print(data[0]);
@@ -172,7 +171,6 @@ class DataBaseController extends GetxController {
     final db = await this.database;
     if (db != null) {
       var data = await db.rawQuery('SELECT * FROM KEYUSER');
-       
 
       if (data.isNotEmpty) {
         String specifiedDate = data[0]['token_expires_at'].toString();
@@ -261,30 +259,49 @@ class DataBaseController extends GetxController {
   Future<bool> saveUserRole(Role role) async {
     try {
       final db = await this.database;
-      var data = await db.rawQuery('SELECT * FROM ROLE');
+      // var data = await db.rawQuery('SELECT * FROM ROLE');
+      // if (role != null) {
+      //   if (data.isNotEmpty && role.name == 'Patient-Alerte') {
+      //     await db.update(
+      //       "ROLE",
+      //       role.toJson(),
+      //       where: 'idB = ?',
+      //       whereArgs: [1],
+      //     );
+      //   } else if (role.name == 'Patient-Alerte') {
+      //     await db.insert("ROLE", role.toJson());
+      //   }
+      // }
       if (role != null) {
-        if (data.isNotEmpty && role.name == 'Patient-Alerte') {
-          await db.update(
-            "ROLE",
-            role.toJson(),
-            where: 'idB = ?',
-            whereArgs: [1],
-          );
-        } else if (role.name == 'Patient-Alerte') {
-          await db.insert("ROLE", role.toJson());
-        }
+        await db.insert("ROLE", role.toJson());
       }
-
       return true;
     } catch (e) {
       return false;
     }
   }
 
+  // Future<Map<String, dynamic>> getUserRole() async {
+  //   final db = await this.database;
+  //   var data = await db.rawQuery('SELECT * FROM ROLE');
+  //   if (data.isNotEmpty) {
+  //     print('-role');
+  //     print(data);
+  //     return  data[0];
+  //   } else {
+  //     return {"id": 0};
+  //   }
+  // }
+
   Future<Map<String, dynamic>> getUserRole() async {
     final db = await this.database;
     var data = await db.rawQuery('SELECT * FROM ROLE');
     if (data.isNotEmpty) {
+      for (var role in data) {
+        if (role['name'] == 'Directeur') {
+          return role; // Retourner le rôle "Directeur" s'il est présent
+        }
+      }
       return data[0];
     } else {
       return {"id": 0};

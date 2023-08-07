@@ -7,6 +7,7 @@ import 'package:medsur_app/modules/alerte/views/new_alerte_view.dart';
 import 'package:medsur_app/modules/auth/views/new_password_view.dart';
 import 'package:medsur_app/modules/auth/views/select_account_view.dart';
 import 'package:medsur_app/modules/auth/views/success_password_view.dart';
+import 'package:medsur_app/modules/etablissement/views/agenda_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/etablissement_home_view.dart';
 import 'package:medsur_app/modules/etablissement/views/list_alerte_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/list_specialite_etablissement_view.dart';
@@ -103,9 +104,13 @@ class AppRoutes {
     ),
     GetPage(
       name: AppLinks.ETABLISSEMENT_SPECIALITE_LIST,
-      page: () => ListSpecialiteEtablissementView(), /* transition: transitionX */
+      page: () =>
+          ListSpecialiteEtablissementView(), /* transition: transitionX */
     ),
-    
+    GetPage(
+      name: AppLinks.ETABLISSEMENT_AGENDA_LIST,
+      page: () => AgendaEtablissementView(), /* transition: transitionX */
+    ),
   ];
 }
 
@@ -128,6 +133,8 @@ class AppLinks {
   static const String ETABLISSEMENT = "/etablissement";
   static const String SUCCESSETABLISSEMENT = "/etablissement/success";
   static const String ETABLISSEMENT_NEW = "/etablissement/new";
-  static const String ETABLISSEMENT_ALERTE_LIST= "/etablissement/alerte/list";
-  static const String ETABLISSEMENT_SPECIALITE_LIST = "/etablissement/specialite/list";
+  static const String ETABLISSEMENT_ALERTE_LIST = "/etablissement/alerte/list";
+  static const String ETABLISSEMENT_SPECIALITE_LIST =
+      "/etablissement/specialite/list";
+  static const String ETABLISSEMENT_AGENDA_LIST = "/etablissement/agenda/list";
 }

@@ -5,7 +5,8 @@ import 'package:medsur_app/modules/alerte/components/app_input_min_add.dart';
 import 'package:medsur_app/modules/alerte/constant/alert_level_color.dart';
 import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
 import 'package:medsur_app/modules/alerte/models/emergency_model.dart';
-import 'package:medsur_app/modules/etablissement/components/app_agenda_add_component.dart';
+import 'package:medsur_app/modules/etablissement/components/app_agenda_etablissement_add_component.dart';
+import 'package:medsur_app/modules/etablissement/components/app_agenda_etablissement_update_component.dart';
 import 'package:medsur_app/modules/etablissement/components/app_list_speciality_etablissement_component.dart';
 import 'package:medsur_app/modules/etablissement/components/app_speciality_component.dart';
 import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
@@ -28,7 +29,7 @@ class TirdStepView extends StatelessWidget {
               itemCount: dController.agenda!.length,
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => AppAgendaAddComponent(
+              itemBuilder: (context, index) => AppAgendaEtablissementAddComponent(
                   jour: dController.agenda[index][0],
                   start: dController.agenda[index][1],
                   end: dController.agenda[index][2])

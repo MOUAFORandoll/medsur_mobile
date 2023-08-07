@@ -5,6 +5,7 @@ import 'package:medsur_app/core.dart';
 import 'package:medsur_app/general_controllers/action_controller.dart';
 import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
 import 'package:medsur_app/modules/dashboard/controller/dashboard_controller.dart';
+import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
 import 'package:medsur_app/modules/home/controller/home_controller.dart';
 import 'package:medsur_app/utils/ApiClient.dart';
 import 'package:medsur_app/utils/routing.dart';
@@ -168,6 +169,22 @@ class AuthController extends GetxController {
     }
   }
 
+  List _listTypeCompte = [
+    /*   {'titre': 'Patient', "value": 0},
+    {'titre': 'Responsable', "value": 1} */
+    0,
+    1
+  ];
+  get listTypeCompte => _listTypeCompte;
+  var _typeCompte = 1; //{'titre': 'Patient', "value": 0};
+  get typeCompte => _typeCompte;
+
+  selectTypeCompte(val) {
+    print(val);
+    _typeCompte = val;
+    update();
+  }
+
   regUser() async {
     var data = {
       'nom': regNameController.text,
@@ -177,6 +194,7 @@ class AuthController extends GetxController {
       'ville': regVilleController.text,
       'password': regepasswordController.text,
       'password_confirmation': rregepasswordController.text,
+      'typeCompte': typeCompte /* ["value"] */
     };
 
     try {
@@ -251,7 +269,7 @@ class AuthController extends GetxController {
           UserDB.fromJson(_user),
         );
         _user.roles!.forEach((element) {
-          (element.name == 'Patient-Alerte')
+          (element.name == 'Patient-Alerte' || element.name == 'Directeur')
               ? db.saveUserRole(element)
               : print(element.name);
         });
@@ -549,7 +567,7 @@ class AuthController extends GetxController {
               UserDB.fromJson(_user),
             );
             _user.roles!.forEach((element) {
-              (element.name == 'Patient-Alerte')
+              (element.name == 'Patient-Alerte' || element.name == 'Directeur')
                   ? db.saveUserRole(element)
                   : print(element.name);
             });
@@ -633,6 +651,7 @@ class AuthController extends GetxController {
       await authRepo.logOutUser(data);
       db.deleteAll();
       Get.find<AlerteController>().emptyData();
+      Get.find<EtablissementController>().cleanData();
       /*   Response response = */
       // loader.close();
       toastShowError('deconnecter'.tr, Get.context);

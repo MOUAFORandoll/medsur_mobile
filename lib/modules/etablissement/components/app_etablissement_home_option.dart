@@ -9,8 +9,8 @@ import 'package:time_picker_sheet/widget/time_picker.dart';
 import 'package:time_picker_widget/time_picker_widget.dart';
 
 class AppEtablissementHomeOption extends StatelessWidget {
-  AppEtablissementHomeOption({required this.title, this.onTap, this.arg = ''});
-  var title, arg, onTap;
+  AppEtablissementHomeOption({required this.title, this.onTap, this.arg = '',this.icon});
+  var title, arg, onTap,icon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,24 +25,15 @@ class AppEtablissementHomeOption extends StatelessWidget {
             ),
             constraints:
                 BoxConstraints(minHeight: kHeight / 8, minWidth: kWidth / 2.5),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: kMdText,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
-                      // color: AppColors.whitecolor,
-                    ),
-                  )),
-                  Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        arg.toString(),
+            child: Stack(
+              children: [
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          child: Text(
+                        title,
                         style: TextStyle(
                           fontSize: kMdText,
                           fontFamily: 'Montserrat',
@@ -50,7 +41,21 @@ class AppEtablissementHomeOption extends StatelessWidget {
                           // color: AppColors.whitecolor,
                         ),
                       )),
-                ])),
+                      Container(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            arg.toString(),
+                            style: TextStyle(
+                              fontSize: kMdText,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500,
+                              // color: AppColors.whitecolor,
+                            ),
+                          )),
+                    ]),
+                Positioned(bottom: 1, right: 1, child: Icon( icon))
+              ],
+            )),
         onTap: onTap);
   }
 }

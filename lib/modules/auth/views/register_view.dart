@@ -11,6 +11,8 @@ import '../../../general_component/index_widgets.dart';
 class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var _format = new FormatData();
+
     final formKey = GlobalKey<FormState>();
     final focusedBorderColor = AppColors.grey7;
     final fillColor = AppColors.grey7;
@@ -303,6 +305,49 @@ class RegisterView extends StatelessWidget {
                                                 )
                                               ]),
                                             ),
+                                            SizedBox(
+                                                height: 170,
+                                                child: ListView.builder(
+                                                    shrinkWrap: true,
+                                                    physics:
+                                                        NeverScrollableScrollPhysics(),
+                                                    // scrollDirection:
+                                                    //     Axis.horizontal,
+                                                    itemCount: authCont
+                                                        .listTypeCompte.length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return RadioListTile<int>(
+                                                        value: authCont
+                                                                .listTypeCompte[
+                                                            index]
+                                                          ,
+                                                        groupValue:
+                                                            authCont.typeCompte,
+                                                        title: Text(
+                                                          _format.capitalizeFirstLetter(
+                                                              authCont.listTypeCompte[
+                                                                          index] ==
+                                                                      0
+                                                                  ? 'Patient'
+                                                                  : 'Responsable'),
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  kMediumText,
+                                                              fontFamily:
+                                                                  'Montserrat'),
+                                                        ),
+                                                        activeColor: AppColors
+                                                            .primaryGreen,
+                                                        onChanged: (val) {
+                                                          print(val);
+                                                          authCont
+                                                              .selectTypeCompte(
+                                                                  val);
+                                                        },
+                                                      );
+                                                    })),
                                             if (authCont.code.length != 0)
                                               Container(
                                                   margin: EdgeInsets.only(

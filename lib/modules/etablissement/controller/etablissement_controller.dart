@@ -328,6 +328,8 @@ class EtablissementController extends GetxController {
   List _listSpecialitySecond = [];
   List get listSpecialitySecond => _listSpecialitySecond;
   getEtablissementForUser() async {
+    _loadeta = 0;
+    update();
     var userDB = await db.getUserInfo();
 
     if (userDB['id'] != 0) {
@@ -355,6 +357,22 @@ class EtablissementController extends GetxController {
         update();
       }
     }
+  }
+
+  void cleanData() {
+    _etablissement = null;
+    _listSpecialitySecond = [];
+    _listSelectSpeciality = [];
+    _listSelectSpecialityF = [];
+    _currentIndex = 0;
+    _nameController.clear();
+    _phoneController.clear();
+    _phoneUrgenceController.clear();
+    _emailController.clear();
+    _descriptionController.clear();
+    _boitePostaleController.clear();
+    _searchSpeController.clear();
+    update();
   }
 
   void filterSpeciality() {

@@ -34,7 +34,9 @@ class EtablissementHomeView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  if (dController.etablissement == null)
+                  if (dController.etablissement == null ||
+                      dController.loadetat == 0 ||
+                      dController.loadetat == 2)
                     Container(
                       height: kMdHeight / 8,
                       padding: EdgeInsets.symmetric(
@@ -97,7 +99,8 @@ class EtablissementHomeView extends StatelessWidget {
                         margin: EdgeInsets.symmetric(
                             horizontal: kMarginX, vertical: kMarginY * 2),
                         child: CircularProgressIndicator()),
-                  (dController.loadetat == 1)
+                  (dController.loadetat == 1 &&
+                          dController.etablissement != null)
                       ? EtablissementGView()
                       : (dController.loadetat == 0)
                           ? Container()
