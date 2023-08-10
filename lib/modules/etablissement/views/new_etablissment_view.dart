@@ -97,7 +97,7 @@ class NewEtablissementView extends StatelessWidget {
                                         },
                                       ),
                                       AppButton(
-                                        text: 'sub'.tr,
+                                        text: 'next'.tr,
                                         width: kWidth / 2.5,
                                         size: MainAxisSize.max,
                                         bgColor: AppColors.primaryGreen,

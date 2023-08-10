@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:medsur_app/constants/index_common.dart';
+import 'package:medsur_app/general_component/app_text_title_noe.dart';
 import '../../../utils/validators.dart';
 import '../controller/auth_controller.dart';
 import 'package:medsur_app/utils/routing.dart';
@@ -35,9 +36,19 @@ class LoginView extends StatelessWidget {
                                       height: kMdHeight / 20,
                                     ),
                                   ),
+                                  Container(
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.symmetric(
+                                        vertical: kMarginY,
+                                      ),
+                                      child: AppTextTitleNoE(
+                                        text: 'logtext'.tr,
+                                        bolder: true,
+                                        big: true,
+                                      )),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                      vertical: kMarginY * 5,
+                                      vertical: kMarginY,
                                     ),
                                     child: Image.asset(
                                       Assets.onboard,

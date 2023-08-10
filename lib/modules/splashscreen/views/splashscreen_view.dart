@@ -23,19 +23,19 @@ class _SplashscreenViewState extends State<SplashscreenView>
   start() async {
     // //print('******************${ac.isLog}');
     Future.delayed(Duration(seconds: 4), () async {
-    
-
       var isLog = await ac.getUserToken();
       print('*****************dddfdfdfdfd${isLog}');
-      
+
       if (isLog) {
-          bool inExpiredToken = await db.inExpiredTokenNR();
+        bool inExpiredToken = await db.inExpiredTokenNR();
         if (inExpiredToken) {
           // await Get.find<AuthController>()
           //     .refreshToken('request.url.path.toString()');
           //      print('*****************refresh ok');
           Get.offNamedUntil(AppLinks.WRAPPER, (route) => false);
         } else {
+          await ac.dbGetTypeCompte();
+
           print('******************${ac.isLog}');
           startApp();
           Get.offNamedUntil(AppLinks.HOME, (route) => false);

@@ -176,8 +176,14 @@ class AuthController extends GetxController {
     1
   ];
   get listTypeCompte => _listTypeCompte;
-  var _typeCompte = 1; //{'titre': 'Patient', "value": 0};
+  var _typeCompte = 0; //{'titre': 'Patient', "value": 0};
   get typeCompte => _typeCompte;
+
+  dbGetTypeCompte() async {
+    var val = await db.getTypeCompte();
+    _typeCompte = val['id'] ?? 0;
+    update();
+  }
 
   selectTypeCompte(val) {
     print(val);
@@ -194,7 +200,7 @@ class AuthController extends GetxController {
       'ville': regVilleController.text,
       'password': regepasswordController.text,
       'password_confirmation': rregepasswordController.text,
-      'typeCompte': typeCompte /* ["value"] */
+      // 'typeCompte': typeCompte /* ["value"] */
     };
 
     try {
@@ -268,6 +274,7 @@ class AuthController extends GetxController {
         await db.saveUserInfo(
           UserDB.fromJson(_user),
         );
+        await db.saveTypeCompte(typeCompte);
         _user.roles!.forEach((element) {
           (element.name == 'Patient-Alerte' || element.name == 'Directeur')
               ? db.saveUserRole(element)

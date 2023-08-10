@@ -10,6 +10,7 @@ class AppTextForm extends StatefulWidget {
       this.validator,
       this.onSaved,
       this.type,
+      this.maxLength =120,
       this.textArea})
       : super(key: key);
   final Widget? label;
@@ -19,6 +20,7 @@ class AppTextForm extends StatefulWidget {
   final Function(String?)? onSaved;
   final String? type;
   final bool? textArea;
+  final int maxLength;
 
   @override
   _AppTextFormState createState() => _AppTextFormState();
@@ -29,6 +31,7 @@ class _AppTextFormState extends State<AppTextForm> {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: 8,
+      maxLength:widget. maxLength,
       controller: widget.controller,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(

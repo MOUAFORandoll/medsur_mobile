@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
-        builder: (hController) => GetBuilder<EtablissementController>(
+        builder: (hController) => GetBuilder<AuthController>(
             builder: (eController) => GetBuilder<DashBoardController>(
                 builder: (dController) => Scaffold(
                     key: hController.scaffoldKey,
@@ -214,10 +214,14 @@ class HomeView extends StatelessWidget {
                                                             child: AppTextTitle(
                                                                 bolder: true,
                                                                 percent: 1.8,
-                                                                text: hController
+                                                                text: /*  hController
                                                                     .roleUser
                                                                     .name
-                                                                    .toString())),
+                                                                    .toString() */
+                                                                    eController.typeCompte ==
+                                                                            0
+                                                                        ? 'Patient-Alerte'
+                                                                        : 'Directeur')),
                                                       ],
                                                     )),
                                                 Container(
@@ -230,8 +234,9 @@ class HomeView extends StatelessWidget {
                                   ),
                                   AppbtnDrawer(
                                       title: 'Alerte',
-                                      present: hController.roleUser.name ==
-                                          'Patient-Alerte',
+                                      present: /*  hController.roleUser.name ==
+                                          'Patient-Alerte' */
+                                          eController.typeCompte == 0,
                                       onTap: () {
                                         Get.toNamed(
                                           AppLinks.NEW_ALERTE,
@@ -239,9 +244,9 @@ class HomeView extends StatelessWidget {
                                       }),
                                   AppbtnDrawer(
                                       title: 'Etablissement',
-                                      present: hController.roleUser.name ==
-                                              'Directeur' &&
-                                          eController.etablissement == null,
+                                      present: /*  hController.roleUser.name ==
+                                              'Directeur' && */
+                                          eController.typeCompte == 1,
                                       onTap: () {
                                         Get.toNamed(
                                           AppLinks.ETABLISSEMENT_NEW,
@@ -275,76 +280,8 @@ class HomeView extends StatelessWidget {
                       backgroundColor: AppColors.whitecolor,
 
                       // blurEffect: true,
-                      items: dController.isRole('Patient-Alerte')
-                          ? [
-                              CustomNavigationBarItem(
-                                  icon: Container(
-                                    height: kSmHeight,
-                                    width: kSmWidth / 4.2,
-                                    child: SvgPicture.asset(
-                                      Assets.home,
-                                      width: 90,
-                                      height: 90,
-                                      color: hController.currentIndex == 0
-                                          ? AppColors.primaryGreen
-                                          : AppColors.grey6,
-                                    ),
-                                  ),
-                                  title: Container(
-                                      padding: EdgeInsets.only(bottom: 3),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom:
-                                                  hController.currentIndex == 0
-                                                      ? BorderSide(
-                                                          color: AppColors
-                                                              .primaryGreen,
-                                                          width: 2)
-                                                      : BorderSide.none,
-                                              top: BorderSide.none)),
-                                      child: Text('home'.tr,
-                                          style: TextStyle(
-                                              fontSize: kSmText,
-                                              fontWeight: FontWeight.bold,
-                                              color:
-                                                  hController.currentIndex == 0
-                                                      ? AppColors.primaryGreen
-                                                      : AppColors.grey6)))),
-                              CustomNavigationBarItem(
-                                icon: Container(
-                                  height: kSmHeight,
-                                  width: kSmWidth / 4.2,
-                                  child: SvgPicture.asset(
-                                    Assets.user,
-                                    width: 90,
-                                    height: 90,
-                                    color: hController.currentIndex == 1
-                                        ? AppColors.primaryGreen
-                                        : AppColors.grey6,
-                                  ),
-                                ),
-                                title: Container(
-                                    padding: EdgeInsets.only(bottom: 3),
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: hController.currentIndex ==
-                                                    1
-                                                ? BorderSide(
-                                                    color:
-                                                        AppColors.primaryGreen,
-                                                    width: 2)
-                                                : BorderSide.none,
-                                            top: BorderSide.none)),
-                                    child: Text('account'.tr,
-                                        style: TextStyle(
-                                            fontSize: kSmText,
-                                            fontWeight: FontWeight.bold,
-                                            color: hController.currentIndex == 1
-                                                ? AppColors.primaryGreen
-                                                : AppColors.grey6))),
-                              ),
-                            ]
-                          : dController.isRole('Directeur')
+                      items: /* dController.isRole('Patient-Alerte') */
+                          eController.typeCompte == 0
                               ? [
                                   CustomNavigationBarItem(
                                       icon: Container(
@@ -418,142 +355,227 @@ class HomeView extends StatelessWidget {
                                                         : AppColors.grey6))),
                                   ),
                                 ]
-                              : [
-                                  CustomNavigationBarItem(
-                                      icon: Container(
-                                        height: kSmHeight,
-                                        width: kSmWidth / 4.2,
-                                        child: SvgPicture.asset(
-                                          Assets.home,
-                                          width: 90,
-                                          height: 90,
-                                          color: hController.currentIndex == 0
-                                              ? AppColors.primaryGreen
-                                              : AppColors.grey6,
-                                        ),
-                                      ),
-                                      title: Container(
-                                          padding: EdgeInsets.only(bottom: 3),
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  bottom: hController
-                                                              .currentIndex ==
-                                                          0
-                                                      ? BorderSide(
-                                                          color: AppColors
-                                                              .primaryGreen,
-                                                          width: 2)
-                                                      : BorderSide.none,
-                                                  top: BorderSide.none)),
-                                          child: Text('home'.tr,
-                                              style: TextStyle(
-                                                  fontSize: kSmText,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: hController
-                                                              .currentIndex ==
-                                                          0
+                              : /*  dController.isRole('Directeur') */ eController
+                                          .typeCompte ==
+                                      1
+                                  ? [
+                                      CustomNavigationBarItem(
+                                          icon: Container(
+                                            height: kSmHeight,
+                                            width: kSmWidth / 4.2,
+                                            child: SvgPicture.asset(
+                                              Assets.home,
+                                              width: 90,
+                                              height: 90,
+                                              color:
+                                                  hController.currentIndex == 0
                                                       ? AppColors.primaryGreen
-                                                      : AppColors.grey6)))),
-                                  CustomNavigationBarItem(
-                                      icon: Container(
-                                        height: kSmHeight,
-                                        width: kSmWidth / 4.2,
-                                        child: SvgPicture.asset(
-                                          Assets.activity,
-                                          width: 90,
-                                          height: 90,
-                                          color: hController.currentIndex == 1
-                                              ? AppColors.primaryGreen
-                                              : AppColors.grey6,
+                                                      : AppColors.grey6,
+                                            ),
+                                          ),
+                                          title: Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 3),
+                                              decoration: BoxDecoration(
+                                                  border: Border(
+                                                      bottom: hController
+                                                                  .currentIndex ==
+                                                              0
+                                                          ? BorderSide(
+                                                              color: AppColors
+                                                                  .primaryGreen,
+                                                              width: 2)
+                                                          : BorderSide.none,
+                                                      top: BorderSide.none)),
+                                              child: Text('home'.tr,
+                                                  style: TextStyle(
+                                                      fontSize: kSmText,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: hController
+                                                                  .currentIndex ==
+                                                              0
+                                                          ? AppColors
+                                                              .primaryGreen
+                                                          : AppColors.grey6)))),
+                                      CustomNavigationBarItem(
+                                        icon: Container(
+                                          height: kSmHeight,
+                                          width: kSmWidth / 4.2,
+                                          child: SvgPicture.asset(
+                                            Assets.user,
+                                            width: 90,
+                                            height: 90,
+                                            color: hController.currentIndex == 1
+                                                ? AppColors.primaryGreen
+                                                : AppColors.grey6,
+                                          ),
                                         ),
-                                      ),
-                                      title: Container(
-                                        padding: EdgeInsets.only(bottom: 3),
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom:
-                                                    hController.currentIndex ==
+                                        title: Container(
+                                            padding: EdgeInsets.only(bottom: 3),
+                                            decoration: BoxDecoration(
+                                                border: Border(
+                                                    bottom: hController
+                                                                .currentIndex ==
                                                             1
                                                         ? BorderSide(
                                                             color: AppColors
                                                                 .primaryGreen,
                                                             width: 2)
                                                         : BorderSide.none,
-                                                top: BorderSide.none)),
-                                        child: Text('activity'.tr,
-                                            style: TextStyle(
-                                                fontSize: kSmText,
-                                                fontWeight: FontWeight.bold,
-                                                color:
-                                                    hController.currentIndex ==
+                                                    top: BorderSide.none)),
+                                            child: Text('account'.tr,
+                                                style: TextStyle(
+                                                    fontSize: kSmText,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: hController
+                                                                .currentIndex ==
+                                                            1
+                                                        ? AppColors.primaryGreen
+                                                        : AppColors.grey6))),
+                                      ),
+                                    ]
+                                  : [
+                                      CustomNavigationBarItem(
+                                          icon: Container(
+                                            height: kSmHeight,
+                                            width: kSmWidth / 4.2,
+                                            child: SvgPicture.asset(
+                                              Assets.home,
+                                              width: 90,
+                                              height: 90,
+                                              color:
+                                                  hController.currentIndex == 0
+                                                      ? AppColors.primaryGreen
+                                                      : AppColors.grey6,
+                                            ),
+                                          ),
+                                          title: Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 3),
+                                              decoration: BoxDecoration(
+                                                  border: Border(
+                                                      bottom: hController
+                                                                  .currentIndex ==
+                                                              0
+                                                          ? BorderSide(
+                                                              color: AppColors
+                                                                  .primaryGreen,
+                                                              width: 2)
+                                                          : BorderSide.none,
+                                                      top: BorderSide.none)),
+                                              child: Text('home'.tr,
+                                                  style: TextStyle(
+                                                      fontSize: kSmText,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: hController
+                                                                  .currentIndex ==
+                                                              0
+                                                          ? AppColors
+                                                              .primaryGreen
+                                                          : AppColors.grey6)))),
+                                      CustomNavigationBarItem(
+                                          icon: Container(
+                                            height: kSmHeight,
+                                            width: kSmWidth / 4.2,
+                                            child: SvgPicture.asset(
+                                              Assets.activity,
+                                              width: 90,
+                                              height: 90,
+                                              color:
+                                                  hController.currentIndex == 1
+                                                      ? AppColors.primaryGreen
+                                                      : AppColors.grey6,
+                                            ),
+                                          ),
+                                          title: Container(
+                                            padding: EdgeInsets.only(bottom: 3),
+                                            decoration: BoxDecoration(
+                                                border: Border(
+                                                    bottom: hController
+                                                                .currentIndex ==
+                                                            1
+                                                        ? BorderSide(
+                                                            color: AppColors
+                                                                .primaryGreen,
+                                                            width: 2)
+                                                        : BorderSide.none,
+                                                    top: BorderSide.none)),
+                                            child: Text('activity'.tr,
+                                                style: TextStyle(
+                                                    fontSize: kSmText,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: hController
+                                                                .currentIndex ==
                                                             1
                                                         ? AppColors.primaryGreen
                                                         : AppColors.grey6)),
-                                      )),
-                                  CustomNavigationBarItem(
-                                    icon: Icon(Icons.search),
+                                          )),
+                                      CustomNavigationBarItem(
+                                        icon: Icon(Icons.search),
 
-                                    title: Container(
-                                        padding: EdgeInsets.only(bottom: 3),
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom:
-                                                    hController.currentIndex ==
+                                        title: Container(
+                                            padding: EdgeInsets.only(bottom: 3),
+                                            decoration: BoxDecoration(
+                                                border: Border(
+                                                    bottom: hController
+                                                                .currentIndex ==
                                                             2
                                                         ? BorderSide(
                                                             color: AppColors
                                                                 .primaryGreen,
                                                             width: 2)
                                                         : BorderSide.none,
-                                                top: BorderSide.none)),
-                                        child: Text('search'.tr,
-                                            style: TextStyle(
-                                                fontSize: kSmText,
-                                                fontWeight: FontWeight.bold,
-                                                color:
-                                                    hController.currentIndex ==
+                                                    top: BorderSide.none)),
+                                            child: Text('search'.tr,
+                                                style: TextStyle(
+                                                    fontSize: kSmText,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: hController
+                                                                .currentIndex ==
                                                             2
                                                         ? AppColors.primaryGreen
                                                         : AppColors.grey6))),
-                                    // showBadge: _badgeShows[2],
-                                  ),
-                                  CustomNavigationBarItem(
-                                    icon: Container(
-                                      height: kSmHeight,
-                                      width: kSmWidth / 4.2,
-                                      child: SvgPicture.asset(
-                                        Assets.user,
-                                        width: 90,
-                                        height: 90,
-                                        color: hController.currentIndex == 3
-                                            ? AppColors.primaryGreen
-                                            : AppColors.grey6,
+                                        // showBadge: _badgeShows[2],
                                       ),
-                                    ),
-                                    title: Container(
-                                        padding: EdgeInsets.only(bottom: 3),
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom:
-                                                    hController.currentIndex ==
+                                      CustomNavigationBarItem(
+                                        icon: Container(
+                                          height: kSmHeight,
+                                          width: kSmWidth / 4.2,
+                                          child: SvgPicture.asset(
+                                            Assets.user,
+                                            width: 90,
+                                            height: 90,
+                                            color: hController.currentIndex == 3
+                                                ? AppColors.primaryGreen
+                                                : AppColors.grey6,
+                                          ),
+                                        ),
+                                        title: Container(
+                                            padding: EdgeInsets.only(bottom: 3),
+                                            decoration: BoxDecoration(
+                                                border: Border(
+                                                    bottom: hController
+                                                                .currentIndex ==
                                                             3
                                                         ? BorderSide(
                                                             color: AppColors
                                                                 .primaryGreen,
                                                             width: 2)
                                                         : BorderSide.none,
-                                                top: BorderSide.none)),
-                                        child: Text('account'.tr,
-                                            style: TextStyle(
-                                                fontSize: kSmText,
-                                                fontWeight: FontWeight.bold,
-                                                color:
-                                                    hController.currentIndex ==
+                                                    top: BorderSide.none)),
+                                            child: Text('account'.tr,
+                                                style: TextStyle(
+                                                    fontSize: kSmText,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: hController
+                                                                .currentIndex ==
                                                             3
                                                         ? AppColors.primaryGreen
                                                         : AppColors.grey6))),
-                                  ),
-                                ],
+                                      ),
+                                    ],
                       currentIndex: hController.currentIndex,
                       onTap: (index) {
                         hController.changePageIndex(index);

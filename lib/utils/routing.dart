@@ -9,10 +9,13 @@ import 'package:medsur_app/modules/auth/views/select_account_view.dart';
 import 'package:medsur_app/modules/auth/views/success_password_view.dart';
 import 'package:medsur_app/modules/etablissement/views/agenda_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/etablissement_home_view.dart';
+import 'package:medsur_app/modules/etablissement/views/etablissementgestion.dart';
+import 'package:medsur_app/modules/etablissement/views/info_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/list_alerte_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/list_specialite_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/new_etablissment_view.dart';
 import 'package:medsur_app/modules/etablissement/views/success_etablissement_view.dart';
+import 'package:medsur_app/modules/splashscreen/views/select_experience_view.dart';
 import 'package:medsur_app/modules/splashscreen/views/wrapper_view.dart';
 import '../modules/auth/views/login_view.dart';
 import 'package:medsur_app/modules/Home/views/home_view.dart';
@@ -37,6 +40,9 @@ class AppRoutes {
     GetPage(
       name: AppLinks.WRAPPER,
       page: () => WrapperView(), /* transition: transitionX */
+    ), GetPage(
+      name: AppLinks.EXPERIENCE,
+      page: () => SelectExperienceView(), /* transition: transitionX */
     ),
     GetPage(
       name: AppLinks.HOME,
@@ -95,6 +101,10 @@ class AppRoutes {
       page: () => NewEtablissementView(), /* transition: transitionX */
     ),
     GetPage(
+      name: AppLinks.ETABLISSEMENT_GESTIOM,
+      page: () => EtablissementGView(), /* transition: transitionX */
+    ),
+    GetPage(
       name: AppLinks.SUCCESSETABLISSEMENT,
       page: () => SuccessEtablissementView(), /* transition: transitionX */
     ),
@@ -111,13 +121,17 @@ class AppRoutes {
       name: AppLinks.ETABLISSEMENT_AGENDA_LIST,
       page: () => AgendaEtablissementView(), /* transition: transitionX */
     ),
+    GetPage(
+      name: AppLinks.ETABLISSEMENT_INFO,
+      page: () => InfoEtablissementView(), /* transition: transitionX */
+    ),
   ];
 }
-
 class AppLinks {
   static const String TEST = "/test";
   static const String SPLASHSCREEN = "/splashscreen";
   static const String WRAPPER = "/wrapper";
+  static const String EXPERIENCE = "/experience";
   static const String HOME = "/home";
   static const String LOGIN = "/login";
   static const String REGISTER = "/register";
@@ -137,4 +151,6 @@ class AppLinks {
   static const String ETABLISSEMENT_SPECIALITE_LIST =
       "/etablissement/specialite/list";
   static const String ETABLISSEMENT_AGENDA_LIST = "/etablissement/agenda/list";
+  static const String ETABLISSEMENT_INFO = "/etablissement/info";
+  static const String ETABLISSEMENT_GESTIOM = "/etablissement/gestion";
 }

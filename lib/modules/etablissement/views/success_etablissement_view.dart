@@ -23,17 +23,17 @@ class SuccessEtablissementView extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        Container(
-                            alignment: Alignment.centerLeft,
-                            margin: EdgeInsets.symmetric(
-                              vertical: kMarginY * 4,
-                            ),
-                            child: AppTextTitleNoE(
-                              text: 'successcreation'.tr,
-                              bolder: true,
-                              center: true,
-                              big: true,
-                            )),
+                        // Container(
+                        //     alignment: Alignment.centerLeft,
+                        //     margin: EdgeInsets.symmetric(
+                        //       vertical: kMarginY * 4,
+                        //     ),
+                        //     child: AppTextTitleNoE(
+                        //       text: 'successcreation'.tr,
+                        //       bolder: true,
+                        //       center: true,
+                        //       big: true,
+                        //     )),
                         Container(
                           decoration: BoxDecoration(
                             color: AppColors.primaryGreen,

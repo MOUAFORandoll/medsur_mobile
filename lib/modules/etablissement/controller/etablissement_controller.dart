@@ -320,6 +320,71 @@ class EtablissementController extends GetxController {
     }
   }
 
+  updateEtablissement() async {
+    var data = {
+      "name": nameController.text,
+      "phone": phoneController.text,
+      "email": emailController.text,
+      "description": descriptionController.text,
+      "boite_postale": boitePostaleController.text,
+    };
+    print(data);
+    try {
+      loader.open();
+
+      update();
+      Response response =
+          await etablissementRepo.updateEtablissement(etablissement.id, data);
+      print(response.body);
+      if (response.statusCode == 200) {
+        print(response.body['data']);
+        if (response.body != null) {
+          if (response.body['data'] != null) {
+            print(response.body['data']);
+
+            update();
+            loader.close();
+
+            await getEtablissementForUser();
+          }
+        }
+      } else {
+        loader.close();
+        if (response.body == null) {
+          toastShowError("errors".tr, Get.context);
+          return false;
+        }
+        checkError(false, response.body);
+        update();
+        return false;
+      }
+    } catch (e) {
+      // loader.close();
+      toastShowError("errors".tr, Get.context);
+
+      update();
+      //print(e);
+      return false;
+    }
+  }
+
+  selectEtablissement(EtablissementModel etablissement) {
+    _etablissement = etablissement;
+    filterSpeciality();
+
+    nameController.text = _etablissement.name;
+    phoneController.text = _etablissement.phone;
+
+    emailController.text = _etablissement.email;
+
+    descriptionController.text = _etablissement.description;
+
+    boitePostaleController.text = _etablissement.localisation.boitePostale;
+
+    update();
+    Get.toNamed(AppLinks.ETABLISSEMENT_GESTIOM);
+  }
+
   var _etablissement;
   get etablissement => _etablissement;
   int _loadeta = 0;
@@ -327,23 +392,41 @@ class EtablissementController extends GetxController {
 
   List _listSpecialitySecond = [];
   List get listSpecialitySecond => _listSpecialitySecond;
+
+  List<EtablissementModel> _listEtablissement = [];
+  List<EtablissementModel> get listEtablissement => _listEtablissement;
   getEtablissementForUser() async {
-    _loadeta = 0;
-    update();
+   
     var userDB = await db.getUserInfo();
 
     if (userDB['id'] != 0) {
       // loader.open();
       try {
+         _loadeta = 0;
+        _listEtablissement.clear();
+        update();
         Response response =
             await etablissementRepo.getEtablissementForuser(userDB['id']);
         if (response.statusCode == 200) {
           print(response.body);
           _loadeta = 1;
-          _etablissement = EtablissementModel.fromJson(response.body['data']);
-          filterSpeciality();
+          _listEtablissement.addAll((response.body['data'] as List)
+              .map((e) => EtablissementModel.fromJson(e))
+              .toList());
+          print(_listEtablissement.length);
+          // filterSpeciality();
+
+          // nameController.text = _etablissement.name;
+          // phoneController.text = _etablissement.phone;
+
+          // emailController.text = _etablissement.email;
+
+          // descriptionController.text = _etablissement.description;
+
+          // boitePostaleController.text =
+          //     _etablissement.localisation.boitePostale;
+
           update();
-          print(_etablissement.name);
         } else {
           _loadeta = 2;
           update();
@@ -357,6 +440,22 @@ class EtablissementController extends GetxController {
         update();
       }
     }
+  }
+
+  setDateDebut0(id, value) {
+    var index =
+        _etablissement.agendas.indexWhere((element) => element.pivot.id == id);
+    print(index);
+    _etablissement.agendas[index].pivot.debut = value;
+    update();
+  }
+
+  setDateFin0(id, value) {
+    var index =
+        _etablissement.agendas.indexWhere((element) => element.pivot.id == id);
+    print(index);
+    _etablissement.agendas[index].pivot.fin = value;
+    update();
   }
 
   void cleanData() {
@@ -440,6 +539,30 @@ class EtablissementController extends GetxController {
     } catch (e) {
       loader.close();
       update();
+      //print(e);
+    }
+  }
+
+  agendaUpdate(agenda, data) async {
+    try {
+      loader.open();
+      Response response =
+          await etablissementRepo.updateAgendaEtablissement(agenda, data);
+
+      if (response.body['data'] != null) {
+        if (response.body != null) {
+          loader.close();
+        } else {
+          loader.close();
+          // update();
+        }
+      } else {
+        loader.close();
+        // update();
+      }
+    } catch (e) {
+      loader.close();
+      // update();
       //print(e);
     }
   }

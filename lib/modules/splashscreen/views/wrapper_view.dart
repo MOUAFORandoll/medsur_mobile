@@ -1,12 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medsur_app/constants/index_common.dart';
 import 'package:medsur_app/general_component/app_lang_button.dart';
 import 'package:medsur_app/general_controllers/action_controller.dart';
- 
+import 'package:medsur_app/modules/auth/controller/auth_controller.dart';
+
 import 'package:medsur_app/modules/splashscreen/components/app_carroussel_item.dart';
-import 'package:medsur_app/utils/routing.dart'; 
+import 'package:medsur_app/utils/routing.dart';
+
 class WrapperView extends StatelessWidget {
   @override
   @override
@@ -134,7 +136,9 @@ class WrapperView extends StatelessWidget {
                         child: TextButton(
                           onPressed: () {
                             // Get.offNamedUntil(AppLinks.LOGIN, (route) => false);
-                            Get.offNamedUntil(AppLinks.LOGIN, (route) => false);
+                            Get.find<AuthController>().dbGetTypeCompte();
+                            Get.offNamedUntil(
+                                AppLinks.EXPERIENCE, (route) => false);
                           },
                           child: Text('sauter'.tr,
                               style: TextStyle(
@@ -213,9 +217,10 @@ class WrapperView extends StatelessWidget {
                             ),
                             child: InkWell(
                               onTap: () {
+                                Get.find<AuthController>().dbGetTypeCompte();
                                 action.index == 2
                                     ? Get.offNamedUntil(
-                                        AppLinks.LOGIN, (route) => false)
+                                        AppLinks.EXPERIENCE, (route) => false)
 
                                     // Get.toNamed(AppLinks.LOGIN)
                                     // action.setState()

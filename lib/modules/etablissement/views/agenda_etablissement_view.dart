@@ -64,18 +64,8 @@ class AgendaEtablissementView extends StatelessWidget {
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) =>
                               AppAgendaEtablissementUpdateComponent(
-                                  jour: Get.find<ActionController>()
-                                              .lang
-                                              .toLowerCase() ==
-                                          'en'
-                                      ? dController
-                                          .etablissement.agendas[index].libelleEn
-                                      : dController
-                                          .etablissement.agendas[index].libelle,
-                                  start: dController
-                                      .etablissement.agendas[index].pivot.debut,
-                                  end: dController
-                                      .etablissement.agendas[index].pivot.fin)),
+                                agenda: dController
+                                      .etablissement.agendas[index] )),
                     ),
                   ),
                 ),

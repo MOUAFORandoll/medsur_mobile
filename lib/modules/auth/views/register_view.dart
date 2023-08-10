@@ -305,49 +305,7 @@ class RegisterView extends StatelessWidget {
                                                 )
                                               ]),
                                             ),
-                                            SizedBox(
-                                                height: 170,
-                                                child: ListView.builder(
-                                                    shrinkWrap: true,
-                                                    physics:
-                                                        NeverScrollableScrollPhysics(),
-                                                    // scrollDirection:
-                                                    //     Axis.horizontal,
-                                                    itemCount: authCont
-                                                        .listTypeCompte.length,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            int index) {
-                                                      return RadioListTile<int>(
-                                                        value: authCont
-                                                                .listTypeCompte[
-                                                            index]
-                                                          ,
-                                                        groupValue:
-                                                            authCont.typeCompte,
-                                                        title: Text(
-                                                          _format.capitalizeFirstLetter(
-                                                              authCont.listTypeCompte[
-                                                                          index] ==
-                                                                      0
-                                                                  ? 'Patient'
-                                                                  : 'Responsable'),
-                                                          style: TextStyle(
-                                                              fontSize:
-                                                                  kMediumText,
-                                                              fontFamily:
-                                                                  'Montserrat'),
-                                                        ),
-                                                        activeColor: AppColors
-                                                            .primaryGreen,
-                                                        onChanged: (val) {
-                                                          print(val);
-                                                          authCont
-                                                              .selectTypeCompte(
-                                                                  val);
-                                                        },
-                                                      );
-                                                    })),
+                                        
                                             if (authCont.code.length != 0)
                                               Container(
                                                   margin: EdgeInsets.only(

@@ -31,6 +31,7 @@ class Transalations extends Translations {
           'labelpassword': "Password",
           'forgotpass': "Forgot your password ?",
           'logbtn': 'Login',
+          'logtext': 'Access your account',
           'regbtn': 'Register',
           't1Reini': "Reset your password",
           't2Reini':
@@ -135,6 +136,11 @@ class Transalations extends Translations {
           'day': 'Day',
           'debut': 'Opening',
           'fin': 'Closing',
+          'choix': 'Choices are available to you',
+          'choix0': 'Find the appropriate establishment for your alert',
+          'choix1': 'Add your healthcare facility',
+          'activate': "Click here to contact us for quick activation",
+          'update': 'Update',
           'correctinfoeta':
               "Make sure you have provided the correct information; otherwise, your establishment will not be activated.",
           'successcreationd':
@@ -167,6 +173,7 @@ class Transalations extends Translations {
           'labellog': "Email / Numéro dossier",
           'labelpassword': "Mot de passe",
           'forgotpass': "Mot de passe oublié ?",
+          'logtext': 'Accedez a votre compte',
           'logbtn': 'Connexion',
           'regbtn': 'S\'inscrire',
           't1Reini': "Réinitialiser votre mot de passe",
@@ -274,6 +281,12 @@ class Transalations extends Translations {
           'day': 'Jour',
           'debut': 'Ouverture',
           'fin': 'Fermeture',
+          'choix': 'Des choix s\'offrent a vous',
+          'choix0': 'Trouver l\'établissement adéquat pour votre alerte',
+          'choix1': 'Ajoutez votre établissement de santé',
+          'activate':
+              "Apuuyer ici pour nous contancter pour une activation rapide",
+          'update': 'Mettre a jour',
           'correctinfoeta':
               "Assurez-vous d'avoir renseigné les informations correctes ; dans le cas contraire, votre établissement ne sera pas activé.",
           'successcreationbtn': 'Continuer',

@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
 class DataBaseController extends GetxController {
   static Database? _database;
   // String bdName = 'a22.db';
-  String bdName = 'b25.db';
+  String bdName = 'b26.db';
 
   @override
   void onInit() {
@@ -56,6 +56,11 @@ class DataBaseController extends GetxController {
       slug TEXT,  
       isNotice INTEGER
      
+      )""");
+
+        await db.execute("""CREATE TABLE IF NOT EXISTS TYPECOMPTE (
+      idB INTEGER PRIMARY KEY AUTOINCREMENT,
+      id INTEGER 
       )""");
         await db.execute("""CREATE TABLE IF NOT EXISTS ROLE (
       idB INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -119,6 +124,41 @@ class DataBaseController extends GetxController {
       return true;
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<bool> saveTypeCompte(id) async {
+    try {
+      final db = await this.database;
+      var data = await db.rawQuery('SELECT * FROM TYPECOMPTE');
+
+      if (data.isNotEmpty) {
+        if (id != null) {
+          await db.update(
+            "KEYUSER",
+            {"id": id},
+            where: 'idB = ?',
+            whereArgs: [1],
+          );
+        }
+      } else {
+        await db.insert("TYPECOMPTE", {"idB": 1, "id": id});
+      }
+
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<Map<String, dynamic>> getTypeCompte() async {
+    final db = await this.database;
+    var data = await db.rawQuery('SELECT * FROM TYPECOMPTE');
+
+    if (data.isNotEmpty) {
+      return data[0];
+    } else {
+      return {"id": 0};
     }
   }
 

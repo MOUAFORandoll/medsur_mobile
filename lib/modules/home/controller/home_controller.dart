@@ -98,7 +98,7 @@ class HomeController extends GetxController {
 
   Widget buildContent() {
     return roleUser != null
-        ? roleUser.name == 'Patient-Alerte'
+        ? Get.find<AuthController>().typeCompte == 0
             ? buildPatient()
             : buildEtablissement() /* 
         buildEtablissement() */

@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medsur_app/constants/index_common.dart';
 import 'package:medsur_app/general_controllers/action_controller.dart';
-import 'package:medsur_app/modules/alerte/models/etablissement_model.dart';
+import 'package:medsur_app/modules/etablissement/models/etablissement_model.dart';
 import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
 import 'package:time_picker_sheet/widget/sheet.dart';
 import 'package:time_picker_sheet/widget/time_picker.dart';
 import 'package:time_picker_widget/time_picker_widget.dart';
 
 class AppAgendaEtablissementUpdateComponent extends StatefulWidget {
-  AppAgendaEtablissementUpdateComponent(
-      {required this.jour, required this.start, required this.end});
-  var jour, start, end;
+  AppAgendaEtablissementUpdateComponent({required this.agenda});
+  Agendas agenda;
 
   @override
-  State<AppAgendaEtablissementUpdateComponent> createState() => _AppAgendaEtablissementUpdateComponentState();
+  State<AppAgendaEtablissementUpdateComponent> createState() =>
+      _AppAgendaEtablissementUpdateComponentState();
 }
 
-class _AppAgendaEtablissementUpdateComponentState extends State<AppAgendaEtablissementUpdateComponent> {
+class _AppAgendaEtablissementUpdateComponentState
+    extends State<AppAgendaEtablissementUpdateComponent> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EtablissementController>(
@@ -44,7 +45,13 @@ class _AppAgendaEtablissementUpdateComponentState extends State<AppAgendaEtablis
                             color: AppColors.primaryText,
                           ),
                         )),
-                        Container(child: Text(widget.jour)),
+                        Container(
+                            child: Text(
+                          Get.find<ActionController>().lang.toLowerCase() ==
+                                  'en'
+                              ? widget.agenda.libelleEn!
+                              : widget.agenda.libelle!,
+                        )),
                       ],
                     ),
                     Row(
@@ -67,7 +74,7 @@ class _AppAgendaEtablissementUpdateComponentState extends State<AppAgendaEtablis
                                   )),
                                   Container(
                                       child: Text(
-                                    widget.start,
+                                    widget.agenda.pivot!.debut!,
                                     style: TextStyle(
                                       fontSize: kSmText,
                                       fontFamily: 'Montserrat',
@@ -99,8 +106,12 @@ class _AppAgendaEtablissementUpdateComponentState extends State<AppAgendaEtablis
                                       time!.hour > 1 &&
                                       time.hour < 14 &&
                                       time.minute % 10 == 0).then((time) {
-                                dController.setDateDebut(
-                                    widget.jour, time?.format(context));
+                                dController.agendaUpdate(
+                                    widget.agenda.pivot!.id,
+                                    {'debut': time?.format(context)});
+                                dController.setDateDebut0(
+                                    widget.agenda.pivot!.id,
+                                    time?.format(context));
                                 /*   setState(() => widget.start = time?.format(context)) */;
                               });
                             },
@@ -120,7 +131,7 @@ class _AppAgendaEtablissementUpdateComponentState extends State<AppAgendaEtablis
                                 )),
                                 Container(
                                     child: Text(
-                                  widget.end,
+                                  widget.agenda.pivot!.fin!,
                                   style: TextStyle(
                                     fontSize: kSmText,
                                     fontFamily: 'Montserrat',
@@ -152,8 +163,12 @@ class _AppAgendaEtablissementUpdateComponentState extends State<AppAgendaEtablis
                                       time!.hour > 1 &&
                                       time.hour < 14 &&
                                       time.minute % 10 == 0).then((time) {
-                                dController.setDateFin(
-                                    widget.jour, time?.format(context));
+                                dController.agendaUpdate(
+                                    widget.agenda.pivot!.id,
+                                    {'fin': time?.format(context)});
+                                dController.setDateFin0(
+                                    widget.agenda.pivot!.id,
+                                    time?.format(context));
                               } /*   setState(() => widget.end = time?.format(context)) */);
                             },
                           ),

@@ -10,6 +10,8 @@ class EtablissementModel {
   String? siteweb;
   int? userId;
   int? nmbre_alerte;
+  bool? autorisation;
+  bool? garanti;
   bool? status;
   String? description;
   int? localisationId;
@@ -35,6 +37,8 @@ class EtablissementModel {
       this.siteweb,
       this.userId,
       this.status,
+      this.garanti,
+      this.autorisation,
       this.description,
       this.localisationId,
       this.createdAt,
@@ -59,6 +63,8 @@ class EtablissementModel {
     siteweb = json['siteweb'];
     userId = json['user_id'];
     status = json['status'];
+    autorisation = json['autorisation'];
+    garanti = json['garanti'];
     description = json['description'];
     localisationId = json['localisation_id'];
     createdAt = json['created_at'];
@@ -110,7 +116,9 @@ class EtablissementModel {
     data['email'] = this.email;
     data['siteweb'] = this.siteweb;
     data['user_id'] = this.userId;
+    data['garanti'] = this.garanti;
     data['status'] = this.status;
+    data['autorisation'] = this.autorisation;
     data['description'] = this.description;
     data['localisation_id'] = this.localisationId;
     data['created_at'] = this.createdAt;
@@ -392,6 +400,7 @@ class Specialites {
 
 class Pivot {
   int? etablissementId;
+  int? id;
   int? agendaId;
   String? fin;
   String? debut;
@@ -401,6 +410,7 @@ class Pivot {
   Pivot.fromJson(Map<String, dynamic> json) {
     etablissementId = json['etablissement_id'];
     agendaId = json['agenda_id'];
+    id = json['id'];
     fin = json['fin'];
     debut = json['debut'];
   }
@@ -409,6 +419,7 @@ class Pivot {
     final Map<String?, dynamic> data = new Map<String?, dynamic>();
     data['etablissement_id'] = this.etablissementId;
     data['agenda_id'] = this.agendaId;
+    data['id'] = this.id;
     data['fin'] = this.fin;
     data['debut'] = this.debut;
     return data;

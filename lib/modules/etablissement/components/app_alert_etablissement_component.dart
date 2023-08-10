@@ -102,8 +102,43 @@ class AppAlertEtablissementComponent extends StatelessWidget {
                     //     ],
                     //   ),
                     // ),
-                    InkWell(
-                      child: Container(
+                    // InkWell(
+                    //   child: Container(
+                    //     alignment: Alignment.topLeft,
+                    //     padding: EdgeInsets.symmetric(vertical: kMarginY),
+                    //     decoration: BoxDecoration(
+                    //       border: Border(
+                    //           bottom: BorderSide(
+                    //         width: 0.5,
+                    //         color: AppColors.grayColor,
+                    //       )),
+                    //     ),
+                    //     child: Row(
+                    //       children: [
+                    //         Text(
+                    //           'emergency'.tr + " : ",
+                    //           style: TextStyle(
+                    //               /* fontSize: kSmText, */
+                    //               fontWeight: FontWeight.w500),
+                    //         ),
+                    //         Expanded(
+                    //           child: Text(
+                    //             alerte.etablissement!.phone!,
+                    //             style: TextStyle(
+                    //                 /* fontSize: kSmText, */
+                    //                 ),
+                    //           ),
+                    //         )
+                    //       ],
+                    //     ),
+                    //   ),
+                    //   onTap: () => ViewFunctions().call(
+                    //     'tel',
+                    //     alerte.etablissement!.phone!,
+                    //   ),
+                    // ),
+
+                    Container(
                         alignment: Alignment.topLeft,
                         padding: EdgeInsets.symmetric(vertical: kMarginY),
                         decoration: BoxDecoration(
@@ -116,61 +151,22 @@ class AppAlertEtablissementComponent extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'emergency'.tr + " : ",
+                              'dville'.tr + " : ",
                               style: TextStyle(
                                   /* fontSize: kSmText, */
                                   fontWeight: FontWeight.w500),
                             ),
                             Expanded(
                               child: Text(
-                                alerte.etablissement!.phone!,
+                                _format.capitalizeFirstLetter(alerte.ville!),
                                 style: TextStyle(
                                     /* fontSize: kSmText, */
                                     ),
                               ),
                             )
                           ],
-                        ),
-                      ),
-                      onTap: () => ViewFunctions().call(
-                        'tel',
-                        alerte.etablissement!.phone!,
-                      ),
-                    ),
-                    InkWell(
-                      child: Container(
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.symmetric(vertical: kMarginY),
-                          decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                              width: 0.5,
-                              color: AppColors.grayColor,
-                            )),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                'ambulance'.tr + " : ",
-                                style: TextStyle(
-                                    /* fontSize: kSmText, */
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  alerte.etablissement!.phone2!,
-                                  style: TextStyle(
-                                      /* fontSize: kSmText, */
-                                      ),
-                                ),
-                              )
-                            ],
-                          )),
-                      onTap: () => ViewFunctions().call(
-                        'tel',
-                        alerte.etablissement!.phone2!,
-                      ),
-                    ),
+                        )),
+
                     InkWell(
                       child: Container(
                           alignment: Alignment.topLeft,
@@ -236,32 +232,6 @@ class AppAlertEtablissementComponent extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // Container(
-                    //   alignment: Alignment.topLeft,
-                    //   padding: EdgeInsets.symmetric(vertical: kMarginY),
-                    //   decoration: BoxDecoration(
-                    //     border: Border(
-                    //         bottom: BorderSide(
-                    //       width: 0.5,
-                    //       color: AppColors.grayColor,
-                    //     )),
-                    //   ),
-                    //   child: Row(
-                    //     children: [
-                    //       Text(
-                    //         'specialty'.tr + " : ",
-                    //         style: TextStyle(
-                    //             fontSize: kSmText, fontWeight: FontWeight.w500),
-                    //       ),
-                    //       Text(
-                    //         '  ',
-                    //         style: TextStyle(
-                    //           fontSize: kSmText,
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                     Container(
                       alignment: Alignment.topLeft,
                       padding: EdgeInsets.symmetric(vertical: kMarginY),
@@ -289,6 +259,76 @@ class AppAlertEtablissementComponent extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.symmetric(vertical: kMarginY),
+                        // decoration: BoxDecoration(
+                        //   border: Border(
+                        //       bottom: BorderSide(
+                        //     width: 0.5,
+                        //     color: AppColors.grayColor,
+                        //   )),
+                        // ),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Description'.tr + " : ",
+                              style: TextStyle(
+                                  /* fontSize: kSmText, */
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        )),
+                    Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.symmetric(vertical: kMarginY),
+                        decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                            width: 0.5,
+                            color: AppColors.grayColor,
+                          )),
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                _format
+                                    .capitalizeFirstLetter(alerte.description!),
+                                style: TextStyle(
+                                    /* fontSize: kSmText, */
+                                    ),
+                              ),
+                            )
+                          ],
+                        )),
+                    // Container(
+                    //   alignment: Alignment.topLeft,
+                    //   padding: EdgeInsets.symmetric(vertical: kMarginY),
+                    //   decoration: BoxDecoration(
+                    //     border: Border(
+                    //         bottom: BorderSide(
+                    //       width: 0.5,
+                    //       color: AppColors.grayColor,
+                    //     )),
+                    //   ),
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         'specialty'.tr + " : ",
+                    //         style: TextStyle(
+                    //             fontSize: kSmText, fontWeight: FontWeight.w500),
+                    //       ),
+                    //       Text(
+                    //         '  ',
+                    //         style: TextStyle(
+                    //           fontSize: kSmText,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+
                     // Container(
                     //   alignment: Alignment.topLeft,
                     //   padding: EdgeInsets.symmetric(vertical: kMarginY),
