@@ -13,6 +13,7 @@ import 'package:medsur_app/modules/etablissement/views/etablissementgestion.dart
 import 'package:medsur_app/modules/etablissement/views/info_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/list_alerte_etablissement_view.dart';
 import 'package:medsur_app/modules/etablissement/views/list_specialite_etablissement_view.dart';
+import 'package:medsur_app/modules/etablissement/views/map_page.dart';
 import 'package:medsur_app/modules/etablissement/views/new_etablissment_view.dart';
 import 'package:medsur_app/modules/etablissement/views/success_etablissement_view.dart';
 import 'package:medsur_app/modules/splashscreen/views/select_experience_view.dart';
@@ -40,7 +41,8 @@ class AppRoutes {
     GetPage(
       name: AppLinks.WRAPPER,
       page: () => WrapperView(), /* transition: transitionX */
-    ), GetPage(
+    ),
+    GetPage(
       name: AppLinks.EXPERIENCE,
       page: () => SelectExperienceView(), /* transition: transitionX */
     ),
@@ -125,9 +127,15 @@ class AppRoutes {
       name: AppLinks.ETABLISSEMENT_INFO,
       page: () => InfoEtablissementView(), /* transition: transitionX */
     ),
+    GetPage(
+      name: AppLinks.MAP,
+      page: () => MapPage(), /* transition: transitionX */
+    ),
   ];
 }
+
 class AppLinks {
+  static const String MAP = "/map";
   static const String TEST = "/test";
   static const String SPLASHSCREEN = "/splashscreen";
   static const String WRAPPER = "/wrapper";

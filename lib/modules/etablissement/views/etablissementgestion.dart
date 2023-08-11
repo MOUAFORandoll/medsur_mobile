@@ -170,8 +170,9 @@ class EtablissementGView extends StatelessWidget {
                                       )),
                                   Icon(
                                     dController.etablissement.garanti
-                                        ? Icons.check
+                                        ? Icons.check_circle
                                         : Icons.close,
+                                    size: 16,
                                     color: dController.etablissement.garanti
                                         ? Colors.green
                                         : Colors.red,
@@ -196,8 +197,9 @@ class EtablissementGView extends StatelessWidget {
                                     )),
                                 Icon(
                                     dController.etablissement.autorisation
-                                        ? Icons.check
+                                        ? Icons.check_circle
                                         : Icons.close,
+                                    size: 16,
                                     color:
                                         dController.etablissement.autorisation
                                             ? Colors.green
@@ -205,23 +207,26 @@ class EtablissementGView extends StatelessWidget {
                               ],
                             )),
                             if (!dController.etablissement.status)
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text('activate'.tr,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppColors.primaryGreen)),
-                                    ),
-                                    Icon(Icons.mail,
-                                        color: dController
-                                                .etablissement.autorisation
-                                            ? Colors.green
-                                            : Colors.red),
-                                  ],
+                              InkWell(
+                                onTap:()=> dController.sendMailAsActivation(),
+                                child: Container(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text('activate'.tr,
+                                            style: TextStyle(
+                                                fontFamily: 'Montserrat',
+                                                color: AppColors.primaryGreen)),
+                                      ),
+                                      Icon(Icons.mail,
+                                          color: dController
+                                                  .etablissement.autorisation
+                                              ? Colors.green
+                                              : Colors.red),
+                                    ],
+                                  ),
                                 ),
                               ),
                           ],

@@ -126,7 +126,7 @@ class Transalations extends Translations {
           'etablissement0': 'Estasblishments',
           'boitepostal': 'Mailbox',
           'makeagenda': 'Share your calendar',
-          'parlesnous': 'Tell us about your center',
+          'parlesnous': 'Information about your institution',
           'etablissementtitlee1': 'Tell us about your establishment',
           'etablissementbtn': 'Add your establishment',
           'etaspe': "Choose the specialties of your establishment",
@@ -136,10 +136,18 @@ class Transalations extends Translations {
           'day': 'Day',
           'debut': 'Opening',
           'fin': 'Closing',
+          'yes': 'Yes',
+          'no': 'No',
+          'savePositionSuccess':
+              'The position of your establishment has been saved successfully',
+          'positionText':
+              'The position of your establishment will be saved automatically',
+          'positionEtablissement': 'Where is your establishment located ?',
           'choix': 'Choices are available to you',
           'choix0': 'Find the appropriate establishment for your alert',
           'choix1': 'Add your healthcare facility',
-          'activate': "Click here to contact us for quick activation",
+          'activate': "Contact us for quick activation",
+          'positionetablissement': 'Are you in your establishment ?',
           'update': 'Update',
           'correctinfoeta':
               "Make sure you have provided the correct information; otherwise, your establishment will not be activated.",
@@ -268,7 +276,7 @@ class Transalations extends Translations {
           "dville": "Dans la ville de ",
           "level": "Niveau ",
           'etablissementtitlee1': 'Informations du centre',
-          'parlesnous': 'Parlez nous de votre centre',
+          'parlesnous': 'Informations de votre établissement  ',
           'etablissement0': 'Etablissements',
           'titleetablissement0':
               "Ajouter votre etablissement a notre plateforme et faites vous connaitre",
@@ -281,11 +289,18 @@ class Transalations extends Translations {
           'day': 'Jour',
           'debut': 'Ouverture',
           'fin': 'Fermeture',
+          'yes': 'Oui',
+          'no': 'Non',
+          'savePositionSuccess':
+              'La position de votre établissement a été enregistré avec succès',
+          'positionText':
+              'La position de votre établissement sera enregistré automatiquement',
+          'positionEtablissement': 'Où se trouve votre établissement ?',
           'choix': 'Des choix s\'offrent a vous',
           'choix0': 'Trouver l\'établissement adéquat pour votre alerte',
           'choix1': 'Ajoutez votre établissement de santé',
-          'activate':
-              "Apuuyer ici pour nous contancter pour une activation rapide",
+          'positionetablissement': 'Etes vous dans votre etablissement ?',
+          'activate': "Contacter nous pour une activation rapide",
           'update': 'Mettre a jour',
           'correctinfoeta':
               "Assurez-vous d'avoir renseigné les informations correctes ; dans le cas contraire, votre établissement ne sera pas activé.",

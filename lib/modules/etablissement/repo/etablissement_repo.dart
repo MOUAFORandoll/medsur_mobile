@@ -81,4 +81,12 @@ class EtablissementRepo extends GetxService {
 
     return response;
   }
+
+  Future<Response> sendMailAsActivation(etablissement_id) async {
+    Response response = await apiClientAlerte.getCollections(
+        ApiRoutesEtablissement.end_etablissement +
+            '/${etablissement_id.toString()}/mail');
+
+    return response;
+  }
 }

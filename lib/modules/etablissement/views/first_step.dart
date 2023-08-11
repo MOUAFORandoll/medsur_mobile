@@ -4,8 +4,9 @@ import 'package:medsur_app/general_component/app_loader_element.dart';
 import 'package:medsur_app/modules/alerte/components/app_input_min_add.dart';
 import 'package:medsur_app/modules/alerte/constant/alert_level_color.dart';
 import 'package:medsur_app/modules/alerte/controller/alerte_controller.dart';
-import 'package:medsur_app/modules/alerte/models/emergency_model.dart'; 
+import 'package:medsur_app/modules/alerte/models/emergency_model.dart';
 import 'package:medsur_app/modules/etablissement/controller/etablissement_controller.dart';
+import 'package:medsur_app/utils/routing.dart';
 import 'package:medsur_app/utils/validators.dart';
 import '../../../constants/index_common.dart';
 import '../../../general_component/index_widgets.dart';
@@ -130,6 +131,75 @@ class FirstStepView extends StatelessWidget {
                   ),
                 ),
                 Padding(
+                  padding: EdgeInsets.only(
+                    top: kMarginY * 2,
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                          alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.only(bottom: kMarginY / 2),
+                          child: Text(
+                            'positionetablissement'.tr,
+                            style: TextStyle(
+                                fontSize: kMediumText,
+                                fontFamily: 'Montserrat',
+                                color: AppColors.grey8,
+                                fontWeight: FontWeight.w500),
+                          )),
+                      !dController.selectedPosition
+                          ? Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: kMarginY,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  AppButton(
+                                    text: 'yes'.tr,
+                                    width: kWidth / 2.5,
+                                    size: MainAxisSize.max,
+                                    bgColor: AppColors.primaryGreen,
+                                    onTap: () async {
+                                      Get.dialog(ModalDialog());
+                                    },
+                                  ),
+                                  AppButton(
+                                    text: 'no'.tr,
+                                    width: kWidth / 2.5,
+                                    size: MainAxisSize.max,
+                                    bgColor: AppColors.red,
+                                    onTap: () async {
+                                      Get.toNamed(AppLinks.MAP);
+                                    },
+                                  ),
+                                ],
+                              ))
+                          : Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: kMarginY,
+                              ),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                        child: Text('savePositionSuccess'.tr,
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                                fontSize: kMediumText,
+                                                color: AppColors.blue))),
+                                    IconButton(
+                                        icon: Icon(Icons.close),
+                                        onPressed: () {
+                                          dController.changePosition();
+                                        })
+                                  ])),
+                    ],
+                  ),
+                ),
+                Padding(
                     padding: EdgeInsets.only(
                       top: kMarginY * 2,
                     ),
@@ -146,7 +216,7 @@ class FirstStepView extends StatelessWidget {
                                 fontWeight: FontWeight.w500),
                           )),
                       Container(
-                          height: 200,
+                          height: 150,
                           // width: kMdWidth * 1.8,
                           child: AppTextForm(
                             controller: dController.descriptionController,
@@ -160,5 +230,40 @@ class FirstStepView extends StatelessWidget {
             ),
           ),
         ));
+  }
+}
+
+class ModalDialog extends StatelessWidget {
+  var eController = Get.find<EtablissementController>();
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(
+        'positionText'.tr,
+        style: TextStyle(
+          fontSize: kSmText,
+          fontFamily: 'Montserrat',
+          color: AppColors.primaryText,
+        ),
+      ),
+      actions: [
+        TextButton(
+          child: Text('cancel'.tr),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        ElevatedButton(
+            child:
+                Text("yes".tr, style: TextStyle(color: AppColors.whitecolor)),
+            style: ElevatedButton.styleFrom(
+              primary: AppColors.primaryGreen,
+            ),
+            onPressed: () async {
+              await eController.getPosition();
+              Get.back();
+            }),
+      ],
+    );
   }
 }

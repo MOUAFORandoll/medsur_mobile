@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:medsur_app/general_controllers/action_controller.dart';
 
 import 'package:medsur_app/general_controllers/dataBase_controller.dart';
@@ -264,6 +265,34 @@ class EtablissementController extends GetxController {
   TextEditingController _boitePostaleController = TextEditingController();
   TextEditingController get boitePostaleController => _boitePostaleController;
 
+  bool _selectedPosition = false;
+  bool get selectedPosition => _selectedPosition;
+
+  setPosition(LatLng value) {
+    longitude = value.longitude;
+    latitude = value.latitude;
+    _selectedPosition = true;
+    update();
+    print(longitude);
+  }
+
+  var longitude = 0.0;
+  var latitude = 0.0;
+  getPosition() {
+    longitude = action.position.longitude;
+    latitude = action.position.latitude;
+    _selectedPosition = true;
+
+    update();
+    print(_selectedPosition);
+  }
+
+  changePosition() {
+    _selectedPosition = false;
+
+    update();
+  }
+
   newEtablissement() async {
     var userDB = await db.getUserInfo();
 
@@ -275,8 +304,8 @@ class EtablissementController extends GetxController {
       "boite_postale": boitePostaleController.text,
       "pays": userDB['pays'],
       "ville": userDB['ville'],
-      "longitude": action.position.longitude,
-      "latitude": action.position.latitude,
+      "longitude": longitude,
+      "latitude": latitude,
       "speciality": listSelectSpecialityF,
       'agenda': agenda,
       "user_id": userDB['id'],
@@ -346,6 +375,7 @@ class EtablissementController extends GetxController {
             loader.close();
 
             await getEtablissementForUser();
+            await updateConcernEtablissement();
           }
         }
       } else {
@@ -366,6 +396,13 @@ class EtablissementController extends GetxController {
       //print(e);
       return false;
     }
+  }
+
+  updateConcernEtablissement() {
+    _etablissement =
+        _listEtablissement.where((obj) => obj.id == _etablissement.id).first;
+    print('update${_etablissement.id}');
+    // update();
   }
 
   selectEtablissement(EtablissementModel etablissement) {
@@ -396,23 +433,23 @@ class EtablissementController extends GetxController {
   List<EtablissementModel> _listEtablissement = [];
   List<EtablissementModel> get listEtablissement => _listEtablissement;
   getEtablissementForUser() async {
-   
     var userDB = await db.getUserInfo();
 
     if (userDB['id'] != 0) {
       // loader.open();
       try {
-         _loadeta = 0;
-        _listEtablissement.clear();
-        update();
+        _loadeta = 0;
+
         Response response =
             await etablissementRepo.getEtablissementForuser(userDB['id']);
         if (response.statusCode == 200) {
           print(response.body);
-          _loadeta = 1;
-          _listEtablissement.addAll((response.body['data'] as List)
+
+          List<EtablissementModel> data = [];
+          data.addAll((response.body['data'] as List)
               .map((e) => EtablissementModel.fromJson(e))
               .toList());
+          _listEtablissement = data;
           print(_listEtablissement.length);
           // filterSpeciality();
 
@@ -425,6 +462,7 @@ class EtablissementController extends GetxController {
 
           // boitePostaleController.text =
           //     _etablissement.localisation.boitePostale;
+          _loadeta = 1;
 
           update();
         } else {
@@ -493,11 +531,13 @@ class EtablissementController extends GetxController {
 
       if (response.body['data'] != null) {
         if (response.body != null) {
-          _etablissement = EtablissementModel.fromJson(response.body['data']);
+          // _etablissement = EtablissementModel.fromJson(response.body['data']);
+          await getEtablissementForUser();
+          await updateConcernEtablissement();
           filterSpeciality();
 
           loader.close();
-          ;
+
           update();
         } else {
           loader.close();
@@ -522,7 +562,9 @@ class EtablissementController extends GetxController {
 
       if (response.body['data'] != null) {
         if (response.body != null) {
-          _etablissement = EtablissementModel.fromJson(response.body['data']);
+          // _etablissement = EtablissementModel.fromJson(response.body['data']);
+          await getEtablissementForUser();
+          await updateConcernEtablissement();
           filterSpeciality();
 
           loader.close();
@@ -551,6 +593,8 @@ class EtablissementController extends GetxController {
 
       if (response.body['data'] != null) {
         if (response.body != null) {
+          await getEtablissementForUser();
+          await updateConcernEtablissement();
           loader.close();
         } else {
           loader.close();
@@ -563,6 +607,32 @@ class EtablissementController extends GetxController {
     } catch (e) {
       loader.close();
       // update();
+      //print(e);
+    }
+  }
+
+  sendMailAsActivation() async {
+    try {
+      loader.open();
+      Response response =
+          await etablissementRepo.sendMailAsActivation(_etablissement.id);
+
+      if (response.body['data'] != null) {
+        if (response.body != null) {
+          loader.close();
+          ;
+          update();
+        } else {
+          loader.close();
+          update();
+        }
+      } else {
+        loader.close();
+        update();
+      }
+    } catch (e) {
+      loader.close();
+      update();
       //print(e);
     }
   }

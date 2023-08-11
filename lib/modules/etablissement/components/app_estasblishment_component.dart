@@ -22,23 +22,49 @@ class AppEstasblishmentComponent extends StatelessWidget {
           // height: kHeight / 4,
           // width: kWidth / 4,
           alignment: Alignment.center,
-          padding: EdgeInsets.all(kMarginX),
+          padding: EdgeInsets.all(kMarginX / 2),
           // margin: EdgeInsets.only(right: kMarginX),
           decoration: BoxDecoration(
               color: AppColors.primaryBlue,
               borderRadius: BorderRadius.circular(20)),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  width: kWidth * .45,
+                  width: kWidth * .50,
                   child: Text(
                     _format
                         .capitalizeFirstLetter(etablissement.name.toString()),
                     style: TextStyle(
                         fontFamily: 'Montserrat',
-                        color: AppColors.red,
+                        color: AppColors.primaryGreen,
+                        fontSize: kMediumText /* / 1.2 */,
+                        overflow: TextOverflow.fade,
+                        fontWeight: FontWeight.bold),
+                  )),
+              Container(
+                  margin: EdgeInsets.only(top: kMarginY),
+                  width: kWidth * .50,
+                  child: Text(
+                    _format.capitalizeFirstLetter(
+                        etablissement.localisation!.ville.toString()),
+                    style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: AppColors.whitecolor,
+                        fontSize: kMediumText /* / 1.2 */,
+                        overflow: TextOverflow.fade,
+                        fontWeight: FontWeight.bold),
+                  )),
+              Container(
+                  margin: EdgeInsets.only(top: kMarginY),
+                  width: kWidth * .50,
+                  child: Text(
+                    'Status : ' +
+                        (etablissement.status! ? 'Active' : 'Inactive'),
+                    style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: AppColors.whitecolor,
                         fontSize: kMediumText /* / 1.2 */,
                         overflow: TextOverflow.fade,
                         fontWeight: FontWeight.bold),
