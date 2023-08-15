@@ -19,7 +19,7 @@ class AppEstasblishmentComponent extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-          // height: kHeight / 4,
+          height: kHeight / 4,
           // width: kWidth / 4,
           alignment: Alignment.center,
           padding: EdgeInsets.all(kMarginX / 2),

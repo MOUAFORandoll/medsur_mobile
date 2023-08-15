@@ -99,27 +99,25 @@ class EtablissementHomeView extends StatelessWidget {
                         margin: EdgeInsets.symmetric(
                             horizontal: kMarginX, vertical: kMarginY * 2),
                         child: CircularProgressIndicator()),
-                  (dController.loadetat ==
-                          1 /* &&
+                  if (dController.loadetat ==
+                      1 /* &&
                           dController.etablissement != null */
-                      )
-                      ? EtablissementListView()
-                      : (dController.loadetat == 0 &&
-                              dController.listEtablissement.length > 4)
-                          ? Container()
-                          : Container(
-                              margin: EdgeInsets.only(top: kMarginY * 5),
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: kMarginX),
-                              child: AppButton(
-                                text: 'etablissementbtn'.tr,
-                                size: MainAxisSize.max,
-                                bgColor: AppColors.primaryGreen,
-                                onTap: () async {
-                                  Get.toNamed(AppLinks.ETABLISSEMENT_NEW);
-                                },
-                              ),
-                            ),
+                  )
+                    EtablissementListView(),
+                  if (dController.loadetat != 0 &&
+                      dController.listEtablissement.length < 4)
+                    Container(
+                      // margin: EdgeInsets.only(top: kMarginY),
+                      padding: EdgeInsets.symmetric(horizontal: kMarginX),
+                      child: AppButton(
+                        text: 'etablissementbtn'.tr,
+                        size: MainAxisSize.max,
+                        bgColor: AppColors.primaryGreen,
+                        onTap: () async {
+                          Get.toNamed(AppLinks.ETABLISSEMENT_NEW);
+                        },
+                      ),
+                    ),
                 ],
               ),
               // ),

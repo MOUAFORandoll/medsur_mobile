@@ -30,165 +30,11 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice_ex/places.dart';
 
-const appId = "<-- Insert App Id -->";
-const token = "<-- Insert Token -->";
-const channel = "<-- Insert Channel Name -->";
-
-// class TestView extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-
-//   final formKey = GlobalKey<FormState>();
-//     return  GetBuilder<AuthController>(
-//         builder: (authCont)=>  Scaffold(
-//           appBar: AppBar(
-//             leading: AppBackButton(),
-//             title:Text("Test Page") ,centerTitle:true, backgroundColor:Colors.transparent , elevation:0),
-//       body: SafeArea(
-//             child: Padding(
-//                 padding: EdgeInsets.symmetric(vertical:10, horizontal:kMarginX *2
-//                   ),
-
-//               child: SingleChildScrollView(
-//                 child:  Column(
-//                     children: [
-
-//                        AppButton(
-//                           text: 'Test Permiss',
-//                           onTap: () async{
-
-//                              await   await Get.find<HomeController>().getUserinfo_BD();
-
-//                           },
-
-//             ),   AppButton(
-//                           text: 'Test Role',
-//                           onTap: () async{
-
-//                              await   authCont.getUserRole_BD();
-
-//                           },
-
-//             )],
-//                 )))))
-//      );
-//   }
-// }
-
-// class TestView extends StatefulWidget {
-//   const TestView({Key? key}) : super(key: key);
-
-//   @override
-//   State<TestView> createState() => _TestViewState();
-// }
-
-// class _TestViewState extends State<TestView> {
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-
-//   // Create UI with local view and remote view
-//   @override
-//   Widget build(BuildContext context) {
-//     Scaffold(
-//         // appBar: AppBar(
-//         //   title: const Text('Agora Video Call'),
-//         // ),
-//         body: Row(children: [
-//       AppButton(
-//         text: "Login",
-//         size: MainAxisSize.max,
-//         onTap: () async {
-//           //print('dsds');
-//         },
-//       ),
-//       AppButton(
-//         text: "Login",
-//         size: MainAxisSize.max,
-//         onTap: () async {
-//           //print('dsds');
-//         },
-//       )
-//     ]));
-//   }
-// }
-
-// class TestView extends StatefulWidget {
-//   const TestView({Key? key}) : super(key: key);
-
-//   @override
-//   State<TestView> createState() => _TestViewState();
-// }
-
-// class _TestViewState extends State<TestView> {
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-
-//   // Create UI with local view and remote view
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetBuilder<TeleconsultationController>(
-//       builder: (_teleConsultation) => Scaffold(
-//           // appBar: AppBar(
-//           //   title: const Text('Agora Video Call'),
-//           // ),
-//           body: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               crossAxisAlignment: CrossAxisAlignment.center,
-//               children: [
-//             Container(
-//               margin: EdgeInsets.symmetric(vertical: 20),
-//               child: AppButton(
-//                 text: "Appel",
-//                 size: MainAxisSize.max,
-//                 onTap: () async {
-//                   //print('Reception');
-
-//                   await _teleConsultation.joinedCall(2);
-//                   ;
-//                 },
-//               ),
-//             ),
-//             AppButton(
-//               text: "Recevoir",
-//               size: MainAxisSize.max,
-//               onTap: () async {
-//                 //print('Reception');
-
-//                 await _teleConsultation.joinedCall(1);
-//               },
-//             ),
-//             Center(
-//               child: _teleConsultation.RtcV2(),
-//             ),
-//             SizedBox(
-//               width: 100,
-//               height: 150,
-//               child: Center(child: _teleConsultation.RtcV1()),
-//             ),
-//           ])),
-//     );
-//   }
-
-//   // Display remote user's video
-//   Widget _remoteVideo() {
-//     return GetBuilder<TeleconsultationController>(builder: (_teleConsultation) {
-//       if (_teleConsultation.remoteUid != null) {
-//         return _teleConsultation.RtcV1();
-//       } else {
-//         return const Text(
-//           'Please wait for remote user to join',
-//           textAlign: TextAlign.center,
-//         );
-//       }
-//     });
-//   }
-// }
-
+// import 'package:google_maps_webservice_ex/search.dart';
 class TestView extends StatefulWidget {
   const TestView({Key? key}) : super(key: key);
 
@@ -197,94 +43,70 @@ class TestView extends StatefulWidget {
 }
 
 class _TestViewState extends State<TestView> {
-  SpeechToText _speechToText = SpeechToText();
-  bool _speechEnabled = false;
-  String _lastWords = '';
-   
-     GoogleMapController? _mapController;
-  LocationData? _currentLocation;
-  Location _locationService = Location();
+  GoogleMapController? mapController;
+  final LatLng initialPosition =
+      LatLng(37.7749, -122.4194); // San Francisco coordinates
+  final TextEditingController searchController = TextEditingController();
+  final places =
+      GoogleMapsPlaces(apiKey: 'AIzaSyBIUmra3XE_cnCkySOHphv5aUq3xfmXb0w');
+
+  Set<Marker> markers = {};
 
   @override
-  void initState() {
-    super.initState();
-    _initializeLocation();
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
-  
-  Future<void> _initializeLocation() async {
-    bool serviceEnabled;
-    // PermissionStatus permissionGranted;
-    
-    serviceEnabled = await _locationService.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await _locationService.requestService();
-      if (!serviceEnabled) {
-        return;
-      }
-    }
-
-    // permissionGranted = await _locationService.hasPermission();
-    // if (permissionGranted == PermissionStatus.denied) {
-    //   permissionGranted = await _locationService.requestPermission();
-    //   if (permissionGranted != PermissionStatus.granted) {
-    //     return;
-    //   }
-    // }
-
-    LocationData currentLocation = await _locationService.getLocation();
-    setState(() {
-      _currentLocation = currentLocation;
-    });
-  }
-  
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Map Screen'),
+        title: Text('Map with Search'),
       ),
-      body: Stack(
+      body: Column(
         children: [
-          GoogleMap(
-            onMapCreated: (controller) {
-              setState(() {
-                _mapController = controller;
-              });
+          TextField(
+            controller: searchController,
+            onChanged: (query) {
+              searchPlaces(query);
             },
-            initialCameraPosition: CameraPosition(
-              target: LatLng(0, 0), // Coordonnées initiales de la carte
-              zoom: 15.0,
+            decoration: InputDecoration(
+              hintText: 'Search by name',
+              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             ),
-            myLocationEnabled: true, // Activer la localisation de l'utilisateur
-            myLocationButtonEnabled:
-                true, // Afficher le bouton pour recentrer la carte sur la localisation de l'utilisateur
           ),
-          if (_currentLocation != null)
-            Positioned(
-              bottom: 16.0,
-              right: 16.0,
-              child: FloatingActionButton(
-                onPressed: () {
-                  _mapController?.animateCamera(
-                    CameraUpdate.newLatLng(
-                      LatLng(
-                        _currentLocation!.latitude!,
-                        _currentLocation!.longitude!,
-                      ),
-                    ),
-                  );
-                },
-                child: Icon(Icons.location_searching),
-              ),
+          Expanded(
+            child: GoogleMap(
+              initialCameraPosition:
+                  CameraPosition(target: initialPosition, zoom: 10),
+              markers: markers,
+              onMapCreated: (controller) {
+                setState(() {
+                  mapController = controller;
+                });
+              },
             ),
+          ),
         ],
       ),
     );
   }
+
+  Future<void> searchPlaces(String query) async {
+    PlacesSearchResponse response = await places.searchByText(query);
+    setState(() {
+      markers = response.results.map((result) {
+        return Marker(
+          markerId: MarkerId(result.placeId),
+          position: LatLng(
+              result.geometry!.location.lat, result.geometry!.location.lng),
+          infoWindow: InfoWindow(title: result.name),
+        );
+      }).toSet();
+    });
+  }
 }
-
-
 
 
 

@@ -9,8 +9,9 @@ import 'package:time_picker_sheet/widget/time_picker.dart';
 import 'package:time_picker_widget/time_picker_widget.dart';
 
 class AppEtablissementHomeOption extends StatelessWidget {
-  AppEtablissementHomeOption({required this.title, this.onTap, this.arg = '',this.icon});
-  var title, arg, onTap,icon;
+  AppEtablissementHomeOption(
+      {required this.title, this.onTap, this.arg = '', this.icon});
+  var title, arg, onTap, icon;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,13 @@ class AppEtablissementHomeOption extends StatelessWidget {
                             ),
                           )),
                     ]),
-                Positioned(bottom: 1, right: 1, child: Icon( icon))
+                Positioned(
+                    bottom: 1,
+                    right: 1,
+                    child: Icon(
+                      icon,
+                      color: AppColors.primaryGreen,
+                    ))
               ],
             )),
         onTap: onTap);

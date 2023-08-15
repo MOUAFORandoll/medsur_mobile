@@ -422,6 +422,19 @@ class EtablissementController extends GetxController {
     Get.toNamed(AppLinks.ETABLISSEMENT_GESTIOM);
   }
 
+  unselectEtablissement() {
+    nameController.clear();
+    phoneController.clear();
+
+    emailController.clear();
+
+    descriptionController.clear();
+
+    boitePostaleController.clear();
+
+    update();
+  }
+
   var _etablissement;
   get etablissement => _etablissement;
   int _loadeta = 0;
@@ -501,6 +514,7 @@ class EtablissementController extends GetxController {
     _listSpecialitySecond = [];
     _listSelectSpeciality = [];
     _listSelectSpecialityF = [];
+    _listEtablissement = [];
     _currentIndex = 0;
     _nameController.clear();
     _phoneController.clear();

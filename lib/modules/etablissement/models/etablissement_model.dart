@@ -97,7 +97,11 @@ class EtablissementModel {
     }
     if (json['agendas'] != null) {
       agendas = <Agendas>[];
-      json['agendas'].forEach((v) {
+      List _agenda = json['agendas'];
+      _agenda.sort((a, b) => a['id'] - b['id']);
+
+      print(_agenda);
+      _agenda.forEach((v) {
         agendas!.add(new Agendas.fromJson(v));
       });
     }

@@ -30,47 +30,90 @@ class SelectExperienceView extends StatelessWidget {
                     child: Column(
                   children: [
                     // Text(description),
+                    // Container(
+                    //     padding: EdgeInsets.symmetric(vertical: kMarginY * 10),
+                    //     alignment: Alignment.center,
+                    //     decoration: BoxDecoration(
+                    //       color: AppColors.whitecolor,
+                    //       border: Border(top: BorderSide.none),
+                    //     ),
+                    //     height: kHeight / 1.8,
+                    //     child: ListView.builder(
+                    //         shrinkWrap: true,
+                    //         physics: NeverScrollableScrollPhysics(),
+                    //         // scrollDirection:
+                    //         //     Axis.horizontal,
+                    //         itemCount: authCont.listTypeCompte.length,
+                    //         itemBuilder: (BuildContext context, int index) {
+                    //           return RadioListTile<int>(
+                    //             value: authCont.listTypeCompte[index],
+                    //             groupValue: authCont.typeCompte,
+                    //             title: Text(
+                    //               _format.capitalizeFirstLetter(
+                    //                   authCont.listTypeCompte[index] == 0
+                    //                       ? 'choix0'.tr
+                    //                       : 'choix1'.tr),
+                    //               style: TextStyle(
+                    //                   fontSize: kMediumText,
+                    //                   fontFamily: 'Montserrat'),
+                    //             ),
+                    //             activeColor: AppColors.primaryGreen,
+                    //             onChanged: (val) {
+                    //               print(val);
+                    //               authCont.selectTypeCompte(val);
+                    //             },
+                    //           );
+                    //         })),
                     Container(
-                        padding: EdgeInsets.symmetric(vertical: kMarginY * 10),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: AppColors.whitecolor,
-                          border: Border(top: BorderSide.none),
-                        ),
-                        height: kHeight / 1.8,
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            // scrollDirection:
-                            //     Axis.horizontal,
-                            itemCount: authCont.listTypeCompte.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return RadioListTile<int>(
-                                value: authCont.listTypeCompte[index],
-                                groupValue: authCont.typeCompte,
-                                title: Text(
-                                  _format.capitalizeFirstLetter(
-                                      authCont.listTypeCompte[index] == 0
-                                          ? 'choix0'.tr
-                                          : 'choix1'.tr),
+                      decoration: BoxDecoration(
+                        color: AppColors.whitecolor,
+                        border: Border(top: BorderSide.none),
+                      ),
+                      // width: kWidth,
+                      height: kHeight / 2,
+
+                      padding: EdgeInsets.only(
+                        top: kMarginY * 19,
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                              padding: EdgeInsets.all(kMarginX),
+                              // margin: EdgeInsets.symmetric(
+                              //     vertical: kMarginY, horizontal: kMarginX * 3),
+                              child: Text("choix0".tr,
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: kMediumText,
-                                      fontFamily: 'Montserrat'),
-                                ),
-                                activeColor: AppColors.primaryGreen,
-                                onChanged: (val) {
-                                  print(val);
-                                  authCont.selectTypeCompte(val);
-                                },
-                              );
-                            })),
+                                      color: AppColors.primaryText,
+                                      fontSize: kLgText))),
+                          Container(
+                            padding: EdgeInsets.all(kMarginX),
+                            // margin: EdgeInsets.symmetric(
+                            //     vertical: kMarginY, horizontal: kMarginX * 3),
+                            child: AppButton(
+                              text: 'successcreationbtn'.tr,
+                              size: MainAxisSize.max,
+                              textColor: AppColors.whitecolor,
+                              shadow: false,
+                              width: kWidth / 2.5,
+                              border: Border.all(color: AppColors.primaryText),
+                              bgColor: AppColors.green,
+                              onTap: () async {
+                                authCont.selectTypeCompte(0);
+                                Get.toNamed(AppLinks.LOGIN);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Container(
                       decoration: BoxDecoration(
                         color: AppColors.green,
                         border: Border(top: BorderSide.none),
                       ),
                       // width: kWidth,
-                      // height: kHeight / 1.85,
+                      height: kHeight / 2,
                       // margin: EdgeInsets.symmetric(
                       //     vertical: kMarginY, horizontal: kMarginX * 3),
                       child: Column(
@@ -88,6 +131,7 @@ class SelectExperienceView extends StatelessWidget {
                               border: Border.all(color: AppColors.primaryText),
                               bgColor: AppColors.whitecolor,
                               onTap: () async {
+                                authCont.selectTypeCompte(1);
                                 Get.toNamed(AppLinks.LOGIN);
                               },
                             ),
@@ -96,7 +140,7 @@ class SelectExperienceView extends StatelessWidget {
                               padding: EdgeInsets.all(kMarginX),
                               // margin: EdgeInsets.symmetric(
                               //     vertical: kMarginY, horizontal: kMarginX * 3),
-                              child: Text("choix".tr,
+                              child: Text("choix1".tr,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: kLgText))),

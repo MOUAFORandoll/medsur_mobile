@@ -36,6 +36,16 @@ final _darkTheme = ThemeData(
 final _lightTheme = ThemeData(
   primaryColor: Colors.white,
   brightness: Brightness.light,
+  iconTheme: IconThemeData(
+    color: AppColors.primaryBlue,
+  ),
+  appBarTheme: AppBarTheme(
+    titleTextStyle: TextStyle(
+        fontFamily: 'Montserrat',
+        fontSize: kMdText + 1,
+        color: AppColors.primaryText,
+        fontWeight: FontWeight.w700),
+  ),
   // Couleur du texte principal
   primaryTextTheme: TextTheme(
     headline6: TextStyle(
@@ -81,17 +91,17 @@ final _lightTheme = ThemeData(
     ),
     titleLarge: TextStyle(
       fontFamily: 'Montserrat',
-         fontSize: kLg1Text,
+      fontSize: kLg1Text,
       color: AppColors.primaryText,
     ),
     titleMedium: TextStyle(
       fontFamily: 'Montserrat',
-         fontSize: kLg1Text,
+      fontSize: kLg1Text,
       color: AppColors.primaryText,
     ),
     titleSmall: TextStyle(
       fontFamily: 'Montserrat',
-         fontSize: kLg1Text,
+      fontSize: kLg1Text,
       color: AppColors.primaryText,
     ),
     bodyMedium: TextStyle(
@@ -126,7 +136,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // MyBinding().onInit();
-    
+
     return GetMaterialApp(
       translations: Transalations(),
       // locale: Get.find<ActionController>().lan,
@@ -134,9 +144,9 @@ class MyApp extends StatelessWidget {
       darkTheme: _darkTheme,
       themeMode: ThemeMode.light, //ThemeMode.system,
       debugShowCheckedModeBanner: false,
-        // fallbackLocale:Get.find<ActionController>().lan, //
+      // fallbackLocale:Get.find<ActionController>().lan, //
       //  initialBinding: MyBinding(),
-      initialRoute: AppLinks.SPLASHSCREEN,
+      initialRoute: AppLinks.TEST,
       getPages: AppRoutes.pages,
     );
   }

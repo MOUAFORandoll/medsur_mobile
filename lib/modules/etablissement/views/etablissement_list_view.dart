@@ -24,8 +24,11 @@ class EtablissementListView extends StatelessWidget {
     return GetBuilder<EtablissementController>(
         builder: (dController) => Container(
             padding: EdgeInsets.symmetric(vertical: 5),
-            margin: EdgeInsets.symmetric(vertical: kMarginY * 2),
-            height: 500,
+            margin: EdgeInsets.only(top: kMarginY * 2),
+            height: kHeight / 2.2,
+            constraints: BoxConstraints(maxHeight: kHeight / 2),
+            // decoration: BoxDecoration(
+            //     color: AppColors.red, borderRadius: BorderRadius.circular(20)),
             child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

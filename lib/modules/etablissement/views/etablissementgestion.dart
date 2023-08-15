@@ -30,6 +30,7 @@ class EtablissementGView extends StatelessWidget {
                   ),
                   tooltip: MaterialLocalizations.of(context).backButtonTooltip,
                   onPressed: () {
+                    dController.unselectEtablissement();
                     Get.back();
                   },
                 ),
@@ -208,7 +209,7 @@ class EtablissementGView extends StatelessWidget {
                             )),
                             if (!dController.etablissement.status)
                               InkWell(
-                                onTap:()=> dController.sendMailAsActivation(),
+                                onTap: () => dController.sendMailAsActivation(),
                                 child: Container(
                                   child: Row(
                                     mainAxisAlignment:
