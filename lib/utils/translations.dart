@@ -123,6 +123,8 @@ class Transalations extends Translations {
           "level": "Level ",
           'titleetablissement0':
               "Add your establishment to our platform and make yourself known",
+          'titleetablissement1':
+             "Take control of the management of your establishments on our platform and make yourself known.",
           'etablissement0': 'Estasblishments',
           'boitepostal': 'Mailbox',
           'makeagenda': 'Share your calendar',
@@ -138,6 +140,7 @@ class Transalations extends Translations {
           'fin': 'Closing',
           'yes': 'Yes',
           'no': 'No',
+          'letab': 'List of your establishments',
           'savePositionSuccess':
               'The position of your establishment has been saved successfully',
           'positionText':
@@ -280,6 +283,8 @@ class Transalations extends Translations {
           'etablissement0': 'Etablissements',
           'titleetablissement0':
               "Ajouter votre etablissement a notre plateforme et faites vous connaitre",
+          'titleetablissement1':
+            "Prenez en main la gestion de vos établissements sur notre plateforme et faites-vous connaître.",
           'boitepostal': 'Boîte postale',
           'makeagenda': 'Partager votre agenda',
           'etablissementbtn': 'Ajouter votre etablissement',
@@ -291,6 +296,8 @@ class Transalations extends Translations {
           'fin': 'Fermeture',
           'yes': 'Oui',
           'no': 'Non',
+          'letab': 'Liste de vos établissements',
+
           'savePositionSuccess':
               'La position de votre établissement a été enregistré avec succès',
           'positionText':

@@ -48,7 +48,7 @@ class _TestViewState extends State<TestView> {
       LatLng(37.7749, -122.4194); // San Francisco coordinates
   final TextEditingController searchController = TextEditingController();
   final places =
-      GoogleMapsPlaces(apiKey: 'AIzaSyBIUmra3XE_cnCkySOHphv5aUq3xfmXb0w');
+      GoogleMapsPlaces(apiKey: 'AIzaSyBps1dGN_OKMsE-77qy8OXEdgZtgXb2jsc');
 
   Set<Marker> markers = {};
 

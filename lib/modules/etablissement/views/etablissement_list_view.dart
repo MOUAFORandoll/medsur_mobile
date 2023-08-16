@@ -24,7 +24,7 @@ class EtablissementListView extends StatelessWidget {
     return GetBuilder<EtablissementController>(
         builder: (dController) => Container(
             padding: EdgeInsets.symmetric(vertical: 5),
-            margin: EdgeInsets.only(top: kMarginY * 2),
+            margin: EdgeInsets.only(top: kMarginY),
             height: kHeight / 2.2,
             constraints: BoxConstraints(maxHeight: kHeight / 2),
             // decoration: BoxDecoration(

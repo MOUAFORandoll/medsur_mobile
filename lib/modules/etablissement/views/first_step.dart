@@ -13,6 +13,7 @@ import '../../../general_component/index_widgets.dart';
 import 'package:date_input_field/date_input_field.dart';
 import 'package:intl/intl.dart';
 
+import 'package:intl_phone_field/intl_phone_field.dart';
 class FirstStepView extends StatelessWidget {
   FirstStepView({required this.dController});
   EtablissementController dController;
@@ -88,6 +89,21 @@ class FirstStepView extends StatelessWidget {
                                 color: AppColors.grey8,
                                 fontWeight: FontWeight.w500),
                           )),
+                             IntlPhoneField(
+                         decoration: InputDecoration(
+                          labelText: 'Phone Number',
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(),
+                          ),
+                        ),
+                        languageCode: "en",
+                        onChanged: (phone) {
+                          print(phone.completeNumber);
+                        },
+                        onCountryChanged: (country) {
+                          print('Country changed to: ' + country.name);
+                        },
+                      ),
                       AppInput(
                         controller: dController.phoneController,
                         onChanged: (value) {},

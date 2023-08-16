@@ -146,7 +146,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // fallbackLocale:Get.find<ActionController>().lan, //
       //  initialBinding: MyBinding(),
-      initialRoute: AppLinks.TEST,
+      initialRoute: AppLinks.SPLASHSCREEN,
       getPages: AppRoutes.pages,
     );
   }

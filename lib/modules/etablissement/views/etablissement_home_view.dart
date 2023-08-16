@@ -73,7 +73,7 @@ class EtablissementHomeView extends StatelessWidget {
                                   Container(
                                       width: kMdWidth * 1.4,
                                       child: Text(
-                                        'titleetablissement0'.tr,
+                                      dController.listEtablissement.length != 0 ? 'titleetablissement1'.tr :    'titleetablissement0'.tr,
                                         softWrap: true,
                                         maxLines: 3,
                                         style: TextStyle(
@@ -99,6 +99,19 @@ class EtablissementHomeView extends StatelessWidget {
                         margin: EdgeInsets.symmetric(
                             horizontal: kMarginX, vertical: kMarginY * 2),
                         child: CircularProgressIndicator()),
+                  if (dController.loadetat != 0 &&
+                      dController.listEtablissement.length != 0)
+                    Container(
+                      margin: EdgeInsets.only(top: kMarginY),
+                      child: Text(
+                        'letab'.tr,
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w600,
+                          fontSize: kMediumText,
+                        ),
+                      ),
+                    ),
                   if (dController.loadetat ==
                       1 /* &&
                           dController.etablissement != null */

@@ -35,7 +35,8 @@ dependencies:
   jwt_decoder: ^2.0.1
   time_picker_sheet: ^0.0.2+1
   time_picker_widget: ^1.0.0+10
-  google_maps_webservice_ex: ^0.0.1+2
+  google_maps_webservice_ex: ^0.0.1+2 
+  intl_phone_field: ^3.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
