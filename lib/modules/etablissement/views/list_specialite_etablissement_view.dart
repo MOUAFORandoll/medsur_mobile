@@ -62,7 +62,7 @@ class ListSpecialiteEtablissementView extends StatelessWidget {
                     onTap: () => Get.bottomSheet(
                       AppListSpecialityEtablissementUpdateComponent(),
                       isScrollControlled: true,
-                      barrierColor: Colors.black26,
+                      barrierColor: AppColors.primaryBlue,
                       shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(16)),

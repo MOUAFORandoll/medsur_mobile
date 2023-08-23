@@ -50,7 +50,7 @@ class ActivityView extends StatelessWidget {
                                     AppTextTitle(
                                         text: 'activity'.tr,
                                         bolder: true,
-                                        color: AppColors.blackcolor),
+                                        color: AppColors.primaryBlue),
                                   ]))),
                       expandedHeight: 150,
                       // pinned: true,

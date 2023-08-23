@@ -13,6 +13,7 @@ class AppInput extends StatefulWidget {
   final bool obscureText;
   final TextInputType? textInputType;
   final Icon? icon;
+  final int? maxLength;
   const AppInput(
       {Key? key,
       required this.controller,
@@ -23,6 +24,7 @@ class AppInput extends StatefulWidget {
       this.onChanged,
       this.obscureText = false,
       this.textInputType,
+      this.maxLength,
       this.icon})
       : super(key: key);
 
@@ -43,6 +45,7 @@ class _AppInputState extends State<AppInput> {
         fontSize: kMediumText,
         fontFamily: 'Montserrat',
       ),
+      maxLength: widget.maxLength,
       onChanged: widget.onChanged,
       decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(

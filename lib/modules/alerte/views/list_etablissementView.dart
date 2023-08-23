@@ -258,7 +258,7 @@ class ListEtablissementView extends StatelessWidget {
                       //                 ),
                       //               ))),
                       //       isScrollControlled: true,
-                      //       barrierColor: Colors.black26,
+                      //       barrierColor: AppColors.primaryBlue26,
                       //       shape: RoundedRectangleBorder(
                       //         borderRadius: BorderRadius.vertical(
                       //             top: Radius.circular(16)),
@@ -314,7 +314,7 @@ class ListEtablissementView extends StatelessWidget {
                                           AppListSpecialityComponent(
                                               isActualise: true),
                                           isScrollControlled: true,
-                                          barrierColor: Colors.black26,
+                                          barrierColor: AppColors.primaryBlue,
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.vertical(
                                                 top: Radius.circular(16)),

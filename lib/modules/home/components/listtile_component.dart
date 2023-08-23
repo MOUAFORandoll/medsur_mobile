@@ -24,7 +24,7 @@ class _ListtileComponentState extends State<ListtileComponent> {
         child: Container(
           decoration: BoxDecoration(
               border: Border(
-                  bottom: BorderSide(color: AppColors.blackcolor, width: 2))),
+                  bottom: BorderSide(color: AppColors.primaryBlue, width: 2))),
           padding: EdgeInsets.symmetric(
               horizontal: 10, vertical: widget.children != null ? 0 : 5),
           // margin:EdgeInsets.symmetric(horizontal: 10),

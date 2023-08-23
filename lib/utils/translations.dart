@@ -88,6 +88,7 @@ class Transalations extends Translations {
           'city': 'City',
           'quartier': 'Quartier',
           'postal': 'Postal code',
+          'descriptionempl': 'Comment on your location',
           'address': 'Address',
           'specialty': 'Specialty',
           'etablissement': 'Estasblishments',
@@ -121,10 +122,12 @@ class Transalations extends Translations {
           "Ressayer": "Try again",
           "dville": "In the city of ",
           "level": "Level ",
+          "successsendmail":
+              "The email has been sent successfully. Stay tuned and best of luck with your development",
           'titleetablissement0':
               "Add your establishment to our platform and make yourself known",
           'titleetablissement1':
-             "Take control of the management of your establishments on our platform and make yourself known.",
+              "Take control of the management of your establishments on our platform and make yourself known.",
           'etablissement0': 'Estasblishments',
           'boitepostal': 'Mailbox',
           'makeagenda': 'Share your calendar',
@@ -140,6 +143,9 @@ class Transalations extends Translations {
           'fin': 'Closing',
           'yes': 'Yes',
           'no': 'No',
+          'errorimage': 'Add a picture',
+          'nr_contribuable': 'Taxpayer number',
+          'nr_commerce': 'Trade register number',
           'letab': 'List of your establishments',
           'savePositionSuccess':
               'The position of your establishment has been saved successfully',
@@ -161,6 +167,9 @@ class Transalations extends Translations {
         //FRENCH LANGUAGE
         'fr_FR': {
           'home': 'Accueil',
+          'errorimage': 'Ajouter une image',
+          'nr_contribuable': 'Numéro de Contribuable',
+          'nr_commerce': 'Numéro au Registre du commerce',
           'activity': 'Activité',
           'search': 'Rechercher',
           'account': 'Compte',
@@ -234,6 +243,8 @@ class Transalations extends Translations {
           'complain': 'Se plaindre',
           'spte': 'Sélectionnez les spécialités',
           'spt': 'Votre choix de specialite',
+          "successsendmail":
+              "Le mail a été envoyé avec succès. Restez à l'écoute et bonne continuation dans votre développement",
           'sptl':
               'Choisissez les specialites de votre alerte pour avoir de meilleur resultats   ',
           'spst': 'Résultats',
@@ -246,6 +257,7 @@ class Transalations extends Translations {
           'ambulance': 'Ambulance/Samu',
           'city': 'Ville',
           'quartier': 'Quartier',
+          'descriptionempl': 'Un Commentaire de l\'emplacement',
           'postal': 'Code Postal',
           'address': 'Adresse',
           'specialty': 'Spécialité',
@@ -284,7 +296,7 @@ class Transalations extends Translations {
           'titleetablissement0':
               "Ajouter votre etablissement a notre plateforme et faites vous connaitre",
           'titleetablissement1':
-            "Prenez en main la gestion de vos établissements sur notre plateforme et faites-vous connaître.",
+              "Prenez en main la gestion de vos établissements sur notre plateforme et faites-vous connaître.",
           'boitepostal': 'Boîte postale',
           'makeagenda': 'Partager votre agenda',
           'etablissementbtn': 'Ajouter votre etablissement',
@@ -297,7 +309,6 @@ class Transalations extends Translations {
           'yes': 'Oui',
           'no': 'Non',
           'letab': 'Liste de vos établissements',
-
           'savePositionSuccess':
               'La position de votre établissement a été enregistré avec succès',
           'positionText':

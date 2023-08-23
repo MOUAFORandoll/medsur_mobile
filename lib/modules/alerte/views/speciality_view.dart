@@ -60,7 +60,7 @@ class SpecialityView extends StatelessWidget {
                               Get.bottomSheet(
                                 AppListSpecialityComponent(),
                                 isScrollControlled: true,
-                                barrierColor: Colors.black26,
+                                barrierColor: AppColors.primaryBlue,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.vertical(
                                       top: Radius.circular(16)),

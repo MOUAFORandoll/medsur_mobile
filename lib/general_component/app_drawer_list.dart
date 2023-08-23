@@ -40,7 +40,6 @@ class AppDrawerList extends StatelessWidget {
             "assets/images/geolocalisation.png",
             currentPage == DrawerSections.geolocalisation ? true : false,
             onTap: () {
-            
               //Navigator.of(context).push(GeolocalisationPage.route());
             },
           ),
@@ -113,8 +112,8 @@ class MenuItem extends StatelessWidget {
                 flex: 3,
                 child: Text(
                   title,
-                  style:   TextStyle(
-                    color: Colors.black,
+                  style: TextStyle(
+                    color: AppColors.primaryBlue,
                     fontSize: kMdText,
                   ),
                 ),

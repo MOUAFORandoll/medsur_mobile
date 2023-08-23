@@ -263,7 +263,7 @@ class EtablissementGView extends StatelessWidget {
                                       // Get.bottomSheet(
                                       //   AppHomeSpecialityEtablissementComponent(),
                                       //   isScrollControlled: true,
-                                      //   barrierColor: Colors.black26,
+                                      //   barrierColor: AppColors.primaryBlue26,
                                       //   shape: RoundedRectangleBorder(
                                       //     borderRadius: BorderRadius.vertical(
                                       //         top: Radius.circular(16)),

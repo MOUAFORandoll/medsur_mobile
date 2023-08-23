@@ -146,10 +146,14 @@ class ActionController extends GetxController {
   var position;
   getMyPosition() async {
     String? countryCode = ui.window.locale.languageCode;
-    //print('Pays de l\'utilisateur: $countryCode');
+     
     if (await Permission.location.request().isGranted) {
+     print('Pays de l\'utilisateur: $countryCode');
       position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+          desiredAccuracy: LocationAccuracy.high,
+          
+          
+          );
       update();
       print(
           '!!!!!!!!!!!!!!!!!!!!______________________________________---------');
@@ -157,7 +161,7 @@ class ActionController extends GetxController {
       print(position);
     } else {
       await Permission.location.request();
-      //print('position______________________________________---------');
+      print('position______________________________________---------');
     }
   }
 }

@@ -25,8 +25,8 @@ final _darkTheme = ThemeData(
   brightness: Brightness.dark,
   backgroundColor: const Color(0xFF212121),
   accentColor: Colors.white,
-  accentIconTheme: IconThemeData(color: Colors.black),
-  dividerColor: Colors.black12,
+  accentIconTheme: IconThemeData(color: AppColors.primaryBlue),
+  dividerColor: AppColors.primaryBlue,
   textTheme: TextTheme(
     bodyText2:
         TextStyle(fontFamily: 'Montserrat', color: AppColors.primaryText),

@@ -50,8 +50,7 @@ class AccountView extends StatelessWidget {
                                     AppTextTitle(
                                         text: 'Account ',
                                         bolder: true,
-                                        color: AppColors.blackcolor),
-                                  
+                                        color: AppColors.primaryBlue),
                                   ]))),
                       expandedHeight: 150,
                       // pinned: true,
@@ -70,9 +69,7 @@ class AccountView extends StatelessWidget {
                           padding:
                               EdgeInsets.symmetric(horizontal: kMarginX * 0.8),
                           child: SingleChildScrollView(
-                            child: Column(children: [
-                            
-                            ]),
+                            child: Column(children: []),
                           )),
                       childCount: 1,
                     )),

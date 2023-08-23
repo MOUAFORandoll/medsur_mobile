@@ -148,12 +148,12 @@ class Load {
   int dialogId = 1;
 
   /// Show the dialog loader.
-  void  open() {
+  void open() {
     Get.dialog(
         Container(
             width: 100.0,
             height: 100.0,
-            //color: Colors.black12,
+            //color: AppColors.primaryBlue12,
             child: Center(
                 child: Container(
                     child: Image.asset(

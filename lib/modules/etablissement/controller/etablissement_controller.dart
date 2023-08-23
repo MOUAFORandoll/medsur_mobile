@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 
@@ -22,6 +24,9 @@ import 'package:medsur_app/utils/routing.dart';
 import 'package:medsur_app/utils/showToast.dart';
 import '../../../general_component/index_widgets.dart';
 import '../../alerte/models/user_alert_model.dart';
+
+import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 class EtablissementController extends GetxController {
   final EtablissementRepo etablissementRepo;
@@ -82,6 +87,8 @@ class EtablissementController extends GetxController {
     return filteredSpecialites.length == 0;
   }
 
+  bool _errorimage = false;
+  get errorimage => _errorimage;
   verfi() {
     if (currentIndex == 0) {
       _firststepformKey.currentState!.validate();
@@ -89,7 +96,19 @@ class EtablissementController extends GetxController {
           phoneController.text.isEmpty ||
           emailController.text.isEmpty ||
           boitePostaleController.text.isEmpty ||
-          descriptionController.text.isEmpty) {
+          descriptionController.text.isEmpty ||
+          nrCommerceController.text.isEmpty ||
+          nrContribuableController.text.isEmpty ||
+          !isImage) {
+        if (!isImage) {
+          _errorimage = true;
+
+          update();
+        } else {
+          _errorimage = false;
+
+          update();
+        }
         return false;
       } else {
         return true;
@@ -255,6 +274,21 @@ class EtablissementController extends GetxController {
   TextEditingController get nameController => _nameController;
   TextEditingController _phoneController = TextEditingController();
   TextEditingController get phoneController => _phoneController;
+  String codePhone = '';
+  String _codeCountry = '';
+  get codeCountry => _codeCountry;
+  setPhoneCode(phone) {
+    _phoneController.text = phone;
+
+    update();
+  }
+
+  setCode(code, codeCountry) {
+    codePhone = code;
+    _codeCountry = codeCountry;
+    update();
+  }
+
   TextEditingController _phoneUrgenceController = TextEditingController();
   TextEditingController get phoneUrgenceController => _phoneUrgenceController;
   TextEditingController _emailController = TextEditingController();
@@ -264,6 +298,18 @@ class EtablissementController extends GetxController {
 
   TextEditingController _boitePostaleController = TextEditingController();
   TextEditingController get boitePostaleController => _boitePostaleController;
+
+  TextEditingController _nrContribuableController = TextEditingController();
+  TextEditingController get nrContribuableController =>
+      _nrContribuableController;
+
+  TextEditingController _nrCommerceController = TextEditingController();
+  TextEditingController get nrCommerceController => _nrCommerceController;
+
+  TextEditingController _descriptionLocalisationController =
+      TextEditingController();
+  TextEditingController get descriptionLocalisationController =>
+      _descriptionLocalisationController;
 
   bool _selectedPosition = false;
   bool get selectedPosition => _selectedPosition;
@@ -278,7 +324,8 @@ class EtablissementController extends GetxController {
 
   var longitude = 0.0;
   var latitude = 0.0;
-  getPosition() {
+  getPosition() async {
+    // await action.getMyPosition();
     longitude = action.position.longitude;
     latitude = action.position.latitude;
     _selectedPosition = true;
@@ -293,14 +340,141 @@ class EtablissementController extends GetxController {
     update();
   }
 
+  File logoImage = new File('');
+  bool _isImage = false;
+  bool get isImage => _isImage;
+  Future getImagelogoCamera() async {
+    try {
+      //print("wwwwwwwww");
+
+      var image = await ImagePicker().pickImage(
+          source: ImageSource.camera,
+          imageQuality: 100,
+          maxHeight: 500,
+          maxWidth: 500);
+
+      // File? croppedFile = await ImageCropper().cropImage(
+      //   aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+      //   sourcePath: image.path,
+      // );
+      logoImage = (File(image!.path));
+      _isImage = true;
+      _errorimage = false;
+
+      // //print(_listImgProduits.length);
+      update();
+      Get.back();
+    } catch (e) {
+      // _showToastPictureError(context);
+    }
+  }
+
+  Future getImagelogoGallery() async {
+    try {
+      print("wwwwwwwww");
+
+      var image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 100,
+          maxHeight: 500,
+          maxWidth: 500);
+
+      // File? croppedFile = await ImageCropper().cropImage(
+      //   aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+      //   sourcePath: image.path,
+      // );
+      logoImage = (File(image!.path));
+      _isImage = true;
+      _errorimage = false;
+
+      print(image.path);
+      update();
+      Get.back();
+    } catch (e) {
+      // _showToastPictureError(context);
+    }
+  }
+
+  Future updateImagelogoCamera() async {
+    try {
+      //print("wwwwwwwww");
+
+      var image = await ImagePicker().pickImage(
+          source: ImageSource.camera,
+          imageQuality: 100,
+          maxHeight: 500,
+          maxWidth: 500);
+
+      // File? croppedFile = await ImageCropper().cropImage(
+      //   aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+      //   sourcePath: image.path,
+      // );
+      logoImage = (File(image!.path));
+
+      // //print(_listImgProduits.length);
+      update();
+      await updateLogoEtablissement();
+      Get.back();
+      _isImage = false;
+
+      logoImage = File('');
+      update();
+    } catch (e) {
+      // _showToastPictureError(context);
+    }
+  }
+
+  Future updateImagelogoGallery() async {
+    try {
+      print("wwwwwwwww");
+
+      var image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 100,
+          maxHeight: 500,
+          maxWidth: 500);
+
+      // File? croppedFile = await ImageCropper().cropImage(
+      //   aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+      //   sourcePath: image.path,
+      // );
+      logoImage = (File(image!.path));
+
+      print(image.path);
+      update();
+      await updateLogoEtablissement();
+      Get.back();
+      logoImage = File('');
+      _isImage = false;
+
+      update();
+    } catch (e) {
+      // _showToastPictureError(context);
+    }
+  }
+
   newEtablissement() async {
     var userDB = await db.getUserInfo();
+    print(listSelectSpecialityF);
+    var spe = '';
+    listSelectSpecialityF.forEach((e) => spe += e.toString() + ',');
 
+    print(spe);
+    FormData formData = new FormData({
+      "image": await MultipartFile(
+        logoImage.path,
+        filename: "logo.jpg",
+      ),
+    });
     var data = {
       "name": nameController.text,
+      "numero_registre_commerce": nrCommerceController.text,
+      "numero_contribuable": nrContribuableController.text,
       "phone": phoneController.text,
+      "codePhone": codePhone.isEmpty ? '237' : codePhone,
       "email": emailController.text,
       "description": descriptionController.text,
+      "description_localisation": descriptionLocalisationController.text,
       "boite_postale": boitePostaleController.text,
       "pays": userDB['pays'],
       "ville": userDB['ville'],
@@ -309,20 +483,23 @@ class EtablissementController extends GetxController {
       "speciality": listSelectSpecialityF,
       'agenda': agenda,
       "user_id": userDB['id'],
+      "codeCountry": codeCountry.isEmpty ? 'CM' : codeCountry
     };
     print(data);
     try {
       loader.open();
 
       update();
-      Response response = await etablissementRepo.newEtablissement(data);
+      Response response =
+          await etablissementRepo.newEtablissement(data, formData);
       print(response.body);
       if (response.statusCode == 200) {
         print(response.body['data']);
         if (response.body != null) {
           if (response.body['data'] != null) {
             print(response.body['data']);
-
+            logoImage = File('');
+            _currentIndex = 0;
             update();
             loader.close();
             Get.offNamedUntil(AppLinks.SUCCESSETABLISSEMENT, (route) => false);
@@ -349,13 +526,65 @@ class EtablissementController extends GetxController {
     }
   }
 
+  updateLogoEtablissement() async {
+    FormData formData = new FormData({
+      "image": await MultipartFile(
+        logoImage.path,
+        filename: "logo.jpg",
+      ),
+    });
+
+    try {
+      loader.open();
+
+      update();
+      Response response = await etablissementRepo.uploadLogoEtablissement(
+          etablissement.id, formData);
+      print(response.body);
+      if (response.statusCode == 200) {
+        print(response.body['data']);
+        if (response.body != null) {
+          if (response.body['data'] != null) {
+            print(response.body['data']);
+
+            update();
+            loader.close();
+
+            await getEtablissementForUser();
+            await updateConcernEtablissement();
+          }
+        }
+      } else {
+        loader.close();
+        if (response.body == null) {
+          toastShowError("errors".tr, Get.context);
+          return false;
+        }
+        checkError(false, response.body);
+        update();
+        return false;
+      }
+    } catch (e) {
+      // loader.close();
+      toastShowError("errors".tr, Get.context);
+
+      update();
+      //print(e);
+      return false;
+    }
+  }
+
   updateEtablissement() async {
     var data = {
       "name": nameController.text,
-      "phone": phoneController.text,
       "email": emailController.text,
+      "phone": phoneController.text,
+      "codePhone": codePhone,
       "description": descriptionController.text,
       "boite_postale": boitePostaleController.text,
+      "numero_registre_commerce": nrCommerceController.text,
+      "numero_contribuable": nrContribuableController.text,
+      "codeCountry": codeCountry
     };
     print(data);
     try {
@@ -405,19 +634,22 @@ class EtablissementController extends GetxController {
     // update();
   }
 
+  var imageLogo = '';
   selectEtablissement(EtablissementModel etablissement) {
     _etablissement = etablissement;
     filterSpeciality();
 
     nameController.text = _etablissement.name;
     phoneController.text = _etablissement.phone;
-
+    codePhone = _etablissement.codePhone;
     emailController.text = _etablissement.email;
 
     descriptionController.text = _etablissement.description;
 
     boitePostaleController.text = _etablissement.localisation.boitePostale;
-
+    nrCommerceController.text = _etablissement.numero_registre_commerce;
+    nrContribuableController.text = _etablissement.numero_contribuable;
+    _codeCountry = _etablissement.codeCountry;
     update();
     Get.toNamed(AppLinks.ETABLISSEMENT_GESTIOM);
   }
@@ -431,7 +663,8 @@ class EtablissementController extends GetxController {
     descriptionController.clear();
 
     boitePostaleController.clear();
-
+    nrCommerceController.clear();
+    nrContribuableController.clear();
     update();
   }
 
@@ -522,6 +755,9 @@ class EtablissementController extends GetxController {
     _emailController.clear();
     _descriptionController.clear();
     _boitePostaleController.clear();
+
+    _nrCommerceController.clear();
+    _nrContribuableController.clear();
     _searchSpeController.clear();
     update();
   }
@@ -634,7 +870,8 @@ class EtablissementController extends GetxController {
       if (response.body['data'] != null) {
         if (response.body != null) {
           loader.close();
-          ;
+          toastShowSuccess("successsendmail".tr, Get.context);
+
           update();
         } else {
           loader.close();

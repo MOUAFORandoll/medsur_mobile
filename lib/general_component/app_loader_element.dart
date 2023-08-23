@@ -6,17 +6,17 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:medsur_app/constants/index_common.dart';
 
 import 'bounce_loader.dart';
- 
-  Widget loaderElement(  ) {
-    return Container(
-        width: 100.0,
-        height: 100.0,
-        //color: Colors.black12,
-        child: Center(
-            child: Container(
-                child: Image.asset(
-          Assets.spin,
-          fit: BoxFit.fill,
-          height: kMdHeight / 30,
-        ))));
-  }
+
+Widget loaderElement() {
+  return Container(
+      width: 100.0,
+      height: 100.0,
+      //color: AppColors.primaryBlue12,
+      child: Center(
+          child: Container(
+              child: Image.asset(
+        Assets.spin,
+        fit: BoxFit.fill,
+        height: kMdHeight / 30,
+      ))));
+}

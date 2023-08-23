@@ -29,7 +29,7 @@ class _BounceLargeColorLoaderState extends State<BounceLargeColorLoader>
   @override
   void initState() {
     super.initState();
-    
+
     radius = widget.radius;
     dotRadius = widget.dotRadius;
 
@@ -81,7 +81,7 @@ class _BounceLargeColorLoaderState extends State<BounceLargeColorLoader>
     return Container(
       width: 100.0,
       height: 100.0,
-      //color: Colors.black12,
+      //color: AppColors.primaryBlue12,
       child: Center(
         child: Container(
           child: Image.asset(
@@ -99,7 +99,7 @@ class _BounceLargeColorLoaderState extends State<BounceLargeColorLoader>
         //           offset: const Offset(0.0, 0.0),
         //           child: Dot(
         //             radius: radius,
-        //             color: Colors.black12,
+        //             color: AppColors.primaryBlue12,
         //           ),
         //         ),
         //         Transform.translate(

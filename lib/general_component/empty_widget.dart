@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:medsur_app/styles/colors.dart';
- 
 
 Widget buildNoContentListWidget({String? value}) {
   return EmptyList(
@@ -66,7 +65,7 @@ class TitleText extends StatelessWidget {
     this.text, {
     Key? key,
     this.fontSize = 18,
-    this.color = Colors.black,
+    this.color = AppColors.primaryBlue,
     this.fontWeight = FontWeight.w800,
     this.textAlign = TextAlign.left,
     this.overflow = TextOverflow.visible,

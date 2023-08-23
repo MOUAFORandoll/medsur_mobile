@@ -73,7 +73,10 @@ class EtablissementHomeView extends StatelessWidget {
                                   Container(
                                       width: kMdWidth * 1.4,
                                       child: Text(
-                                      dController.listEtablissement.length != 0 ? 'titleetablissement1'.tr :    'titleetablissement0'.tr,
+                                        dController.listEtablissement.length !=
+                                                0
+                                            ? 'titleetablissement1'.tr
+                                            : 'titleetablissement0'.tr,
                                         softWrap: true,
                                         maxLines: 3,
                                         style: TextStyle(
@@ -117,20 +120,20 @@ class EtablissementHomeView extends StatelessWidget {
                           dController.etablissement != null */
                   )
                     EtablissementListView(),
-                  if (dController.loadetat != 0 &&
-                      dController.listEtablissement.length < 4)
-                    Container(
-                      // margin: EdgeInsets.only(top: kMarginY),
-                      padding: EdgeInsets.symmetric(horizontal: kMarginX),
-                      child: AppButton(
-                        text: 'etablissementbtn'.tr,
-                        size: MainAxisSize.max,
-                        bgColor: AppColors.primaryGreen,
-                        onTap: () async {
-                          Get.toNamed(AppLinks.ETABLISSEMENT_NEW);
-                        },
-                      ),
+                  // if (dController.loadetat != 0 &&
+                  //     dController.listEtablissement.length < 4)
+                  Container(
+                    // margin: EdgeInsets.only(top: kMarginY),
+                    padding: EdgeInsets.symmetric(horizontal: kMarginX),
+                    child: AppButton(
+                      text: 'etablissementbtn'.tr,
+                      size: MainAxisSize.max,
+                      bgColor: AppColors.primaryGreen,
+                      onTap: () async {
+                        Get.toNamed(AppLinks.ETABLISSEMENT_NEW);
+                      },
                     ),
+                  ),
                 ],
               ),
               // ),

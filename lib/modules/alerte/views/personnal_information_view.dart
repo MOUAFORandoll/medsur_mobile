@@ -113,7 +113,7 @@ class PersonnalInformationView extends StatelessWidget {
                         fontSize: 8,
                         fontFamily: 'Montserrat',
                       ),
-                      hintStyle: TextStyle(color: Colors.black45),
+                      hintStyle: TextStyle(color: AppColors.primaryBlue),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide:

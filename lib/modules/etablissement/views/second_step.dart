@@ -45,7 +45,7 @@ class SecondStepView extends StatelessWidget {
                       Get.bottomSheet(
                         AppListSpecialityEtablissementComponent(),
                         isScrollControlled: true,
-                        barrierColor: Colors.black26,
+                        barrierColor: AppColors.primaryBlue,
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16)),
@@ -64,8 +64,7 @@ class SecondStepView extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                         vertical: kMarginY * 3,
                       ),
-                      child: 
-                          Container(
+                      child: Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -94,7 +93,6 @@ class SecondStepView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

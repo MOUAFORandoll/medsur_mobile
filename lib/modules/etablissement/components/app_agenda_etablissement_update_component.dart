@@ -166,8 +166,7 @@ class _AppAgendaEtablissementUpdateComponentState
                                 dController.agendaUpdate(
                                     widget.agenda.pivot!.id,
                                     {'fin': time?.format(context)});
-                                dController.setDateFin0(
-                                    widget.agenda.pivot!.id,
+                                dController.setDateFin0(widget.agenda.pivot!.id,
                                     time?.format(context));
                               } /*   setState(() => widget.end = time?.format(context)) */);
                             },
@@ -196,7 +195,7 @@ class _AppAgendaEtablissementUpdateComponentState
   //                       fontSize: 8,
   //                       fontFamily: 'Montserrat',
   //                     ),
-  //                     hintStyle: TextStyle(color: Colors.black45),
+  //                     hintStyle: TextStyle(color: AppColors.primaryBlue45),
   //                     border: OutlineInputBorder(
   //                       borderRadius: BorderRadius.circular(10),
   //                       borderSide:

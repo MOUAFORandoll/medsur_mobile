@@ -8,17 +8,22 @@ class EtablissementModel {
   String? phone2;
   String? email;
   String? siteweb;
+  String? codePhone;
   int? userId;
   int? nmbre_alerte;
   bool? autorisation;
   bool? garanti;
   bool? status;
   String? description;
+  String? numero_registre_commerce;
+  String? numero_contribuable;
   int? localisationId;
   String? createdAt;
   String? updatedAt;
+  String? codeCountry;
   Null? deletedAt;
   Localisation? localisation;
+  Logo? logo;
   List<Categories>? categories;
   List<Specialites>? specialites;
   List<Notation>? notation;
@@ -30,12 +35,17 @@ class EtablissementModel {
       this.name,
       this.name2,
       this.code,
+      this.codePhone,
+      this.codeCountry,
       this.phone,
+      this.numero_registre_commerce,
+      this.numero_contribuable,
       this.phone2,
       this.nmbre_alerte,
       this.email,
       this.siteweb,
       this.userId,
+      this.logo,
       this.status,
       this.garanti,
       this.autorisation,
@@ -53,10 +63,14 @@ class EtablissementModel {
   EtablissementModel.fromJson(Map<String?, dynamic> json) {
     id = json['id'];
     uuid = json['uuid'];
+    codeCountry = json['codeCountry'];
     name = json['name'];
     name2 = json['name2'];
     nmbre_alerte = json['nmbre_alerte'];
     code = json['code'];
+    codePhone = json['codePhone'];
+    numero_registre_commerce = json['numero_registre_commerce'];
+    numero_contribuable = json['numero_contribuable'];
     phone = json['phone'];
     phone2 = json['phone2'];
     email = json['email'];
@@ -70,6 +84,7 @@ class EtablissementModel {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
+    logo = json['logo'] != null ? new Logo.fromJson(json['logo']) : null;
     localisation = json['localisation'] != null
         ? new Localisation.fromJson(json['localisation'])
         : null;
@@ -111,12 +126,16 @@ class EtablissementModel {
     final Map<String?, dynamic> data = new Map<String?, dynamic>();
     data['id'] = this.id;
     data['uuid'] = this.uuid;
+    data['codeCountry'] = this.codeCountry;
     data['name'] = this.name;
     data['nmbre_alerte'] = this.nmbre_alerte;
     data['name2'] = this.name2;
     data['code'] = this.code;
+    data['codePhone'] = this.codePhone;
     data['phone'] = this.phone;
     data['phone2'] = this.phone2;
+    data['numero_contribuable'] = this.numero_contribuable;
+    data['numero_registre_commerce'] = this.numero_registre_commerce;
     data['email'] = this.email;
     data['siteweb'] = this.siteweb;
     data['user_id'] = this.userId;
@@ -128,6 +147,9 @@ class EtablissementModel {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['deleted_at'] = this.deletedAt;
+    if (this.logo != null) {
+      data['logo'] = this.logo!.toJson();
+    }
     if (this.localisation != null) {
       data['localisation'] = this.localisation!.toJson();
     }
@@ -140,6 +162,35 @@ class EtablissementModel {
     if (this.agendas != null) {
       data['agendas'] = this.agendas!.map((v) => v.toJson()).toList();
     }
+    return data;
+  }
+}
+
+class Logo {
+  String? name;
+  String? path;
+  String? createdAt;
+  String? updatedAt;
+  Null? deletedAt;
+
+  Logo({this.path, this.name, this.createdAt, this.updatedAt, this.deletedAt});
+
+  Logo.fromJson(Map<String?, dynamic> json) {
+    path = json['path'];
+    name = json['name'];
+
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    deletedAt = json['deleted_at'];
+  }
+
+  Map<String?, dynamic> toJson() {
+    final Map<String?, dynamic> data = new Map<String?, dynamic>();
+    data['path'] = this.path;
+    data['name'] = this.name;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    data['deleted_at'] = this.deletedAt;
     return data;
   }
 }

@@ -9,7 +9,7 @@ class DashboxComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            border: Border.all(color: AppColors.blackcolor, width: 2)),
+            border: Border.all(color: AppColors.primaryBlue, width: 2)),
         padding: EdgeInsets.symmetric(horizontal: kMarginX, vertical: kMarginY),
         //  margin:EdgeInsets.symmetric(horizontal: kMarginX,vertical:  kMarginY)  ,
 

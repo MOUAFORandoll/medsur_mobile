@@ -19,10 +19,22 @@ class EtablissementRepo extends GetxService {
     return response;
   }
 
-  Future<Response> newEtablissement(data) async {
+  Future<Response> newEtablissement(data, formData) async {
     // try {
     Response response = await apiClientAlerte.postData(
         ApiRoutesEtablissement.end_etablissement, data);
+    print(response.body['data']);
+    Response response2 = await this
+        .uploadLogoEtablissement(response.body['data']['id'], formData);
+
+    return response;
+  }
+
+  Future<Response> uploadLogoEtablissement(etablissement_id, formData) async {
+    Response response = await apiClientAlerte.postData(
+        ApiRoutesEtablissement.end_etablissement +
+            '/${etablissement_id.toString()}/store_image',
+        formData);
 
     return response;
   }

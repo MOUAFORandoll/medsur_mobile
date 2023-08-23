@@ -25,12 +25,13 @@ class EtablissementListView extends StatelessWidget {
         builder: (dController) => Container(
             padding: EdgeInsets.symmetric(vertical: 5),
             margin: EdgeInsets.only(top: kMarginY),
-            height: kHeight / 2.2,
-            constraints: BoxConstraints(maxHeight: kHeight / 2),
+            // height: kHeight / 2.2,
+            // constraints: BoxConstraints(maxHeight: kHeight / 2),
             // decoration: BoxDecoration(
             //     color: AppColors.red, borderRadius: BorderRadius.circular(20)),
             child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 8.0,

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   AppColors._();
-  
+
   static const whitecolor = Colors.white;
-  static const blackcolor = Colors.black;
+  static const blackcolor = AppColors.primaryBlue;
   static const grayColor = Color(0xFFDDDDDD);
   static const green = Color(0xFF008F88);
   static const newgreen = Color(0xFF46AF46);
   static const blue = Color(0xFF1D1D3D);
-  static const wrappBGB = Color.fromARGB(255, 57, 57, 58); 
+  static const wrappBGB = Color.fromARGB(255, 57, 57, 58);
   static final Color lightGrey = Color(0xffAAB8C2);
   static final Color extraLightGrey = Color(0xFFE7E7EE);
   static final Color extraExtraLightGrey = Color(0xfF5F8FA);
 
   static const Color primaryText = Color(0xFF32325D);
-  
+
   static const Color secondarytext = Color(0xFF355453);
 
   static const Color primaryGreen = Color(0xFF00ADA7);

@@ -40,7 +40,8 @@ Future<void> initServices() async {
   Get.put(EtablissementRepo(apiClient: Get.find(), apiClientAlerte: Get.find()),
       permanent: true);
 
-  Get.put(EtablissementController(etablissementRepo: Get.find()), permanent: true);
+  Get.put(EtablissementController(etablissementRepo: Get.find()),
+      permanent: true);
 
   Get.put(HomeRepo(apiClient: Get.find()), permanent: true);
 
@@ -56,14 +57,13 @@ Future<void> initApp() async {
   print("desssbut get bind************---------------------------");
 
   await Get.find<DataBaseController>().initDatabase();
-
   await Get.find<ActionController>().getLanguageInit();
+  print("fin get bind************---------------------------");
   await Get.find<ActionController>().getMyPosition();
   await Get.find<HomeController>().getUserinfo_BD();
   await Get.find<AuthController>().getUserPermission_BD();
   await Get.find<DashBoardController>().getUserRole_BD();
   await Get.find<AuthController>().getUserToken();
-  //print("fin get bind************---------------------------");
 }
 
 Future<void> startApp() async {

@@ -30,7 +30,7 @@
 //           ),
 //           const Text(
 //             "John Doe",
-//             style: TextStyle(color: Colors.black, fontSize: 20),
+//             style: TextStyle(color: AppColors.primaryBlue, fontSize: 20),
 //           ),
 //           const Divider(
 //             color: Colors.transparent,

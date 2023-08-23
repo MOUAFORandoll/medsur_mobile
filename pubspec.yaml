@@ -37,6 +37,10 @@ dependencies:
   time_picker_widget: ^1.0.0+10
   google_maps_webservice_ex: ^0.0.1+2 
   intl_phone_field: ^3.2.0
+  image_cropper: any
+  image_picker: any
+  cached_network_image: ^2.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

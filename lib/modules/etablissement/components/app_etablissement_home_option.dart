@@ -85,7 +85,7 @@ class AppEtablissementHomeOption extends StatelessWidget {
   //                       fontSize: 8,
   //                       fontFamily: 'Montserrat',
   //                     ),
-  //                     hintStyle: TextStyle(color: Colors.black45),
+  //                     hintStyle: TextStyle(color: AppColors.primaryBlue45),
   //                     border: OutlineInputBorder(
   //                       borderRadius: BorderRadius.circular(10),
   //                       borderSide:

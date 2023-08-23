@@ -406,7 +406,7 @@ class AppAlertComponent extends StatelessWidget {
               )),
           isScrollControlled:
               true, // Set to true if you want the bottom sheet to be scrollable
-          barrierColor: Colors.black26, // Change the overlay color
+          barrierColor: AppColors.primaryBlue, // Change the overlay color
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           ), // Customize the shape of the bottom sheet

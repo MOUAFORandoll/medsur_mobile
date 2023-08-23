@@ -96,7 +96,7 @@ class SelectExperienceView extends StatelessWidget {
                               textColor: AppColors.whitecolor,
                               shadow: false,
                               width: kWidth / 2.5,
-                              border: Border.all(color: AppColors.primaryText),
+                              border: Border.all(color: AppColors.whitecolor),
                               bgColor: AppColors.green,
                               onTap: () async {
                                 authCont.selectTypeCompte(0);

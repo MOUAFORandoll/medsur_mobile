@@ -14,10 +14,12 @@ class AppAgendaEtablissementAddComponent extends StatefulWidget {
   var jour, start, end;
 
   @override
-  State<AppAgendaEtablissementAddComponent> createState() => _AppAgendaEtablissementAddComponentState();
+  State<AppAgendaEtablissementAddComponent> createState() =>
+      _AppAgendaEtablissementAddComponentState();
 }
 
-class _AppAgendaEtablissementAddComponentState extends State<AppAgendaEtablissementAddComponent> {
+class _AppAgendaEtablissementAddComponentState
+    extends State<AppAgendaEtablissementAddComponent> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EtablissementController>(
@@ -181,7 +183,7 @@ class _AppAgendaEtablissementAddComponentState extends State<AppAgendaEtablissem
   //                       fontSize: 8,
   //                       fontFamily: 'Montserrat',
   //                     ),
-  //                     hintStyle: TextStyle(color: Colors.black45),
+  //                     hintStyle: TextStyle(color: AppColors.primaryBlue45),
   //                     border: OutlineInputBorder(
   //                       borderRadius: BorderRadius.circular(10),
   //                       borderSide:

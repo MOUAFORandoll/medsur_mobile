@@ -305,7 +305,6 @@ class RegisterView extends StatelessWidget {
                                                 )
                                               ]),
                                             ),
-                                        
                                             if (authCont.code.length != 0)
                                               Container(
                                                   margin: EdgeInsets.only(
@@ -523,11 +522,11 @@ class RegisterView extends StatelessWidget {
                                     //     AppButton(
                                     //       text: 'back'.tr,
                                     //       size: MainAxisSize.max,
-                                    //       textColor: AppColors.blackcolor,
+                                    //       textColor: AppColors.primaryBlue,
                                     //       shadow: false,
                                     //       width: kWidth / 2.5,
                                     //       border: Border.all(
-                                    //         color: AppColors.blackcolor,
+                                    //         color: AppColors.primaryBlue,
                                     //       ),
                                     //       bgColor: AppColors.whitecolor,
                                     //       onTap: () async {
