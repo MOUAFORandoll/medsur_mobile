@@ -17,7 +17,7 @@ class AppEtablissementHomeOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         child: Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
+            margin: EdgeInsets.symmetric(vertical: 5),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: AppColors.whitecolor,
@@ -25,7 +25,7 @@ class AppEtablissementHomeOption extends StatelessWidget {
               border: Border.all(color: AppColors.primaryGreen, width: 1.5),
             ),
             constraints:
-                BoxConstraints(minHeight: kHeight / 8, minWidth: kWidth / 2.5),
+                BoxConstraints(minHeight: kHeight / 8, minWidth: kWidth / 2.4),
             child: Stack(
               children: [
                 Column(

@@ -203,7 +203,8 @@ class FirstStepView extends StatelessWidget {
                                     size: MainAxisSize.max,
                                     bgColor: AppColors.red,
                                     onTap: () async {
-                                      Get.toNamed(AppLinks.MAP);
+                                      Get.dialog(ModalGetPlace());
+                                      // 
                                     },
                                   ),
                                 ],
@@ -301,8 +302,7 @@ class FirstStepView extends StatelessWidget {
                                                                 .primaryGreen,
                                                           ),
                                                           onPressed: () async {
-                                                            await dController
-                                                                .getPosition();
+                                                          
                                                             Navigator.pop(
                                                                 context);
                                                           },
@@ -504,6 +504,53 @@ class ModalDesciption extends StatelessWidget {
               onPressed: () async {
                 await eController.getPosition();
                 Get.back();
+              }),
+        ],
+      ),
+    );
+  }
+}
+
+class ModalGetPlace extends StatelessWidget {
+  var eController = Get.find<EtablissementController>();
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<EtablissementController>(
+      builder: (dController) => AlertDialog(
+        contentPadding: EdgeInsets.all(10.0),
+        title: Text(
+          'descriptionempl'.tr,
+          style: TextStyle(
+            fontSize: kSmText,
+            fontFamily: 'Montserrat',
+            color: AppColors.primaryText,
+          ),
+        ),
+        content: Container(
+          height: 150,
+          width: kMdWidth,
+          child: AppInput(
+            controller: dController.placeTexteController,
+            onChanged: (value) {},
+            label: '',
+            validator: (value) {},
+          ),
+        ),
+        actions: [
+          TextButton(
+            child: Text('cancel'.tr),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          ElevatedButton(
+              child: Text("search".tr,
+                  style: TextStyle(color: AppColors.whitecolor)),
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.primaryGreen,
+              ),
+              onPressed: () async {
+                await dController.getPlaceInformation();
               }),
         ],
       ),

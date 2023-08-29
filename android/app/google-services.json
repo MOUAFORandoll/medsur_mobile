@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:390281616354:android:9cf4bf362e07d795eaf7bb",
         "android_client_info": {
-          "package_name": "com.example.medsur_app"
+          "package_name": "com.medsurlink.app.production"
         }
       },
       "oauth_client": [

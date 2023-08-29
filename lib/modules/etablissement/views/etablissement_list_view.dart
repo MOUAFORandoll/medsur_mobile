@@ -24,20 +24,20 @@ class EtablissementListView extends StatelessWidget {
     return GetBuilder<EtablissementController>(
         builder: (dController) => Container(
             padding: EdgeInsets.symmetric(vertical: 5),
-            margin: EdgeInsets.only(top: kMarginY),
+            // margin: EdgeInsets.only(top: kMarginY),
             // height: kHeight / 2.2,
             // constraints: BoxConstraints(maxHeight: kHeight / 2),
             // decoration: BoxDecoration(
             //     color: AppColors.red, borderRadius: BorderRadius.circular(20)),
-            child: GridView.builder(
+            child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8.0,
-                  childAspectRatio: 1.1,
-                  mainAxisSpacing: 15.0,
-                ),
+                // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //   crossAxisCount: 2,
+                //   crossAxisSpacing: 8.0,
+                //   childAspectRatio: 1.1,
+                //   mainAxisSpacing: 15.0,
+                // ),
                 itemCount: dController.listEtablissement.length,
                 itemBuilder: (_ctx, index) => AppEstasblishmentComponent(
                     etablissement: dController.listEtablissement[index],

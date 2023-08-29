@@ -30,8 +30,7 @@ class EtablissementHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<EtablissementController>(
         builder: (dController) => Container(
-            margin: EdgeInsets.symmetric(
-                horizontal: kMarginX, vertical: kMarginY * 2),
+            margin: EdgeInsets.symmetric(vertical: kMarginY * 2),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -40,18 +39,22 @@ class EtablissementHomeView extends StatelessWidget {
                   Container(
                     height: kMdHeight / 8,
                     padding: EdgeInsets.symmetric(
-                      horizontal: kPaddingX / 1.5,
+                      horizontal: kMarginX / 2,
+                    ),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: kMarginX,
                     ),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.primaryBlue,
-                        image: DecorationImage(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.primaryGreen_OP,
+                      /*  image: DecorationImage(
                             fit: BoxFit.none,
                             scale: 1.04,
-                            image: AssetImage(Assets.alertbg))),
+                            image: AssetImage(Assets.alertbg)) */
+                    ),
                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             child: Column(
@@ -59,17 +62,14 @@ class EtablissementHomeView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                      margin: EdgeInsets.symmetric(
-                                        vertical: 5,
-                                      ),
                                       child: Text(
-                                        'etablissement0'.tr,
-                                        style: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontSize: kLg1Text,
-                                            color: AppColors.whitecolor,
-                                            fontWeight: FontWeight.bold),
-                                      )),
+                                    'etablissement0'.tr,
+                                    style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: kLg1Text,
+                                        // color: AppColors.whitecolor,
+                                        fontWeight: FontWeight.w600),
+                                  )),
                                   Container(
                                       width: kMdWidth * 1.4,
                                       child: Text(
@@ -80,10 +80,10 @@ class EtablissementHomeView extends StatelessWidget {
                                         softWrap: true,
                                         maxLines: 3,
                                         style: TextStyle(
-                                          fontSize: kMdText,
+                                          fontSize: kMdText / 1.25,
                                           fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w500,
-                                          color: AppColors.whitecolor,
+                                          // color: AppColors.whitecolor,
                                         ),
                                       ))
                                 ]),
@@ -92,11 +92,20 @@ class EtablissementHomeView extends StatelessWidget {
                             height: kMdHeight,
                             width: kMdWidth / 2,
                             child: Image.asset(Assets.alerte,
-                                color: AppColors.whitecolor,
+                                color: AppColors.primaryBlue,
                                 fit: BoxFit.contain),
                           )
                         ]),
                   ),
+
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: kMarginY * 2),
+                    child: Divider(
+                      height: 10,
+                      color: AppColors.primaryGreen,
+                    ),
+                  ),
+
                   if (dController.loadetat == 0)
                     Container(
                         margin: EdgeInsets.symmetric(
@@ -105,7 +114,7 @@ class EtablissementHomeView extends StatelessWidget {
                   if (dController.loadetat != 0 &&
                       dController.listEtablissement.length != 0)
                     Container(
-                      margin: EdgeInsets.only(top: kMarginY),
+                      // margin: EdgeInsets.only(top: kMarginY),
                       child: Text(
                         'letab'.tr,
                         style: TextStyle(
@@ -119,7 +128,11 @@ class EtablissementHomeView extends StatelessWidget {
                       1 /* &&
                           dController.etablissement != null */
                   )
-                    EtablissementListView(),
+                    Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: kMarginX,
+                        ),
+                        child: EtablissementListView()),
                   // if (dController.loadetat != 0 &&
                   //     dController.listEtablissement.length < 4)
                   Container(

@@ -4,7 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 
 import 'package:get/get.dart';
-import 'package:location/location.dart' hide LocationAccuracy;
+import 'package:location/location.dart' hide LocationAccuracy, PermissionStatus;
 import 'package:medsur_app/constants/Pagetitle.dart';
 import 'package:medsur_app/constants/assets.dart';
 import 'package:medsur_app/general_controllers/dataBase_controller.dart';
@@ -139,29 +139,80 @@ class ActionController extends GetxController {
         return;
       }
     }
-    
+
     update();
   }
 
   var position;
   getMyPosition() async {
     String? countryCode = ui.window.locale.languageCode;
-     
-    if (await Permission.location.request().isGranted) {
-     print('Pays de l\'utilisateur: $countryCode');
-      position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
-          
-          
-          );
-      update();
+    // var permission = await Permission.location.status;
+    // if (permission.isGranted) {
+    //   print('Pays de l\'utilisateur: $countryCode');
+    //   position = await Geolocator.getCurrentPosition(
+    //     desiredAccuracy: LocationAccuracy.high,
+    //   );
+    //   update();
+    //   print(
+    //       '!!!!!!!!!!!!!!!!!!!!______________________________________---------');
+
+    //   print(position);
+    // } else {
+    //   await Permission.location.request();
+    // }
+    //  var permission = await Permission.location.status;
+    // var permission = await Permission.location.status;
+    // print(
+    //     'position____________________${permission}__________________---------');
+    // if (permission.isGranted) {
+    //   print('Pays de l\'utilisateur: $countryCode');
+    //   position = await Geolocator.getCurrentPosition(
+    //     desiredAccuracy: LocationAccuracy.high,
+    //   );
+    //   update();
+    //   print(
+    //       '!!!!!!!!!!!!!!!!!!!!______________________________________---------');
+
+    //   print(position);
+    // } else {
+    //   print('denied---!!!!!!!!!!!!!!!!!!________________------');
+    //   await  Permission.location.request();
+    //   // await getMyPosition();
+    // }
+    // await Permission.location.request().then((status) async {
+    //   if (status == PermissionStatus.granted) {
+    //     print('Pays de l\'utilisateur: $countryCode');
+    //     position = await Geolocator.getCurrentPosition(
+    //       desiredAccuracy: LocationAccuracy.high,
+    //     );
+    //     update();
+    //     print(
+    //         '!!!!!!!!!!!!!!!!!!!!______________________________________---------');
+
+    //     print(position);
+    //   } else {
+    //     print('denied---!!!!!!!!!!!!!!!!!!________________------');
+    //     await Permission.location.request();
+    //     // await getMyPosition();
+    //     // The user denied permission to access location.
+    //   }
+    // });
+
+    Location location = Location();
+    var lo = await location.hasPermission();
+    if (lo == PermissionStatus.granted) {
+      final LocationData pos = await location.getLocation();
+      position = pos;
       print(
           '!!!!!!!!!!!!!!!!!!!!______________________________________---------');
 
-      print(position);
+      update();
     } else {
-      await Permission.location.request();
-      print('position______________________________________---------');
+      print('denied---!!!!!!!!!!!!!!!!!!________________------');
+
+      await location.requestPermission();
+      getMyPosition();
+      print('reask---!!!!!!!!!!!!!!!!!!________________------');
     }
   }
 }

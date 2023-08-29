@@ -45,7 +45,7 @@ class _AppInputState extends State<AppInput> {
         fontSize: kMediumText,
         fontFamily: 'Montserrat',
       ),
-      maxLength: widget.maxLength,
+      // maxLength: widget.maxLength,
       onChanged: widget.onChanged,
       decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(

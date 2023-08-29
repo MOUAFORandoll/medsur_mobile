@@ -14,13 +14,15 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   late Marker _position;
-  var action = Get.find<ActionController>();
+  var etatContorller = Get.find<EtablissementController>();
 
   var latitude = 0.0;
   var longitude = 0.0;
   initState() {
-    latitude = action.position.latitude;
-    longitude = action.position.longitude;
+    // latitude = action.position.latitude;
+    // longitude = action.position.longitude;
+    latitude = etatContorller.latitude;
+    longitude = etatContorller.longitude;
     super.initState();
     _position = Marker(
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),

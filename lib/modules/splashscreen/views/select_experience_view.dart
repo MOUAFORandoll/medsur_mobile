@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medsur_app/constants/index_common.dart';
+import 'package:medsur_app/general_component/app_experience.dart';
 import 'package:medsur_app/general_component/app_lang_button.dart';
 import 'package:medsur_app/general_component/index_widgets.dart';
 import 'package:medsur_app/general_controllers/action_controller.dart';
@@ -22,48 +23,30 @@ class SelectExperienceView extends StatelessWidget {
               // appBar: AppBar(
               //   title: const Text('Agora Video Call'),
               // ),
-              backgroundColor: AppColors.green,
+              backgroundColor: AppColors.whitecolor,
 
               body: Container(
+                alignment: Alignment.center,
+
                 // margin: EdgeInsets.only(top: 50),
                 child: SingleChildScrollView(
                     child: Column(
                   children: [
-                    // Text(description),
-                    // Container(
-                    //     padding: EdgeInsets.symmetric(vertical: kMarginY * 10),
-                    //     alignment: Alignment.center,
-                    //     decoration: BoxDecoration(
-                    //       color: AppColors.whitecolor,
-                    //       border: Border(top: BorderSide.none),
-                    //     ),
-                    //     height: kHeight / 1.8,
-                    //     child: ListView.builder(
-                    //         shrinkWrap: true,
-                    //         physics: NeverScrollableScrollPhysics(),
-                    //         // scrollDirection:
-                    //         //     Axis.horizontal,
-                    //         itemCount: authCont.listTypeCompte.length,
-                    //         itemBuilder: (BuildContext context, int index) {
-                    //           return RadioListTile<int>(
-                    //             value: authCont.listTypeCompte[index],
-                    //             groupValue: authCont.typeCompte,
-                    //             title: Text(
-                    //               _format.capitalizeFirstLetter(
-                    //                   authCont.listTypeCompte[index] == 0
-                    //                       ? 'choix0'.tr
-                    //                       : 'choix1'.tr),
-                    //               style: TextStyle(
-                    //                   fontSize: kMediumText,
-                    //                   fontFamily: 'Montserrat'),
-                    //             ),
-                    //             activeColor: AppColors.primaryGreen,
-                    //             onChanged: (val) {
-                    //               print(val);
-                    //               authCont.selectTypeCompte(val);
-                    //             },
-                    //           );
-                    //         })),
+                    AppExperienceComponent(
+                      text: "choix0".tr,
+                      onTap: () async {
+                        authCont.selectTypeCompte(0);
+                        Get.toNamed(AppLinks.LOGIN);
+                      },
+                    ),
+                    AppExperienceComponent(
+                      text: "choix1".tr,
+                      onTap: () async {
+                        authCont.selectTypeCompte(1);
+                        Get.toNamed(AppLinks.LOGIN);
+                      },
+                    ),
+                    /*    
                     Container(
                       decoration: BoxDecoration(
                         color: AppColors.whitecolor,
@@ -147,6 +130,7 @@ class SelectExperienceView extends StatelessWidget {
                         ],
                       ),
                     ),
+                */
                   ],
                 )),
               ),

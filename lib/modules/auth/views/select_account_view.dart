@@ -19,7 +19,7 @@ class SelectAccountView extends StatelessWidget {
                   leading: IconButton(
                     icon: Icon(
                       Icons.keyboard_arrow_left_outlined,
-                      color: AppColors.primaryGreen,
+                      // color: AppColors.primaryGreen,
                     ),
                     onPressed: () {
                       authCont.cleanA();

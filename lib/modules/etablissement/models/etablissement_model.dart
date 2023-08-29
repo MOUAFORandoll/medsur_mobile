@@ -71,8 +71,8 @@ class EtablissementModel {
     codePhone = json['codePhone'];
     numero_registre_commerce = json['numero_registre_commerce'];
     numero_contribuable = json['numero_contribuable'];
-    phone = json['phone'];
-    phone2 = json['phone2'];
+    phone = json['phone'].toString().trim();
+    phone2 = json['phone2'].toString().trim();
     email = json['email'];
     siteweb = json['siteweb'];
     userId = json['user_id'];
@@ -480,3 +480,19 @@ class Pivot {
     return data;
   }
 }
+
+
+/**
+
+
+
+Bonjour Mr vous vous portez bien j'espere.
+lors de mes recherches pour ameliorer la geolocalisation de l'emplacement de l'etablissement
+ j'ai trouve mapbox qui me permet de recuperer la position d'un lieux en fonction du titre
+  cde celui-ci l'api apres quelque tests, l'api en question n'a pas une grande precision 
+par exemple il retrouve bien bonamoussadi mais  par bonamoussadi santa lucia
+
+
+ 
+ * 
+ */

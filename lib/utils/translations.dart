@@ -162,6 +162,8 @@ class Transalations extends Translations {
               "Make sure you have provided the correct information; otherwise, your establishment will not be activated.",
           'successcreationd':
               'Your center has been successfully added to our platform. You will be notified by email once it is activated.',
+          'locationplace':
+              "Tell us the location of your establishment using this map"
         },
 
         //FRENCH LANGUAGE
@@ -272,7 +274,7 @@ class Transalations extends Translations {
           'errornvd': "Veuillez choisir un niveau d\'urgence",
           't1Create': "Creer votre compte",
           't2Create': "Finaliser votre creation avec un mot de passe",
-          "confirm": "Confirmer pour visualiser cet etablissement",
+          "confirm": "Confirmer pour visualiser cet établissement",
           "cancel": "Annuler",
           "choise": "Choisir",
           "autorisation": "Autorisation",
@@ -294,13 +296,13 @@ class Transalations extends Translations {
           'parlesnous': 'Informations de votre établissement  ',
           'etablissement0': 'Etablissements',
           'titleetablissement0':
-              "Ajouter votre etablissement a notre plateforme et faites vous connaitre",
+              "Ajouter votre établissement a notre plateforme et faites vous connaitre",
           'titleetablissement1':
               "Prenez en main la gestion de vos établissements sur notre plateforme et faites-vous connaître.",
           'boitepostal': 'Boîte postale',
           'makeagenda': 'Partager votre agenda',
-          'etablissementbtn': 'Ajouter votre etablissement',
-          'etaspe': "Choisissez les specialites de votre etablissement",
+          'etablissementbtn': 'Ajouter votre établissement',
+          'etaspe': "Choisissez les specialites de votre établissement",
           'successcreation': 'Succès',
           'confirmcreate': 'Je cree',
           'day': 'Jour',
@@ -317,7 +319,7 @@ class Transalations extends Translations {
           'choix': 'Des choix s\'offrent a vous',
           'choix0': 'Trouver l\'établissement adéquat pour votre alerte',
           'choix1': 'Ajoutez votre établissement de santé',
-          'positionetablissement': 'Etes vous dans votre etablissement ?',
+          'positionetablissement': 'Etes vous dans votre établissement ?',
           'activate': "Contacter nous pour une activation rapide",
           'update': 'Mettre a jour',
           'correctinfoeta':
@@ -325,6 +327,8 @@ class Transalations extends Translations {
           'successcreationbtn': 'Continuer',
           'successcreationd':
               'Votre centre a été ajouté avec succès à notre plateforme. Vous serez informé(e) par e-mail dès que celle-ci sera activée.',
+          'locationplace':
+              "Indiquez nous l\'emplacement de votre etablissement grace a cette carte"
         },
       };
 }

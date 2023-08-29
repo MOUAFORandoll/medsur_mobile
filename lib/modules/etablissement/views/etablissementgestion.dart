@@ -46,11 +46,12 @@ class EtablissementGView extends StatelessWidget {
                   children: [
                     Container(
                         constraints: BoxConstraints(minHeight: kHeight / 7),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                        // padding:
+                        //     EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+                        padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors.primaryBlue,
+                          color: AppColors.grayColor,
                         ),
                         child: Column(
                           children: [
@@ -68,62 +69,74 @@ class EtablissementGView extends StatelessWidget {
                                       fontFamily: 'Montserrat',
                                       fontSize: kMediumText,
                                       overflow: TextOverflow.visible,
-                                      color: AppColors.whitecolor,
+                                      // color: AppColors.whitecolor,
                                       fontWeight: FontWeight.bold),
                                 )),
                             // ]),
-                            Container(
-                                margin: EdgeInsets.symmetric(
-                                  vertical: kMarginY / 2,
-                                ),
-                                width: kWidth * .83,
-                                child: Text(
-                                  'Situe a ' +
-                                      dController
-                                          .etablissement.localisation.ville,
-                                  // overflow: TextOverflow.visible,
-                                  style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontSize: kMediumText,
-                                      overflow: TextOverflow.visible,
-                                      color: AppColors.whitecolor,
-                                      fontWeight: FontWeight.w600),
-                                )),
+                            // Container(
+                            //     margin: EdgeInsets.symmetric(
+                            //       vertical: kMarginY / 2,
+                            //     ),
+                            //     width: kWidth * .83,
+                            //     child: Text(
+                            //       'Situe a ' +
+                            //           dController
+                            //               .etablissement.localisation.ville,
+                            //       // overflow: TextOverflow.visible,
+                            //       style: TextStyle(
+                            //           fontFamily: 'Montserrat',
+                            //           fontSize: kMediumText,
+                            //           overflow: TextOverflow.visible,
+                            //           // color: AppColors.whitecolor,
+                            //           fontWeight: FontWeight.w600),
+                            //     )),
                             if (dController.etablissement.phone.length != 0)
                               Container(
                                   margin: EdgeInsets.symmetric(
                                     vertical: kMarginY / 2,
                                   ),
-                                  width: kWidth * .83,
-                                  child: Text(
-                                    'Disponible au ' +
-                                        dController.etablissement.phone,
-                                    // overflow: TextOverflow.visible,
-                                    style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontSize: kMediumText,
-                                        overflow: TextOverflow.visible,
-                                        color: AppColors.whitecolor,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                            if (dController.etablissement.phone2.length != 0)
-                              Container(
-                                  margin: EdgeInsets.symmetric(
-                                    vertical: kMarginY / 2,
-                                  ),
-                                  width: kWidth * .83,
-                                  child: Text(
-                                    'Ambulence ' +
-                                        dController.etablissement.phone2,
-                                    // overflow: TextOverflow.visible,
-                                    style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontSize: kMediumText,
-                                        overflow: TextOverflow.visible,
-                                        color: AppColors.whitecolor,
-                                        fontWeight: FontWeight.w600),
-                                  )),
+                                  child: Row(children: [
+                                    Container(
+                                        constraints: BoxConstraints(
+                                          minWidth: kWidth * .50,
+                                          maxWidth: kWidth * .73,
+                                        ),
+                                        child: Text(
+                                          'Disponible au ' +
+                                              dController.etablissement.phone,
+                                          // overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                              fontFamily: 'Montserrat',
+                                              fontSize: kMediumText,
+                                              overflow: TextOverflow.visible,
+                                              // color: AppColors.whitecolor,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                    Icon(Icons.phone,
+                                        size: 16,
+                                        color: AppColors.primaryGreen),
+                                  ])),
+                            // if (dController.etablissement.phone2.length != 0)
+                            //   Container(
+                            //       margin: EdgeInsets.symmetric(
+                            //         vertical: kMarginY / 2,
+                            //       ),
+                            //       width: kWidth * .83,
+                            //       child: Text(
+                            //         'Ambulance ' +
+                            //             dController.etablissement.phone2,
+                            //         // overflow: TextOverflow.visible,
+                            //         style: TextStyle(
+                            //             fontFamily: 'Montserrat',
+                            //             fontSize: kMediumText,
+                            //             overflow: TextOverflow.visible,
+                            //             // color: AppColors.whitecolor,
+                            //             fontWeight: FontWeight.w600),
+                            //       )),
                             Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: kMarginY / 2,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -138,23 +151,26 @@ class EtablissementGView extends StatelessWidget {
                                             fontFamily: 'Montserrat',
                                             fontSize: kMediumText,
                                             overflow: TextOverflow.visible,
-                                            color: AppColors.whitecolor,
+                                            // color: AppColors.whitecolor,
                                             fontWeight: FontWeight.w600),
                                       )),
                                   Container(
-                                    height: 10,
-                                    width: 10,
+                                    height: 12,
+                                    width: 12,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(30),
                                         color: dController.etablissement.status
                                             ? AppColors.primaryGreen
-                                            : AppColors.grayColor),
+                                            : AppColors.red),
                                     alignment: Alignment.centerLeft,
                                   )
                                 ],
                               ),
                             ),
                             Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: kMarginY / 2,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -166,51 +182,56 @@ class EtablissementGView extends StatelessWidget {
                                             fontFamily: 'Montserrat',
                                             fontSize: kMediumText,
                                             overflow: TextOverflow.visible,
-                                            color: AppColors.whitecolor,
+                                            // color: AppColors.whitecolor,
                                             fontWeight: FontWeight.w600),
                                       )),
                                   Icon(
-                                    dController.etablissement.garanti
-                                        ? Icons.check_circle
-                                        : Icons.close,
-                                    size: 16,
-                                    color: dController.etablissement.garanti
-                                        ? Colors.green
-                                        : Colors.red,
-                                  )
+                                      dController.etablissement.garanti
+                                          ? Icons.check_circle
+                                          : Icons.close,
+                                      size: 16,
+                                      color: dController.etablissement.garanti
+                                          ? AppColors.primaryGreen
+                                          : AppColors.red)
                                 ],
                               ),
                             ),
                             Container(
+                                margin: EdgeInsets.symmetric(
+                                  vertical: kMarginY / 2,
+                                ),
                                 child: Row(
-                              children: [
-                                Container(
-                                    width: kWidth * .28,
-                                    child: Text(
-                                      'Autorisation :',
-                                      // overflow: TextOverflow.visible,
-                                      style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          fontSize: kMediumText,
-                                          overflow: TextOverflow.visible,
-                                          color: AppColors.whitecolor,
-                                          fontWeight: FontWeight.w600),
-                                    )),
-                                Icon(
-                                    dController.etablissement.autorisation
-                                        ? Icons.check_circle
-                                        : Icons.close,
-                                    size: 16,
-                                    color:
+                                  children: [
+                                    Container(
+                                        width: kWidth * .28,
+                                        child: Text(
+                                          'Autorisation :',
+                                          // overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                              fontFamily: 'Montserrat',
+                                              fontSize: kMediumText,
+                                              overflow: TextOverflow.visible,
+                                              // color: AppColors.whitecolor,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                    Icon(
                                         dController.etablissement.autorisation
-                                            ? Colors.green
-                                            : Colors.red),
-                              ],
-                            )),
+                                            ? Icons.check_circle
+                                            : Icons.close,
+                                        size: 16,
+                                        color: dController
+                                                .etablissement.autorisation
+                                            ? AppColors.primaryGreen
+                                            : AppColors.red),
+                                  ],
+                                )),
                             if (!dController.etablissement.status)
                               InkWell(
                                 onTap: () => dController.sendMailAsActivation(),
                                 child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                    vertical: kMarginY / 2,
+                                  ),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -224,8 +245,8 @@ class EtablissementGView extends StatelessWidget {
                                       Icon(Icons.mail,
                                           color: dController
                                                   .etablissement.autorisation
-                                              ? Colors.green
-                                              : Colors.red),
+                                              ? AppColors.primaryGreen
+                                              : AppColors.red),
                                     ],
                                   ),
                                 ),
@@ -234,7 +255,7 @@ class EtablissementGView extends StatelessWidget {
                         )),
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
-                        padding: EdgeInsets.symmetric(vertical: 5),
+                        // padding: EdgeInsets.symmetric(vertical: 5),
                         child: Column(children: [
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

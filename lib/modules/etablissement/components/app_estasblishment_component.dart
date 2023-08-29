@@ -19,26 +19,27 @@ class AppEstasblishmentComponent extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-          height: kHeight / 4,
+          height: kHeight / 6,
           // width: kWidth / 4,
-          alignment: Alignment.center,
+          // alignment: Alignment.center,
           padding: EdgeInsets.all(kMarginX / 2),
+          margin: EdgeInsets.symmetric(vertical: kMarginX / 2.5),
           // margin: EdgeInsets.only(right: kMarginX),
           decoration: BoxDecoration(
-              color: AppColors.primaryBlue,
-              borderRadius: BorderRadius.circular(20)),
+              color: AppColors.grayColor,
+              borderRadius: BorderRadius.circular(10)),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  width: kWidth * .50,
+                  width: kWidth,
                   child: Text(
                     _format
                         .capitalizeFirstLetter(etablissement.name.toString()),
                     style: TextStyle(
                         fontFamily: 'Montserrat',
-                        color: AppColors.primaryGreen,
+                        // color: AppColors.primaryGreen,
                         fontSize: kMediumText /* / 1.2 */,
                         overflow: TextOverflow.fade,
                         fontWeight: FontWeight.bold),
@@ -47,28 +48,35 @@ class AppEstasblishmentComponent extends StatelessWidget {
                   margin: EdgeInsets.only(top: kMarginY),
                   width: kWidth * .50,
                   child: Text(
-                    _format.capitalizeFirstLetter(
-                        etablissement.localisation!.ville.toString()),
+                    'Situe a ' +
+                        _format.capitalizeFirstLetter(
+                            etablissement.localisation!.ville.toString()),
                     style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: AppColors.whitecolor,
-                        fontSize: kMediumText /* / 1.2 */,
-                        overflow: TextOverflow.fade,
-                        fontWeight: FontWeight.bold),
+                      fontFamily: 'Montserrat',
+                      // color: AppColors.whitecolor,
+                      fontSize: kMediumText /* / 1.2 */,
+                      overflow: TextOverflow.fade,
+                    ),
                   )),
-              Container(
-                  margin: EdgeInsets.only(top: kMarginY),
-                  width: kWidth * .50,
-                  child: Text(
-                    'Status : ' +
-                        (etablissement.status! ? 'Active' : 'Inactive'),
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: AppColors.whitecolor,
-                        fontSize: kMediumText /* / 1.2 */,
-                        overflow: TextOverflow.fade,
-                        fontWeight: FontWeight.bold),
-                  )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(top: kMarginY),
+                      width: kWidth * .50,
+                      child: Text(
+                        'Status : ' +
+                            (etablissement.status! ? 'Active' : 'Inactive'),
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          // color: AppColors.whitecolor,
+                          fontSize: kMediumText /* / 1.2 */,
+                          overflow: TextOverflow.fade,
+                        ),
+                      )),
+                  Container(child: Icon(Icons.medical_services)),
+                ],
+              ),
             ],
           )),
     );

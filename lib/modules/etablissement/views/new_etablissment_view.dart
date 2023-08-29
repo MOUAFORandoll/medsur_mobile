@@ -33,7 +33,6 @@ class NewEtablissementView extends StatelessWidget {
                   leading: IconButton(
                     icon: Icon(
                       Icons.keyboard_arrow_left_outlined,
-                      color: AppColors.primaryText,
                     ),
                     tooltip:
                         MaterialLocalizations.of(context).backButtonTooltip,

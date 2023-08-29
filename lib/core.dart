@@ -59,7 +59,7 @@ Future<void> initApp() async {
   await Get.find<DataBaseController>().initDatabase();
   await Get.find<ActionController>().getLanguageInit();
   print("fin get bind************---------------------------");
-  await Get.find<ActionController>().getMyPosition();
+   Get.find<ActionController>().getMyPosition();
   await Get.find<HomeController>().getUserinfo_BD();
   await Get.find<AuthController>().getUserPermission_BD();
   await Get.find<DashBoardController>().getUserRole_BD();

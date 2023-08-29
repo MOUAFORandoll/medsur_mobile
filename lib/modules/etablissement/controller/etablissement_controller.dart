@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
-
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:medsur_app/general_controllers/action_controller.dart';
@@ -22,6 +22,7 @@ import 'package:medsur_app/modules/etablissement/views/success_etablissement_vie
 import 'package:medsur_app/modules/etablissement/views/tird_step.dart';
 import 'package:medsur_app/utils/routing.dart';
 import 'package:medsur_app/utils/showToast.dart';
+import '../../../constants/index_common.dart';
 import '../../../general_component/index_widgets.dart';
 import '../../alerte/models/user_alert_model.dart';
 
@@ -334,6 +335,48 @@ class EtablissementController extends GetxController {
     print(_selectedPosition);
   }
 
+  bool _placeLoad = false;
+  bool get placeLoad => _placeLoad;
+  TextEditingController _placeTexteController = TextEditingController();
+  TextEditingController get placeTexteController => _placeTexteController;
+  getPlaceInformation() async {
+    loader.open();
+    var connect = new GetConnect();
+    final response = await connect.get(
+        'https://api.mapbox.com/geocoding/v5/mapbox.places/${placeTexteController.text}.json?access_token=pk.eyJ1IjoibW91YWZvIiwiYSI6ImNsbG5wemswczAzNDUzZ3A0Ym04OW5neTYifQ._k2VTUEp_qNXGJ5QPnk84g');
+    print(response.body);
+
+    longitude = jsonDecode(response.body)['features'][0]['center'][0];
+    latitude = jsonDecode(response.body)['features'][0]['center'][1];
+    update();
+    loader.close();
+
+    Get.toNamed(AppLinks.MAP);
+  }
+
+  getEmplacementDescripition() {
+    var snackBar = SnackBar(
+      content: Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Text(
+                  'locationplace'.tr,
+                  // overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              // Icon(Icons.check_circle_sharp)
+            ],
+          )),
+      backgroundColor: AppColors.secondaryBlue,
+      duration: Duration(seconds: 30),
+    );
+
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+  }
+
   changePosition() {
     _selectedPosition = false;
 
@@ -470,7 +513,7 @@ class EtablissementController extends GetxController {
       "name": nameController.text,
       "numero_registre_commerce": nrCommerceController.text,
       "numero_contribuable": nrContribuableController.text,
-      "phone": phoneController.text,
+      "phone": phoneController.text.toString().trim(),
       "codePhone": codePhone.isEmpty ? '237' : codePhone,
       "email": emailController.text,
       "description": descriptionController.text,
@@ -578,7 +621,7 @@ class EtablissementController extends GetxController {
     var data = {
       "name": nameController.text,
       "email": emailController.text,
-      "phone": phoneController.text,
+      "phone": phoneController.text.toString().trim(),
       "codePhone": codePhone,
       "description": descriptionController.text,
       "boite_postale": boitePostaleController.text,
@@ -602,7 +645,7 @@ class EtablissementController extends GetxController {
 
             update();
             loader.close();
-
+            toastShowSuccess("succes".tr, Get.context);
             await getEtablissementForUser();
             await updateConcernEtablissement();
           }
